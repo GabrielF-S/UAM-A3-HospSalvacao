@@ -1,9 +1,10 @@
-package com.h_salvacao.ms_token.controller;
+package com.h_salvacao.ms_token.controller.impl;
 
+import com.h_salvacao.ms_token.controller.FichaController;
 import com.h_salvacao.ms_token.entity.Ficha;
-import com.h_salvacao.ms_token.entity.TipoAtendimento;
+import com.h_salvacao.ms_token.entity.FichaAtendimento;
 import com.h_salvacao.ms_token.service.FichaService;
-import jakarta.annotation.Nullable;
+import com.h_salvacao.ms_token.service.ImprimirFichaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,17 +13,27 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/ficha")
-public class implFichaControllerImpl implements  FichaController{
+public class FichaControllerImpl implements FichaController {
     @Autowired
     FichaService fichaService;
+    @Autowired
+    ImprimirFichaService imprimirFichaService;
     @Override
-    public ResponseEntity<Ficha> gerarFicha(FichaAtendimento atendimento) {
+    public ResponseEntity<Ficha> gerarFicha( @RequestBody FichaAtendimento atendimento) {
+
         Ficha ficha;
-        if (atendimento.cpf == null){
-          ficha =   fichaService.abrirFichaSemCadastro(atendimento);
+        if (atendimento.getCpf() == null){
+          ficha =   fichaService.abrirFichaSemCadastro(atendimento.getTipoAtendimento());
         }else {
-             ficha =   fichaService.abrirFicha(atendimento);
+             ficha =   fichaService.abrirFicha(atendimento.getCpf(), atendimento.getTipoAtendimento());
         }
+        fichaService.salvarFicha(ficha);
+        imprimirFichaService.Imprimir(ficha);
         return  ResponseEntity.ok(ficha);
+    }
+
+    @Override
+    public ResponseEntity<Ficha> salvarFicha(Ficha ficha) {
+        return null;
     }
 }
