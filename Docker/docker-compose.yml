@@ -1,0 +1,37 @@
+#version: '3.9'
+volumes:
+  pg_database_a3:
+networks:
+  rede-token:
+services:
+ 
+  my-postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    shm_size: 128mb
+    # or set shared memory limit when deploy via swarm stack
+    volumes:
+      - pg_database_a3:/var/lib/postgresql/data
+      - type: tmpfs
+        target: /dev/shm
+        tmpfs:
+          size: 134217728 # 128*2^20 bytes = 128Mb
+     # - ./scripts:/scripts
+     # - ./scripts/start.sh:/docker-entrypoint-initdb.d/start.sh
+    networks:
+      - rede-token    
+    environment:
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_USER: usergabs
+      POSTGRES_DB: hospSalvacao_db
+
+  my-pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - 15432:80
+    environment:
+       PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+       PGADMIN_DEFAULT_PASSWORD: "admin123"
+    networks:
+       - rede-token
