@@ -22,15 +22,15 @@ public class ImprimirFichaServiceImpl implements ImprimirFichaService {
     @Override
     public void Imprimir(Ficha ficha)  {
 
-        new Thread();
-
+//        new Thread();
+//
         criarArquivo(ficha);
-        try {
-            imprimirArquivo();
-        }finally {
-
-            excluirArquivo();
-        }
+//        try {
+//            imprimirArquivo();
+//        }finally {
+//
+//            excluirArquivo();
+//        }
 
 
     }
