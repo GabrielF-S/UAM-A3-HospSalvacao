@@ -15,16 +15,17 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name = "tb_ficha")
-public class Ficha {
+public class Token {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String token;
+    private String numToken;
 
     @JsonFormat(pattern = "dd/MM/yy HH:mm")
     private LocalDateTime dataEntrada;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "paciente.id")
     private Paciente paciente;
 
     private AtendimentoStatus status;
@@ -42,7 +43,7 @@ public class Ficha {
         return "Hospital Salvação\n" +
                 "Data ='" + dataEntrada + '\'' +
                 "-----------------------" +
-                ", Ficha =" + token +
+                ", Ficha =" + numToken +
                 ", paciente=" + paciente.getNome() +
                 ", atendimento=" + atendimento +
                 "-----------------------";

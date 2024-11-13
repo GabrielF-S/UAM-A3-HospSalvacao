@@ -1,14 +1,13 @@
 package com.h_salvacao.ms_token.service;
 
-import com.h_salvacao.ms_token.entity.Ficha;
-import org.springframework.stereotype.Service;
+import com.h_salvacao.ms_token.entity.Token;
 
 
 public interface ImprimirFichaService {
 
-    void Imprimir(Ficha ficha) throws InterruptedException;
+    void Imprimir(Token token);
 
-    void criarArquivo(Ficha ficha);
+    void criarArquivo(Token token);
 
     void imprimirArquivo();
 

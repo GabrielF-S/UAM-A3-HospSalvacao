@@ -1,8 +1,8 @@
 package com.h_salvacao.ms_token.controller.impl;
 
-import com.h_salvacao.ms_token.controller.FichaController;
-import com.h_salvacao.ms_token.entity.Ficha;
-import com.h_salvacao.ms_token.entity.FichaAtendimento;
+import com.h_salvacao.ms_token.controller.TokenController;
+import com.h_salvacao.ms_token.entity.Token;
+import com.h_salvacao.ms_token.entity.TokenAtendimento;
 import com.h_salvacao.ms_token.service.FichaService;
 import com.h_salvacao.ms_token.service.ImprimirFichaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,28 +12,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/ficha")
-public class FichaControllerImpl implements FichaController {
+@RequestMapping(value = "/token")
+public class TokenControllerImpl implements TokenController {
     @Autowired
     FichaService fichaService;
     @Autowired
     ImprimirFichaService imprimirFichaService;
     @Override
-    public ResponseEntity<Ficha> gerarFicha( @RequestBody FichaAtendimento atendimento) {
+    public ResponseEntity<Token> gerarFicha(@RequestBody TokenAtendimento atendimento) {
 
-        Ficha ficha;
+        Token token;
         if (atendimento.getCpf() == null){
-          ficha =   fichaService.abrirFichaSemCadastro(atendimento.getTipoAtendimento());
+          token =   fichaService.abrirFichaSemCadastro(atendimento.getTipoAtendimento());
         }else {
-             ficha =   fichaService.abrirFicha(atendimento.getCpf(), atendimento.getTipoAtendimento());
+             token =   fichaService.abrirFicha(atendimento.getCpf(), atendimento.getTipoAtendimento());
         }
-        fichaService.salvarFicha(ficha);
-        imprimirFichaService.Imprimir(ficha);
-        return  ResponseEntity.ok(ficha);
+        fichaService.salvarFicha(token);
+        imprimirFichaService.Imprimir(token);
+        return  ResponseEntity.ok(token);
     }
 
     @Override
-    public ResponseEntity<Ficha> salvarFicha(Ficha ficha) {
+    public ResponseEntity<Token> salvarFicha(Token token) {
         return null;
     }
 }

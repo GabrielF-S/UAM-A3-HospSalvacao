@@ -1,0 +1,5 @@
+Hospital Salvação
+Data de entrada: 08/11/24 19:38
+Paciente: Não identificado
+Ficha: IRGBC1
+Tipo de atendimento: COMUM

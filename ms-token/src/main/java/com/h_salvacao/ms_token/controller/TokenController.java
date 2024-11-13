@@ -1,18 +1,17 @@
 package com.h_salvacao.ms_token.controller;
 
-import com.h_salvacao.ms_token.entity.Ficha;
-import com.h_salvacao.ms_token.entity.FichaAtendimento;
-import com.h_salvacao.ms_token.entity.TipoAtendimento;
+import com.h_salvacao.ms_token.entity.Token;
+import com.h_salvacao.ms_token.entity.TokenAtendimento;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-public interface FichaController {
+public interface TokenController {
     @GetMapping(value = "/gerarFicha")
-    ResponseEntity<Ficha> gerarFicha(FichaAtendimento atendimento) throws InterruptedException;
+    ResponseEntity<Token> gerarFicha(TokenAtendimento atendimento) throws InterruptedException;
 
     @PostMapping(value = "/gerarFicha")
-    ResponseEntity<Ficha> salvarFicha(Ficha ficha);
+    ResponseEntity<Token> salvarFicha(Token ficha);
 
 
 

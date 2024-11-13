@@ -1,7 +1,7 @@
 package com.h_salvacao.ms_token.service.impl;
 
 import com.h_salvacao.ms_token.entity.*;
-import com.h_salvacao.ms_token.repository.FichaRepository;
+import com.h_salvacao.ms_token.repository.TokenRepository;
 import com.h_salvacao.ms_token.service.FichaService;
 import com.h_salvacao.ms_token.service.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service;
 import java.util.Random;
 
 @Service
-public class FichaServiceImpl implements FichaService {
+public class TokenServiceImpl implements FichaService {
 
     @Autowired
     PacienteService pacienteService;
 
     @Autowired
-    FichaRepository fichaRepository;
+    TokenRepository fichaRepository;
 
     private Long sequnciaComum = 0L;
     private Long sequnciaPreferencial = 0L;
@@ -24,10 +24,10 @@ public class FichaServiceImpl implements FichaService {
     private Long sequnciaUrgencia = 0L;
 
     @Override
-    public Ficha abrirFicha(String cpf, TipoAtendimento tipoAtendimento) {
+    public Token abrirFicha(String cpf, TipoAtendimento tipoAtendimento) {
         Paciente paciente = pacienteService.buscarPaciente(cpf);
-        return Ficha.builder()
-                .token(gerarToken(tipoAtendimento))
+        return Token.builder()
+                .numToken(gerarToken(tipoAtendimento))
                 .paciente(paciente)
                 .status(AtendimentoStatus.AGUARD_TRIAGEM)
                 .atendimento(tipoAtendimento)
@@ -35,17 +35,17 @@ public class FichaServiceImpl implements FichaService {
     }
 
     @Override
-    public Ficha abrirFichaSemCadastro(TipoAtendimento atendimento) {
-        return Ficha.builder()
-                .token(gerarToken(atendimento))
+    public Token abrirFichaSemCadastro(TipoAtendimento atendimento) {
+        return Token.builder()
+                .numToken(gerarToken(atendimento))
                 .status(AtendimentoStatus.AGUARD_TRIAGEM)
                 .atendimento(atendimento)
                 .build();
     }
 
     @Override
-    public void salvarFicha(Ficha ficha) {
-        fichaRepository.save(ficha);
+    public void salvarFicha(Token token) {
+        fichaRepository.save(token);
     }
 
     private String gerarToken(TipoAtendimento atendimento) {

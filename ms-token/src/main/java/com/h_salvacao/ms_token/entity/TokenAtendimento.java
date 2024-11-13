@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class FichaAtendimento {
+public class TokenAtendimento {
     private String cpf;
     private TipoAtendimento tipoAtendimento;
 }
