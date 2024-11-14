@@ -48,7 +48,8 @@ public class ImprimirTokenServiceImpl implements ImprimirFichaService {
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm");
         try {
-            Path fichaImpressao = Files.createFile(path.resolve("ficha.txt"));
+
+            Path fichaImpressao = Files.createFile(path.resolve("ficha-"+ dadosFicha.getNumToken() +".txt"));
             Files.writeString(fichaImpressao, "Hospital Salvação\n"
                     +"Data de entrada: "+ dadosFicha.getDataEntrada().format(formatter)+"\n"
                     +"Paciente: " + dadosFicha.getPaciente().getNome() +"\n"

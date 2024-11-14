@@ -1,5 +1,5 @@
 Hospital Salvação
-Data de entrada: 08/11/24 19:38
+Data de entrada: 13/11/24 21:54
 Paciente: Não identificado
-Ficha: IRGBC1
+Ficha: GYZUC3
 Tipo de atendimento: COMUM

@@ -1,10 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TemplateModule } from './template/template.module';
 import { HomeComponent } from './home/home.component';
+import { PacientesModule } from './pacientes/pacientes.module';
+import { TokensService } from './tokens.service';
+import { PacientesService } from './pacientes.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,9 +20,16 @@ import { HomeComponent } from './home/home.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    TemplateModule
+    TemplateModule,
+    PacientesModule,
+    HttpClientModule,
+    FormsModule,
+
   ],
-  providers: [],
+  providers: [
+    TokensService,
+    PacientesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

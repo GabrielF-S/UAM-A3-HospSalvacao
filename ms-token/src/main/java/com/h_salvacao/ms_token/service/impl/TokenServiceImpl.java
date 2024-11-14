@@ -2,7 +2,7 @@ package com.h_salvacao.ms_token.service.impl;
 
 import com.h_salvacao.ms_token.entity.*;
 import com.h_salvacao.ms_token.repository.TokenRepository;
-import com.h_salvacao.ms_token.service.FichaService;
+import com.h_salvacao.ms_token.service.TokenService;
 import com.h_salvacao.ms_token.service.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service;
 import java.util.Random;
 
 @Service
-public class TokenServiceImpl implements FichaService {
+public class TokenServiceImpl implements TokenService {
 
     @Autowired
     PacienteService pacienteService;
 
     @Autowired
-    TokenRepository fichaRepository;
+    TokenRepository tokenRepository;
 
     private Long sequnciaComum = 0L;
     private Long sequnciaPreferencial = 0L;
@@ -45,11 +45,11 @@ public class TokenServiceImpl implements FichaService {
 
     @Override
     public void salvarFicha(Token token) {
-        fichaRepository.save(token);
+        tokenRepository.save(token);
     }
 
     private String gerarToken(TipoAtendimento atendimento) {
-        return   gerarSequencia(4) + gerarSufixo(atendimento) ;
+        return   gerarSequencia(3) + gerarSufixo(atendimento) ;
 
 
     }

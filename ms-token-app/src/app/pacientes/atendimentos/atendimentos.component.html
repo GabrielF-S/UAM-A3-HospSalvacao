@@ -1,0 +1,79 @@
+<div class="row">
+    <div class="col-xl-3 col-md-6">
+      <div class="card bg-success text-white mb-4">
+          <div class="card-header">Atendimento Comum</div>
+        <div class="card-body">Destinado a pacientes com condições de saúde que não são urgentes. Eles podem ter sintomas leves ou condições crônicas que não requerem atenção imediata.</div>
+        <div
+          class="card-footer d-flex align-items-center justify-content-between"
+        >
+          <a class="small text-white stretched-link" (click)="gerarToken('COMUM')" data-toggle="modal" data-target="#modalToken">Acessar</a>
+          <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+      <div class="card bg-primary text-white mb-4">
+        <div class="card-header">Atendimento Preferencial</div>
+        <div class="card-body">Reservado para grupos prioritários, como idosos, gestantes, pessoas com deficiência, crianças pequenas ou pessoas com doenças crônicas que precisam de acompanhamento regular.</div>
+        <div
+          class="card-footer d-flex align-items-center justify-content-between"
+        >
+          <a class="small text-white stretched-link" (click)="gerarToken('PREFERENCIAL')" data-toggle="modal" data-target="#modalToken">Acessar</a>
+          <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+      <div class="card bg-warning text-white mb-4">
+        <div class="card-header">Atendimento Urgente</div>
+        <div class="card-body">Para pacientes com condições que requerem atenção rápida para evitar complicações graves, mas que não são imediatamente fatais. Exemplos incluem fraturas, dores severas, infecções graves ou desidratação.</div>
+        <div
+          class="card-footer d-flex align-items-center justify-content-between"
+        >
+          <a class="small text-white stretched-link" (click)="gerarToken('URGENTE')" data-toggle="modal" data-target="#modalToken">View Details</a>
+          <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+      <div class="card bg-danger text-white mb-4">
+        <div class="card-header">Atendimento Emergencial</div>
+        <div class="card-body">Destinado a casos críticos e que ameaçam a vida, que requerem intervenção imediata. Pacientes com parada cardíaca, acidentes graves, hemorragias intensas, queimaduras severas.</div>
+        <div
+          class="card-footer d-flex align-items-center justify-content-between"
+        >
+          <a class="small text-white stretched-link" (click)="gerarToken('EMERGENCIAL')" data-toggle="modal" data-target="#modalToken">View Details</a>
+          <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-md-3">
+           
+          <button  type="button"class="btn btn-danger  ml-1" (click)="voltar()"><i class="fa fa-arrow-circle-left"></i> Volta</button>
+      </div>
+     
+  </div>
+
+
+  <div id="modalToken" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h4>Token</h4>
+        </div>
+        <div class="modal-body"  *ngIf="token.numToken">
+          <p>Hospital Salvação</p>
+          <p>Data de entrada: {{token.dataEntrada}}</p>
+          <p>Paciente: {{paciente.nome}}</p>
+          <p>Token: {{token.numToken}}</p>
+          <p>Tipo de Atendimento: {{token.atendimento}}</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success" data-dismiss="modal">Confirmar</button>
+          <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
