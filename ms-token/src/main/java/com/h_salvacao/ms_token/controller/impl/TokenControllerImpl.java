@@ -3,6 +3,7 @@ package com.h_salvacao.ms_token.controller.impl;
 import com.h_salvacao.ms_token.controller.TokenController;
 import com.h_salvacao.ms_token.entity.Token;
 import com.h_salvacao.ms_token.entity.TokenAtendimento;
+import com.h_salvacao.ms_token.service.TokenProducerSender;
 import com.h_salvacao.ms_token.service.TokenService;
 import com.h_salvacao.ms_token.service.ImprimirFichaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,11 @@ public class TokenControllerImpl implements TokenController {
     TokenService fichaService;
     @Autowired
     ImprimirFichaService imprimirFichaService;
+
+    @Autowired
+    TokenProducerSender tokenProducerSender;
     @Override
-    public ResponseEntity<Token> gerarFicha(@RequestBody TokenAtendimento atendimento) {
+    public ResponseEntity<Token> gerarToken(@RequestBody TokenAtendimento atendimento) {
 
         Token token;
         if (atendimento.getCpf() == null){
@@ -31,11 +35,12 @@ public class TokenControllerImpl implements TokenController {
         }
         fichaService.salvarFicha(token);
         imprimirFichaService.Imprimir(token);
+        tokenProducerSender.sendToken(token);
         return  ResponseEntity.ok(token);
     }
 
     @Override
-    public ResponseEntity<Token> salvarFicha(Token token) {
+    public ResponseEntity<Token> salvarToken(Token token) {
         return null;
     }
 }
