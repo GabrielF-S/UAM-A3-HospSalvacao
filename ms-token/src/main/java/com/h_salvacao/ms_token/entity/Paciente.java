@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
@@ -13,7 +14,7 @@ import java.time.LocalDate;
 @Data
 @Entity
 @Table(name = "tb_paciente")
-public class Paciente {
+public class Paciente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public  Long id;

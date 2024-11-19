@@ -16,7 +16,7 @@ public class TokenProducerSenderImpl implements TokenProducerSender {
     @Override
     public void sendToken(Token token) {
 
-        kafkaTemplate.send("triagem-topic", token)
+        kafkaTemplate.send("triagem-topic",0, null, token)
                 .whenComplete((success, error) -> {
                     if (error!= null) {
                         log.error("Falaha ao enviar: {}", error.getMessage());

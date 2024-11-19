@@ -22,6 +22,7 @@ public class TokenProduceFactoryConfig {
     @Bean
     public ProducerFactory<?,?> producerFactory(){
         var configs = new HashMap<String, Object>();
+        configs.put(JsonSerializer.ADD_TYPE_INFO_HEADERS, false);
         configs.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaProperties.getBootstrapServers());
         configs.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         configs.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
