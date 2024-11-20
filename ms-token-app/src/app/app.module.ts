@@ -10,6 +10,7 @@ import { PacientesModule } from './pacientes/pacientes.module';
 import { TokensService } from './tokens.service';
 import { PacientesService } from './pacientes.service';
 import { FormsModule } from '@angular/forms';
+import {TriagemModule } from './triagem/triagem.module'
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FormsModule } from '@angular/forms';
     PacientesModule,
     HttpClientModule,
     FormsModule,
+    TriagemModule,
 
   ],
   providers: [

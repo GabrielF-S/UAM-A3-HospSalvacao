@@ -1,0 +1,75 @@
+<h1 class="mt-4">Triagem</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">Painel de Atendimento</li>
+</ol>
+<div class="row">
+    <div class="col-md-2">
+      <button class="btn btn-success" (click)="buscarProximo()">
+        <i class="fa fa-plus"></i> Chamar Proximo
+      </button>
+    </div>
+</div>
+
+<div class="row" *ngIf="token.numToken">
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>Token:</label>
+            <input type="text" name="nome" id="" class="form-control"  name = "numToken" disabled>  <!--[(ngModel)]="token.numToken"-->
+        </div>
+    </div>       
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>Nome:</label>
+            <input type="text" name="nome" id="" class="form-control" > <!--[(ngModel)]="paciente.nome"-->
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>Entrada</label>
+            <input type="text" name="dataEntrada" id="" class="form-control"  name = "nome" disabled> <!--[(ngModel)]="token.dataEntrada"-->
+        </div>
+    </div>       
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>Tipo de Atendimento</label>
+            <input type="text" name="cpf" id="" class="form-control"  disabled> <!--[(ngModel)]="cliente.cpf"-->
+        </div>
+    </div>
+    <div class="col-md-1">
+        <div class="form-group">
+            <label hidden>Sintomas</label><br>
+            <button class="btn btn-primary" (click)="adiconarSintomas()">
+                <i class="fa fa-receipt"></i> Sintomas
+              </button>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+              <label hidden>Salvar</label><br>
+                <button class="btn btn-success" (click)="salvarEncaminhar()">
+                    <i class="fa fa-star-of-life"></i> Salvar
+                  </button>
+        </div>
+    </div>
+    <div class="row" *ngIf="habilitarSintomas==true">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label>Sintomas:</label><br>
+                <textarea name="sintomas" id="sintomas" cols="70" rows="10"></textarea>
+            </div>
+        </div>    
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Pressão:</label>
+                <input type="text" name="nome" id="" class="form-control"  name = "numToken">  
+                <div class="form-group">
+                    <label>Temperatura:</label>
+                    <input type="text" name="nome" id="" class="form-control"  name = "numToken">  
+                </div>
+            </div>
+        </div>  
+      
+    </div>
+</div>
+
+
