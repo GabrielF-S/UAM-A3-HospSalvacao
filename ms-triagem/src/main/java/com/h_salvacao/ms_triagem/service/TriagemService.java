@@ -1,8 +1,16 @@
 package com.h_salvacao.ms_triagem.service;
 
-import com.h_salvacao.ms_triagem.entity.Token;
+import com.h_salvacao.ms_triagem.model.Token;
+
+import java.util.List;
 
 public interface TriagemService {
 
-    public void adcionarFila(Token token);
+    void adcionarFila(Token token);
+
+    List<Token> exibirFila();
+
+    Integer pegarTotal();
+
+    Token chamarProximo();
 }
