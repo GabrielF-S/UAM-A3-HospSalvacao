@@ -1,7 +1,5 @@
-package com.h_salvacao.ms_triagem.entity;
+package com.h_salvacao.ms_triagem.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

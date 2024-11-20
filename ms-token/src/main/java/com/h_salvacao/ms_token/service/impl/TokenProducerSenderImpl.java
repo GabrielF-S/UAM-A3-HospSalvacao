@@ -1,6 +1,6 @@
 package com.h_salvacao.ms_token.service.impl;
 
-import com.h_salvacao.ms_token.entity.Token;
+import com.h_salvacao.ms_token.model.Token;
 import com.h_salvacao.ms_token.service.TokenProducerSender;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;

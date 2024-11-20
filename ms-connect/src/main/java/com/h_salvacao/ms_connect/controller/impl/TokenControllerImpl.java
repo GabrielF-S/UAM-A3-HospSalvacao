@@ -1,9 +1,11 @@
 package com.h_salvacao.ms_token.controller.impl;
 
 import com.h_salvacao.ms_token.controller.TokenController;
-import com.h_salvacao.ms_token.model.Token;
-import com.h_salvacao.ms_token.model.TokenAtendimento;
+import com.h_salvacao.ms_token.entity.Token;
+import com.h_salvacao.ms_token.entity.TokenAtendimento;
+import com.h_salvacao.ms_token.service.TokenProducerSender;
 import com.h_salvacao.ms_token.service.TokenService;
+import com.h_salvacao.ms_token.service.ImprimirFichaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,22 +18,25 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(value = "http://localhost:4200/")
 public class TokenControllerImpl implements TokenController {
     @Autowired
-    TokenService tokenService;
+    TokenService fichaService;
+    @Autowired
+    ImprimirFichaService imprimirFichaService;
 
-
-
+    @Autowired
+    TokenProducerSender tokenProducerSender;
     @Override
     public ResponseEntity<Token> gerarToken(@RequestBody TokenAtendimento atendimento) {
 
         Token token;
         if (atendimento.getCpf() == null){
-          token =   tokenService.abrirFichaSemCadastro(atendimento.getTipoAtendimento());
+          token =   fichaService.abrirFichaSemCadastro(atendimento.getTipoAtendimento());
         }else {
-             token =   tokenService.abrirFicha(atendimento.getCpf(), atendimento.getTipoAtendimento());
+             token =   fichaService.abrirFicha(atendimento.getCpf(), atendimento.getTipoAtendimento());
         }
-
-
-        return  ResponseEntity.ok().body(tokenService.salvarToken(token));
+        fichaService.salvarFicha(token);
+        imprimirFichaService.Imprimir(token);
+        tokenProducerSender.sendToken(token);
+        return  ResponseEntity.ok(token);
     }
 
     @Override

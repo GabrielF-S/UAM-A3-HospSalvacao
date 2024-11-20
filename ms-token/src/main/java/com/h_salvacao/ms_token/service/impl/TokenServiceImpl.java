@@ -1,22 +1,28 @@
 package com.h_salvacao.ms_token.service.impl;
 
-import com.h_salvacao.ms_token.entity.*;
-import com.h_salvacao.ms_token.repository.TokenRepository;
+import com.h_salvacao.ms_token.model.*;
+import com.h_salvacao.ms_token.feigClients.TokenFeignClient;
+import com.h_salvacao.ms_token.service.ImprimirTokenService;
+import com.h_salvacao.ms_token.service.TokenProducerSender;
 import com.h_salvacao.ms_token.service.TokenService;
 import com.h_salvacao.ms_token.service.PacienteService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
-
+@RequiredArgsConstructor
 @Service
 public class TokenServiceImpl implements TokenService {
 
-    @Autowired
-    PacienteService pacienteService;
+    private final TokenFeignClient feignClient;
 
-    @Autowired
-    TokenRepository tokenRepository;
+    private final TokenProducerSender tokenProducerSender;
+
+    private final ImprimirTokenService imprimirFichaService;
+
+    private final PacienteService pacienteService;
+
+
 
     private Long sequnciaComum = 0L;
     private Long sequnciaPreferencial = 0L;
@@ -44,8 +50,11 @@ public class TokenServiceImpl implements TokenService {
     }
 
     @Override
-    public void salvarFicha(Token token) {
-        tokenRepository.save(token);
+    public Token salvarToken(Token token) {
+        token = feignClient.salvarToken(token).getBody();
+        imprimirFichaService.Imprimir(token);
+        tokenProducerSender.sendToken(token);
+        return token;
     }
 
     private String gerarToken(TipoAtendimento atendimento) {

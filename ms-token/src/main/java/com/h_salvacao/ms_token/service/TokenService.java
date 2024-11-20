@@ -1,7 +1,7 @@
 package com.h_salvacao.ms_token.service;
 
-import com.h_salvacao.ms_token.entity.Token;
-import com.h_salvacao.ms_token.entity.TipoAtendimento;
+import com.h_salvacao.ms_token.model.Token;
+import com.h_salvacao.ms_token.model.TipoAtendimento;
 
 public interface TokenService {
 
@@ -10,5 +10,5 @@ public interface TokenService {
     Token abrirFichaSemCadastro(TipoAtendimento atendimento);
 
 
-    void salvarFicha(Token token);
+    Token salvarToken(Token token);
 }
