@@ -1,17 +1,25 @@
-package com.h_salvacao.ms_token.controller;
+package com.h_salvacao.ms_connect.controller;
 
-import com.h_salvacao.ms_token.entity.Token;
-import com.h_salvacao.ms_token.entity.TokenAtendimento;
+import com.h_salvacao.ms_connect.entity.Token;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-public interface TokenController {
-    @PostMapping(value = "/gerarFicha")
-    ResponseEntity<Token> gerarToken(TokenAtendimento atendimento) throws InterruptedException;
+import java.util.List;
 
-    @PostMapping(value = "/atualizarFicha")
-    ResponseEntity<Token> salvarToken(Token ficha);
+public interface TokenController {
+
+    @PostMapping(value = "save")
+    ResponseEntity<Token> salvarToken(Token token);
+
+    @GetMapping(value = "getId/{id}")
+    ResponseEntity<Token> getTokenById(Long id);
+
+    @GetMapping(value = "getToken/{numToken}")
+    ResponseEntity<Token> getToken(String numToken);
+
+    @GetMapping(value ="get")
+    ResponseEntity<List<Token>> getAllTokens();
 
 
 

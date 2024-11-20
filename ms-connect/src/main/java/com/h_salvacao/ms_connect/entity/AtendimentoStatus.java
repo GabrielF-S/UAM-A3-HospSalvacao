@@ -1,4 +1,4 @@
-package com.h_salvacao.ms_token.entity;
+package com.h_salvacao.ms_connect.entity;
 
 public enum AtendimentoStatus {
     AGUARD_TRIAGEM,

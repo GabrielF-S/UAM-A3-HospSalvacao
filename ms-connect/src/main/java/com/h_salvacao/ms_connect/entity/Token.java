@@ -1,11 +1,8 @@
-package com.h_salvacao.ms_token.entity;
+package com.h_salvacao.ms_connect.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -13,15 +10,17 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter@Setter
 @Entity
 @Table(name = "tb_token")
 public class Token implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String numToken;
 
+    private String numToken;
+    @Column(name = "data_entrada")
     @JsonFormat(pattern = "dd/MM/yy HH:mm")
     private LocalDateTime dataEntrada;
 
@@ -29,24 +28,24 @@ public class Token implements Serializable {
     @JoinColumn(name = "paciente.id")
     private Paciente paciente;
 
-    private AtendimentoStatus status;
+    private  AtendimentoStatus status;
 
     private TipoAtendimento atendimento;
 
     @PrePersist
-    public void prePersist() {
+    public void prePersist(){
         setDataEntrada(LocalDateTime.now());
-
     }
 
-    @Override
-    public String toString() {
+
+    @Override public String toString() {
         return "Hospital Salvação\n" +
-                "Data ='" + dataEntrada + '\'' +
-                "-----------------------" +
+                "Data ='" + dataEntrada +
+                '\'' + "-----------------------" +
                 ", Ficha =" + numToken +
-                ", paciente=" + paciente.getNome() +
+                ", paciente=" + (paciente != null ? paciente.getNome() : "N/A") +
                 ", atendimento=" + atendimento +
                 "-----------------------";
     }
+
 }
