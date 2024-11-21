@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Token } from 'src/app/token/token';
+import { TriagemService } from '../../triagem.service';
 
 @Component({
   selector: 'app-triagem-painel',
@@ -12,7 +13,10 @@ export class TriagemPainelComponent implements OnInit {
   private token: Token;
   habilitarSintomas: boolean = false;
 
-  constructor() {
+  constructor(
+    private service: TriagemService,
+
+  ) {
     this.token = new Token();
    }
 
@@ -27,7 +31,11 @@ export class TriagemPainelComponent implements OnInit {
     
   }
   buscarProximo() {
-    
+    this.service.buscarProximoPaciente().subscribe(
+      response => {
+        this.token = response;
+      }
+    );
   }
 
 }

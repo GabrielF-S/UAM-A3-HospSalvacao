@@ -14,20 +14,21 @@ import java.util.List;
 public class Triagem {
 
     private Long id;
-    List<Token> filaComum = new ArrayList<>();
-    List<Token> filaPreferencial = new ArrayList<>();
-    List<Token> filaUrgente = new ArrayList<>();
+    Queue<Token> filaComum = new Queue<>();
+    Queue<Token> filaPreferencial = new Queue<>();
+    Queue<Token> filaUrgente = new Queue<>();
+
 
     public  void adicionarFilaComum(Token token){
-        filaComum.add(token);
+        filaComum.enqueue(token);
     }
 
 
     public void adicionarFilaPreferencial(Token token) {
-        filaPreferencial.add(token);
+        filaPreferencial.enqueue(token);
     }
 
     public void adicionarFilaUrgente(Token token) {
-        filaUrgente.add(token);
+        filaUrgente.enqueue(token);
     }
 }

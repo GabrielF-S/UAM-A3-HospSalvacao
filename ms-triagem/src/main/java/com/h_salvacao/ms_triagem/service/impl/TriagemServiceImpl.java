@@ -53,6 +53,7 @@ public class TriagemServiceImpl implements TriagemService {
     @Override
     public Token chamarProximo() {
         //TODO
+        //implementar as 3 filas
         //verificar se as filas estão vazias
         //criar logica de comparação de tempo de espera urgente 10min, preferencial 15min, comum 30min
         Token token = verificarFilas();
