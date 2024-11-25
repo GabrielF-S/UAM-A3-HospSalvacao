@@ -15,4 +15,9 @@ public class PacienteServiceImpl implements PacienteService {
         return  pacienteRepository.findByCpf(cpf).get();
 
     }
+
+    @Override
+    public Paciente salvarPaciente(Paciente paciente) {
+        return  pacienteRepository.save(paciente);
+    }
 }
