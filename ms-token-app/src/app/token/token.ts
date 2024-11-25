@@ -1,7 +1,7 @@
 import { Paciente } from "../pacientes/paciente";
 
 export class Token{
-    in: number;
+    id: number;
     numToken: string;
     dataEntrada: string;
     paciente: Paciente;

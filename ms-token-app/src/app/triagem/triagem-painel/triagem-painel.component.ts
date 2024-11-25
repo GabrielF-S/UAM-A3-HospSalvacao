@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Token } from 'src/app/token/token';
 import { TriagemService } from '../../triagem.service';
+
 
 @Component({
   selector: 'app-triagem-painel',
@@ -10,7 +10,7 @@ import { TriagemService } from '../../triagem.service';
 })
 export class TriagemPainelComponent implements OnInit {
 
-  private token: Token;
+  token: Token;
   habilitarSintomas: boolean = false;
 
   constructor(
@@ -33,9 +33,12 @@ export class TriagemPainelComponent implements OnInit {
   buscarProximo() {
     this.service.buscarProximoPaciente().subscribe(
       response => {
-        this.token = response;
+        this.token = response;        
+      }, error=> {
+        console.error('Erro ao buscar o próximo paciente:', error);
       }
     );
+
   }
 
 }

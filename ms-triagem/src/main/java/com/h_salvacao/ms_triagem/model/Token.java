@@ -29,4 +29,16 @@ public class Token implements Serializable {
     private TipoAtendimento atendimento;
 
 
+
+    @Override
+    public String toString() {
+        return "Hospital Salvação\n" +
+                "Data: " + dataEntrada + '\n' +
+                "-----------------------" + '\n' +
+                "Ficha: " + numToken + '\n' +
+                "paciente: " + (paciente != null ? paciente.getNome() : "N/A") + '\n' +
+                "atendimento: " + atendimento + '\n' +
+                "-----------------------"+ '\n' ;
+    }
+
 }

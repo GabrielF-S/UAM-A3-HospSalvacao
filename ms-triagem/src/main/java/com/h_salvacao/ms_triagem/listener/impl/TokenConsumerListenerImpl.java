@@ -18,15 +18,7 @@ public class TokenConsumerListenerImpl implements TokenConsumerListener {
     private final TriagemService triagemService;
     @Override
     public void listener(ConsumerRecord<String, Token> record) {
-
-
-        System.out.println("recebido token: " + record.value().getNumToken() + "\n Atendimento: " + record.value().getAtendimento());
-
-
         triagemService.adcionarFila(record.value());
-
-
-
     }
 
 //    @Override

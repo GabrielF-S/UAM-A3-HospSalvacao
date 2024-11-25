@@ -2,9 +2,11 @@ package com.h_salvacao.ms_triagem.model;
 
 public class No {
     public No next;
-    public No dado;
+    public Token dado;
 
-    public <T> No(T value) {
+    public <T> No(Token value) {
+        this.dado = value;
+
     }
 
     public void displayNo() {

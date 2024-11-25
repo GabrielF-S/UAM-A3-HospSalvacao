@@ -1,6 +1,5 @@
 package com.h_salvacao.ms_token.model;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

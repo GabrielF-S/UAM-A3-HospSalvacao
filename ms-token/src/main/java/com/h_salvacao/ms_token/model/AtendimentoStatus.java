@@ -6,7 +6,6 @@ public enum AtendimentoStatus {
     AGUARD_DOUTOR,
     AGUARD_MEDICACAO,
     AGUARD_RAIOX,
-
     AGUARD_MED_RAIOX,
     AGUARD_RAIOX_MED
 

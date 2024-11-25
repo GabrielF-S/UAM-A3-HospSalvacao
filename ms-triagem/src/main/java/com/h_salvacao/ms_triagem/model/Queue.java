@@ -1,6 +1,10 @@
 package com.h_salvacao.ms_triagem.model;
 
 import lombok.AllArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
+
 @AllArgsConstructor
 public class  Queue<T> {
     private No  inicio, fim;
@@ -15,8 +19,8 @@ public class  Queue<T> {
     public boolean isEmpty(){
         return  (inicio ==null);
     }
-
-    public  void enqueue(T value){
+//Adicionar ao final da fila
+    public  void enqueue(Token value){
         No novoNo = new No(value);
       if (inicio==null){
           inicio = novoNo;
@@ -27,8 +31,8 @@ public class  Queue<T> {
       }
        tamanho++;
     }
-
-    public No dequeue(){
+//retirar do inicio da fila
+    public Token dequeue(){
         if (isEmpty()){
             return  null;
         }
@@ -43,21 +47,29 @@ public class  Queue<T> {
         return temp.dado;
     }
 
+
+    //consultar o primeiro da fila
+    public Token checkFirst(){
+        if (inicio !=null){
+            return inicio.dado;
+        }
+        return null;
+    }
+
     public int size(){
         return tamanho;
     }
 
-    public void display(){
-        if (isEmpty()){
-            System.out.println("Fila vazia");
-        }else {
-            No atual = inicio;
+    public List<No> display(){
+
+        List<No> list = new ArrayList<>();
+        No atual = inicio;
             while (atual!= null){
                 atual.displayNo();
+                list.add(atual);
                 atual=atual.next;
             }
-            System.out.println();
-        }
+        return list;
     }
 
 

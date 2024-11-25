@@ -11,11 +11,11 @@ export class TriagemService {
   constructor(
     private http : HttpClient,
   ) { 
-    this.http.get
+    
   }
 
-  buscarProximoPaciente(): Observable<any> {
-    return this.http.get('http://localhost:8020/triagem/getProximo')
+  buscarProximoPaciente(): Observable<Token> {
+    return this.http.get<Token>('http://localhost:8020/triagem/getProximo')
     
   }
 }

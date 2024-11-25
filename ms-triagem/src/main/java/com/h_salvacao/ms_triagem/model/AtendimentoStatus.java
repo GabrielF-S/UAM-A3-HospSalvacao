@@ -8,7 +8,9 @@ public enum AtendimentoStatus {
     AGUARD_RAIOX,
 
     AGUARD_MED_RAIOX,
-    AGUARD_RAIOX_MED
+    AGUARD_RAIOX_MED,
+
+    DESCONHECIDO
 
 
 }

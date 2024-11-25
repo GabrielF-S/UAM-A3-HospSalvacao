@@ -14,25 +14,25 @@
     <div class="col-md-2">
         <div class="form-group">
             <label>Token:</label>
-            <input type="text" name="nome" id="" class="form-control"  name = "numToken" disabled>  <!--[(ngModel)]="token.numToken"-->
+            <input type="text" name="nome" id="" class="form-control"  [value]="token.numToken" name = "numToken" disabled>  <!--[(ngModel)]="paciente.nome"-->
         </div>
     </div>       
     <div class="col-md-2">
         <div class="form-group">
             <label>Nome:</label>
-            <input type="text" name="nome" id="" class="form-control" > <!--[(ngModel)]="paciente.nome"-->
+            <input type="text" name="nome" id="" [value]="token.paciente?.nome || 'Não informado'" class="form-control" > 
         </div>
     </div>
     <div class="col-md-2">
         <div class="form-group">
             <label>Entrada</label>
-            <input type="text" name="dataEntrada" id="" class="form-control"  name = "nome" disabled> <!--[(ngModel)]="token.dataEntrada"-->
+            <input type="text" name="dataEntrada" id="" class="form-control" [value]="token.dataEntrada"  name = "dataEntrada" disabled> <!--[(ngModel)]="token.dataEntrada"-->
         </div>
     </div>       
     <div class="col-md-2">
         <div class="form-group">
             <label>Tipo de Atendimento</label>
-            <input type="text" name="cpf" id="" class="form-control"  disabled> <!--[(ngModel)]="cliente.cpf"-->
+            <input type="text" name="atendimento" id="" class="form-control"  [value]="token.atendimento" disabled> <!--[(ngModel)]="cliente.cpf"-->
         </div>
     </div>
     <div class="col-md-1">
@@ -61,10 +61,10 @@
         <div class="col-md-3">
             <div class="form-group">
                 <label>Pressão:</label>
-                <input type="text" name="nome" id="" class="form-control"  name = "numToken">  
+                <input type="number" name="pressao" id="" class="form-control"  name = "pressao">  
                 <div class="form-group">
                     <label>Temperatura:</label>
-                    <input type="text" name="nome" id="" class="form-control"  name = "numToken">  
+                    <input type="number" name="temparatura" id="" class="form-control"  name = "temparatura">  
                 </div>
             </div>
         </div>  
