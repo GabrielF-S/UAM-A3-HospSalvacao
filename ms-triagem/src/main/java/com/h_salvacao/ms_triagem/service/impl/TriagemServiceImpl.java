@@ -2,11 +2,11 @@ package com.h_salvacao.ms_triagem.service.impl;
 
 import com.h_salvacao.ms_triagem.feignCliente.TriagemFeignClient;
 import com.h_salvacao.ms_triagem.model.*;
+import com.h_salvacao.ms_triagem.service.TriagemProducerSender;
 import com.h_salvacao.ms_triagem.service.TriagemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -16,6 +16,8 @@ import java.time.temporal.ChronoUnit;
 public class TriagemServiceImpl implements TriagemService {
     @Autowired
     Triagem triagem;
+
+    private final TriagemProducerSender triagemProducerSender;
 
     private final TriagemFeignClient feignClient;
 
@@ -55,15 +57,28 @@ public class TriagemServiceImpl implements TriagemService {
     @Override
     public Token chamarProximo() {
         Token proximo = getProximo();
-
         return proximo;
+
+    }
+
+    @Override
+    public Ficha enviarFicha(Ficha ficha) {
+        return feignClient.sendFicha(ficha);
+    }
+
+    @Override
+    public void atualizarToken(Ficha ficha) {
+        ficha.getToken().setStatus(AtendimentoStatus.AGUARD_GUICHE);
+        feignClient.updateToken(ficha.getToken());
+        triagemProducerSender.sendFicha(ficha);
 
     }
 
     private Token getProximo() {
 
         if (pegarTotal() > 0) {
-            Token token = feignClient.getToken(verificarFilar().getNumToken()).getBody();
+            String numToken = verificarFilar().getNumToken();
+            Token token = feignClient.getToken(numToken).getBody();
 
             if (token != null && token.getStatus() == AtendimentoStatus.AGUARD_TRIAGEM) {
                 return token;

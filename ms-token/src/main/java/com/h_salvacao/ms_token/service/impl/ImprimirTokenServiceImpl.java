@@ -45,6 +45,8 @@ public class ImprimirTokenServiceImpl implements ImprimirTokenService {
         Path path = Path.of("C:\\Users\\gabri\\OneDrive\\Documentos\\Faculdade 2024.2\\Algoritomos\\A3\\UAM-A3-HospSalvacao\\ms-token\\Tokens");
         if (token.getPaciente() == null){
             dadosFicha.setPaciente(pacienteService.pacienteSemCadastro());
+        }else{
+            dadosFicha.setPaciente(token.getPaciente());
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm");
         try {

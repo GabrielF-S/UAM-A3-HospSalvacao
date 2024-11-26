@@ -14,4 +14,6 @@ public interface TokenService {
     Token getByToken(String numToken);
 
     List<Token> getAll();
+
+    Token atualizarToken(Token token);
 }

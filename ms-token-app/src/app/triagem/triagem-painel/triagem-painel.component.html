@@ -1,6 +1,7 @@
 <h1 class="mt-4">Triagem</h1>
 <ol class="breadcrumb mb-4">
   <li class="breadcrumb-item active">Painel de Atendimento</li>
+  <li class="breadcrumb-item active">Total de casos {{tamanhoFila}}</li>
 </ol>
 <div class="row">
     <div class="col-md-2">
@@ -8,6 +9,7 @@
         <i class="fa fa-plus"></i> Chamar Proximo
       </button>
     </div>
+    
 </div>
 
 <div class="row" *ngIf="token.numToken">
@@ -21,6 +23,12 @@
         <div class="form-group">
             <label>Nome:</label>
             <input type="text" name="nome" id="" [value]="token.paciente?.nome || 'Não informado'" class="form-control" > 
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>Documento:</label>
+            <input type="text" name="documento" id="" [value]="token.paciente?.cpf" class="form-control" > 
         </div>
     </div>
     <div class="col-md-2">
@@ -43,29 +51,29 @@
               </button>
         </div>
     </div>
-    <div class="col-md-2">
-        <div class="form-group">
-              <label hidden>Salvar</label><br>
-                <button class="btn btn-success" (click)="salvarEncaminhar()">
-                    <i class="fa fa-star-of-life"></i> Salvar
-                  </button>
-        </div>
-    </div>
+   
     <div class="row" *ngIf="habilitarSintomas==true">
         <div class="col-md-5">
             <div class="form-group">
                 <label>Sintomas:</label><br>
-                <textarea name="sintomas" id="sintomas" cols="70" rows="10"></textarea>
+                <textarea name="sintomas" id="sintomas" cols="70" rows="10" [(ngModel)]= "sintomas"></textarea>
             </div>
         </div>    
         <div class="col-md-3">
             <div class="form-group">
                 <label>Pressão:</label>
-                <input type="number" name="pressao" id="" class="form-control"  name = "pressao">  
+                <input type="text" name="pressao" id="" class="form-control"  [(ngModel)]= "pressao"  name = "pressao">  
                 <div class="form-group">
                     <label>Temperatura:</label>
-                    <input type="number" name="temparatura" id="" class="form-control"  name = "temparatura">  
-                </div>
+                    <input type="number" name="temperatura" id="" class="form-control"  [(ngModel)]= "temperatura"  name = "temparatura">  
+                </div>                
+                    <div class="form-group">
+                          <label hidden>Salvar</label><br>
+                            <button class="btn btn-success" (click)="salvarEncaminhar()">
+                                <i class="fa fa-star-of-life"></i> Salvar
+                              </button>
+                    </div>
+               
             </div>
         </div>  
       

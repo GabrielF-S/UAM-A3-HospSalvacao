@@ -1,10 +1,11 @@
 package com.h_salvacao.ms_triagem.feignCliente;
 
+import com.h_salvacao.ms_triagem.model.Ficha;
 import com.h_salvacao.ms_triagem.model.Token;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,8 +19,12 @@ public interface TriagemFeignClient {
     @GetMapping(value ="connectToken/get")
     ResponseEntity<List<Token>> getAllTokens();
 
-    @GetMapping(value = "connectToken/getToken/{token}")
-    ResponseEntity<Token> getToken(String tokenNumber);
+    @GetMapping(value = "connectToken/getToken/{tokenNumber}")
+    ResponseEntity<Token> getToken(@PathVariable("tokenNumber")  String tokenNumber);
 
+    @PostMapping(value = "/connectFicha/save")
+    Ficha sendFicha(@RequestBody Ficha ficha);
 
+    @PutMapping(value ="connectToken/updateToken")
+    Token updateToken(Token token);
 }

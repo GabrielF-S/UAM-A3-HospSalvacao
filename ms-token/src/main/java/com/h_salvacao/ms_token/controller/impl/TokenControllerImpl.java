@@ -19,7 +19,6 @@ public class TokenControllerImpl implements TokenController {
     TokenService tokenService;
 
 
-
     @Override
     public ResponseEntity<Token> gerarToken(@RequestBody TokenAtendimento atendimento) {
 

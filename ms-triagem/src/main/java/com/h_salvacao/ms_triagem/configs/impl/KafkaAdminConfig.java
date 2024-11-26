@@ -1,4 +1,4 @@
-package com.h_salvacao.ms_token.config;
+package com.h_salvacao.ms_triagem.configs.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.admin.AdminClientConfig;
@@ -9,28 +9,25 @@ import org.springframework.kafka.config.TopicBuilder;
 import org.springframework.kafka.core.KafkaAdmin;
 
 import java.util.HashMap;
+
 @RequiredArgsConstructor
 @Configuration
 public class KafkaAdminConfig {
 
-
     public final KafkaProperties kafkaProperties;
 
-
-    public KafkaAdmin kafkaAdmin (){
+    public KafkaAdmin kafkaAdmin() {
         var configs = new HashMap<String, Object>();
         configs.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaProperties.getBootstrapServers());
 
-        return  new KafkaAdmin(configs);
+        return new KafkaAdmin(configs);
     }
 
     @Bean
-    public KafkaAdmin.NewTopics topics(){
+    public KafkaAdmin.NewTopics topics() {
         return new KafkaAdmin.NewTopics(
-                TopicBuilder.name("triagem-topic").partitions(1).replicas(1).build()
+                TopicBuilder.name("guiche-topic").partitions(1).replicas(1).build()
         );
     }
-
-
 
 }

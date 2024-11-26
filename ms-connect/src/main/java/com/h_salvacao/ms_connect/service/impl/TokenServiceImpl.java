@@ -32,4 +32,9 @@ public class TokenServiceImpl implements TokenService {
     public List<Token> getAll() {
         return repository.findAll();
     }
+
+    @Override
+    public Token atualizarToken(Token token) {
+        return repository.save(token);
+    }
 }

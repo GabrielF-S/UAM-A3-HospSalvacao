@@ -1,9 +1,8 @@
 package com.h_salvacao.ms_triagem.service;
 
+import com.h_salvacao.ms_triagem.model.Ficha;
 import com.h_salvacao.ms_triagem.model.Queue;
 import com.h_salvacao.ms_triagem.model.Token;
-
-import java.util.List;
 
 public interface TriagemService {
 
@@ -14,4 +13,8 @@ public interface TriagemService {
     Integer pegarTotal();
 
     Token chamarProximo();
+
+    Ficha enviarFicha(Ficha ficha);
+
+    void atualizarToken(Ficha ficha);
 }

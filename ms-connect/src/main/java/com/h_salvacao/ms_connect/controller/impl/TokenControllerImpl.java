@@ -41,5 +41,10 @@ public class TokenControllerImpl implements TokenController {
           return new ResponseEntity<>(tokenService.getAll(), HttpStatus.OK);
     }
 
+    @Override
+    public ResponseEntity<Token> updateToken(Token token) {
+        return  ResponseEntity.ok().body(tokenService.atualizarToken(token));
+    }
+
 
 }
