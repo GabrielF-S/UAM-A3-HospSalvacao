@@ -26,5 +26,5 @@ public interface TriagemFeignClient {
     Ficha sendFicha(@RequestBody Ficha ficha);
 
     @PutMapping(value ="connectToken/updateToken")
-    Token updateToken(Token token);
+    Token updateToken(@RequestBody  Token token);
 }

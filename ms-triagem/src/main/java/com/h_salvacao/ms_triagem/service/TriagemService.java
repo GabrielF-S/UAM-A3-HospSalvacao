@@ -16,5 +16,5 @@ public interface TriagemService {
 
     Ficha enviarFicha(Ficha ficha);
 
-    void atualizarToken(Ficha ficha);
+    Ficha atualizarToken(Ficha ficha);
 }

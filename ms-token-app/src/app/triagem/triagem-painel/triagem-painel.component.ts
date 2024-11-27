@@ -45,7 +45,15 @@ export class TriagemPainelComponent implements OnInit {
     this.ficha.sintomas = this.sintomas;
     this.ficha.temperatura = this.temperatura;
     console.log(this.ficha)
-    this.service.enviarFicha(this.ficha);
+    this.service.enviarFicha(this.ficha).subscribe(response => {
+      console.log('success');
+      this.ngOnInit();
+    }, erro => {
+      console.log("ocorreu um erro", erro)
+    }
+
+    );
+    
     
   }
   buscarProximo() {

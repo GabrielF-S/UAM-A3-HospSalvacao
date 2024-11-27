@@ -7,14 +7,11 @@ import com.h_salvacao.ms_triagem.model.Token;
 import com.h_salvacao.ms_triagem.service.TriagemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "triagem")
-@CrossOrigin(value = "http://localhost:4200/")
+@CrossOrigin(value = "http://localhost:4200/", methods = {RequestMethod.GET, RequestMethod.PUT, RequestMethod.POST })
 public class TriagemControllerImpl implements TriagemController {
 
     @Autowired
@@ -31,7 +28,7 @@ public class TriagemControllerImpl implements TriagemController {
 
     @Override
     public ResponseEntity<Ficha> abrirFicha(@RequestBody Ficha ficha) {
-        triagemService.atualizarToken(ficha);
+
         return ResponseEntity.ok().body(triagemService.enviarFicha(ficha));
     }
 }

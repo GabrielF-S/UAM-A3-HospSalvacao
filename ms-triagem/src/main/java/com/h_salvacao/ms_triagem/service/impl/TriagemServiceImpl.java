@@ -63,15 +63,19 @@ public class TriagemServiceImpl implements TriagemService {
 
     @Override
     public Ficha enviarFicha(Ficha ficha) {
-        return feignClient.sendFicha(ficha);
+        ficha = feignClient.sendFicha(ficha);
+        ficha =  atualizarToken(ficha);
+        triagemProducerSender.sendFicha(ficha);
+        return ficha;
     }
 
     @Override
-    public void atualizarToken(Ficha ficha) {
-        ficha.getToken().setStatus(AtendimentoStatus.AGUARD_GUICHE);
-        feignClient.updateToken(ficha.getToken());
-        triagemProducerSender.sendFicha(ficha);
-
+    public Ficha atualizarToken(Ficha ficha) {
+        Token token = ficha.getToken();
+        token.setStatus(AtendimentoStatus.AGUARD_GUICHE);
+        feignClient.updateToken(token);
+        ficha.setToken(token);
+        return ficha;
     }
 
     private Token getProximo() {

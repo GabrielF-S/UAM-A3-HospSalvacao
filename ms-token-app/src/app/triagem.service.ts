@@ -26,7 +26,7 @@ export class TriagemService {
   }
 
   enviarFicha(ficha: Ficha): Observable<Ficha> {
-    return this.http.post<Ficha>('http://localhost:8020/triagem/save', ficha)
+    return this.http.put<Ficha>('http://localhost:8020/triagem/save', ficha)
     
   }
 }
