@@ -23,4 +23,5 @@ public class Paciente  implements Serializable {
     private LocalDate dataNascimento;
     private Double peso;
     private Double altura;
+    private Endereco endereco;
 }

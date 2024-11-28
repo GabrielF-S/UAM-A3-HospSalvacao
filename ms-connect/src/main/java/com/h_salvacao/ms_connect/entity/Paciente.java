@@ -26,4 +26,7 @@ public class Paciente implements Serializable {
     private LocalDate dataNascimento;
     private Double peso;
     private Double altura;
+    @OneToOne
+    @JoinColumn(name = "endereco.id")
+    private Endereco endereco;
 }
