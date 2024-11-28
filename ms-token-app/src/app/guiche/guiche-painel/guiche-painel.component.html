@@ -1,0 +1,125 @@
+<h1 class="mt-4">Guiche</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">Painel de Atendimento</li>
+  <li class="breadcrumb-item active">Total de casos {{tamanhoFila}}</li>
+</ol>
+<div class="row">
+    <div class="col-md-2">
+      <button class="btn btn-success" (click)="buscarProximo()">
+        <i class="fa fa-plus"></i> Chamar Proximo
+      </button>
+    </div>    
+</div>
+<div class="container" *ngIf="token.numToken">
+    <div class="row mt-4" >
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Token:</label>
+                <input type="text" name="nome" id="" class="form-control"  [value]="token.numToken" name = "numToken" disabled>  <!--[(ngModel)]="paciente.nome"-->
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Entrada</label>
+                <input type="text" name="dataEntrada" id="" class="form-control" [value]="token.dataEntrada"  name = "dataEntrada" disabled> <!--[(ngModel)]="token.dataEntrada"-->
+            </div>
+        </div>  
+    </div>
+    <div class="row mt-2" >   
+        <ol class="breadcrumb mb-1">
+            <li class="breadcrumb-item active">Dados do Paciente</li>
+        </ol>        
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Nome:</label>
+                <input type="text" name="nome" id="" [value]="token.paciente?.nome || 'Não informado'" class="form-control" > 
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Documento:</label>
+                <input type="text" name="documento" id="" [value]="token.paciente?.cpf || '00000000000'" class="form-control" > 
+            </div>
+        </div>
+            
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Data de Nascimento:</label>
+                <input type="text" name="atendimento" id="" class="form-control"  [value]="token.atendimento" > <!--[(ngModel)]="cliente.cpf"-->
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Peso:</label>
+                <input type="number" name="atendimento" id="" class="form-control"  [value]="token.atendimento" > <!--[(ngModel)]="cliente.cpf"-->
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Altura:</label>
+                <input type="number" name="atendimento" id="" class="form-control"  [value]="token.atendimento" > <!--[(ngModel)]="cliente.cpf"-->
+            </div>
+        </div>
+        
+    </div>
+    <div class="row mt-2" > <!--*ngIf="token.numToken"-->
+        <ol class="breadcrumb mb-1">
+            <li class="breadcrumb-item active">Endereço do Paciente</li>
+        </ol>     
+    </div>
+    <div class="row mt-2" >           
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Lougradouro:</label>
+                <input type="text" name="nome" id="" [value]="token.paciente?.nome || 'Não informado'" class="form-control" > 
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Numero:</label>
+                <input type="text" name="documento" id="" [value]="token.paciente?.cpf || '00000000000'" class="form-control" > 
+            </div>
+        </div>
+            
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Complemento:</label>
+                <input type="text" name="atendimento" id="" class="form-control"  [value]="token.atendimento" > <!--[(ngModel)]="cliente.cpf"-->
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>CEP:</label>
+                <input type="text" name="atendimento" id="" class="form-control"  [value]="token.atendimento" > <!--[(ngModel)]="cliente.cpf"-->
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Bairro:</label>
+                <input type="number" name="atendimento" id="" class="form-control"  [value]="token.atendimento" > <!--[(ngModel)]="cliente.cpf"-->
+            </div>
+        </div>
+        
+    </div>
+    <div class="row" >           
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Cidade:</label>
+                <input type="text" name="nome" id="" [value]="token.paciente?.nome || 'Não informado'" class="form-control" > 
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Estado:</label>
+                <input type="text" name="documento" id="" [value]="token.paciente?.cpf || '00000000000'" class="form-control" > 
+            </div>
+        </div>
+                
+    </div>
+
+</div>
+
+
+
+
+
