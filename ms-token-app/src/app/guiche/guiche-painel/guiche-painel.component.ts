@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Paciente } from 'src/app/pacientes/paciente';
 import { Token } from 'src/app/token/token';
+import {GuicheService } from '../../guiche.service';
 
 @Component({
   selector: 'app-guiche-painel',
@@ -13,15 +14,37 @@ export class GuichePainelComponent implements OnInit {
   token: Token;
   paciente: Paciente;
 
-  constructor() { 
+  constructor(
+    private service: GuicheService,
+  ) { 
     this.token = new Token();
+    this.paciente = new Paciente();
   }
 
   ngOnInit(): void {
+    this.getTamanhoFila();
   }
 
   buscarProximo() {
-    
+    this.service.buscarProximoPaciente().subscribe(response => {
+      console.log(response);
+      this.token = response;
+      this.paciente = this.token.paciente;
+      
+    }, erro => {
+      console.log("Erro", erro)
+    })
+    this.getTamanhoFila();
+  }
+
+  getTamanhoFila() {
+    this.service.getTamanhoFila().subscribe(
+      response => {
+        this.tamanhoFila = response;
+      }, error => {
+        this.tamanhoFila = 0;
+      }
+    )
   }
 
 }
