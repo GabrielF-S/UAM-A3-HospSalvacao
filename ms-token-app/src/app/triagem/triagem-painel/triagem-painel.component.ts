@@ -21,6 +21,7 @@ export class TriagemPainelComponent implements OnInit {
   temperatura: number;
   sintomas: string;
   ficha: Ficha;
+  paciente: Paciente;
 
 
   constructor(
@@ -29,6 +30,7 @@ export class TriagemPainelComponent implements OnInit {
   ) {
     this.token = new Token();
     this.ficha = new Ficha();
+    this.paciente = new Paciente();
    }
 
   ngOnInit(): void {
@@ -40,6 +42,7 @@ export class TriagemPainelComponent implements OnInit {
   }
 
   salvarEncaminhar() {
+    
     this.ficha.token = this.token;
     this.ficha.pressao = this.pressao;
     this.ficha.sintomas = this.sintomas;
@@ -47,7 +50,8 @@ export class TriagemPainelComponent implements OnInit {
     console.log(this.ficha)
     this.service.enviarFicha(this.ficha).subscribe(response => {
       console.log('success');
-      this.ngOnInit();
+      window.location.reload();
+      
     }, erro => {
       console.log("ocorreu um erro", erro)
     }

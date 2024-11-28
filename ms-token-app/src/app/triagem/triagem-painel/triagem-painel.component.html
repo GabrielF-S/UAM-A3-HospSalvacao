@@ -28,7 +28,7 @@
     <div class="col-md-2">
         <div class="form-group">
             <label>Documento:</label>
-            <input type="text" name="documento" id="" [value]="token.paciente?.cpf" class="form-control" > 
+            <input type="text" name="documento" id="" [value]="token.paciente?.cpf || '00000000000'" class="form-control" > 
         </div>
     </div>
     <div class="col-md-2">
