@@ -1,3 +1,5 @@
+import { Endereco } from "./endereco";
+
 export class Paciente{
     id: number;
     nome: string;
@@ -5,4 +7,5 @@ export class Paciente{
     dataNascimento: string;
     peso: number;
     altura: number;
+    endereco: Endereco;
 }

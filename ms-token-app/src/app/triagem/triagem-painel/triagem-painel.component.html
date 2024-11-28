@@ -33,19 +33,19 @@
     </div>
     <div class="col-md-2">
         <div class="form-group">
-            <label>Entrada</label>
+            <label>Entrada:</label>
             <input type="text" name="dataEntrada" id="" class="form-control" [value]="token.dataEntrada"  name = "dataEntrada" disabled> <!--[(ngModel)]="token.dataEntrada"-->
         </div>
     </div>       
     <div class="col-md-2">
         <div class="form-group">
-            <label>Tipo de Atendimento</label>
+            <label>Tipo de Atendimento:</label>
             <input type="text" name="atendimento" id="" class="form-control"  [value]="token.atendimento" disabled> <!--[(ngModel)]="cliente.cpf"-->
         </div>
     </div>
     <div class="col-md-1">
         <div class="form-group">
-            <label hidden>Sintomas</label><br>
+            <label hidden>Sintomas:</label><br>
             <button class="btn btn-primary" (click)="adiconarSintomas()">
                 <i class="fa fa-receipt"></i> Sintomas
               </button>
