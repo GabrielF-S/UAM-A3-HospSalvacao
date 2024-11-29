@@ -27,4 +27,9 @@ public class PacienteControllerImpl implements PacienteController {
     public ResponseEntity<Paciente> savePaciente(@RequestBody Paciente paciente) {
         return  ResponseEntity.ok().body(pacienteService.salvarPaciente(paciente));
     }
+
+    @Override
+    public ResponseEntity<Paciente> updatePaciente(@RequestBody Paciente paciente) {
+        return ResponseEntity.ok().body(pacienteService.atualizarPaciente(paciente));
+    }
 }

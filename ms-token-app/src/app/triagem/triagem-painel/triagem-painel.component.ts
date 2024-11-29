@@ -50,7 +50,7 @@ export class TriagemPainelComponent implements OnInit {
     console.log(this.ficha)
     this.service.enviarFicha(this.ficha).subscribe(response => {
       console.log('success');
-      window.location.reload();
+      this.resetCampos();
       
     }, erro => {
       console.log("ocorreu um erro", erro)
@@ -83,7 +83,16 @@ export class TriagemPainelComponent implements OnInit {
     )
   }
 
-  
+  resetCampos() {
+    this.token = new Token();
+    this.ficha = new Ficha();
+    this.paciente = new Paciente();
+    this.habilitarSintomas = false;
+    this.pressao = "";
+    this.temperatura = 0;
+    this.sintomas = "";
+    
+  }
 
 
 }

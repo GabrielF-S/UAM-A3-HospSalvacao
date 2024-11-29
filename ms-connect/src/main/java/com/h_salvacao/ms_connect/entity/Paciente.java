@@ -18,7 +18,7 @@ import java.time.LocalDate;
 public class Paciente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public  Long id;
+    private  Long id;
     private String nome;
     @Column(unique = true)
     private String cpf;
@@ -26,7 +26,7 @@ public class Paciente implements Serializable {
     private LocalDate dataNascimento;
     private Double peso;
     private Double altura;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "endereco.id")
     private Endereco endereco;
 }

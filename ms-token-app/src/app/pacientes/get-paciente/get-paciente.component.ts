@@ -65,4 +65,8 @@ export class GetPacienteComponent implements OnInit {
         }
       );
   };
+  resetCampos() {
+    this.paciente = new Paciente();
+    this.valorCpf = '';
+  }
 }

@@ -10,8 +10,9 @@ import { PacientesModule } from './pacientes/pacientes.module';
 import { TokensService } from './tokens.service';
 import { PacientesService } from './pacientes.service';
 import { FormsModule } from '@angular/forms';
-import { TriagemModule } from './triagem/triagem.module'
-
+import { TriagemModule } from './triagem/triagem.module';
+import {GuicheModule } from './guiche/guiche.module';
+;
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { TriagemModule } from './triagem/triagem.module'
     HttpClientModule,
     FormsModule,
     TriagemModule,
+    GuicheModule,
  
 
   ],

@@ -42,7 +42,7 @@ public class TokenControllerImpl implements TokenController {
     }
 
     @Override
-    public ResponseEntity<Token> updateToken(Token token) {
+    public ResponseEntity<Token> updateToken(@RequestBody  Token token) {
         return  ResponseEntity.ok().body(tokenService.atualizarToken(token));
     }
 

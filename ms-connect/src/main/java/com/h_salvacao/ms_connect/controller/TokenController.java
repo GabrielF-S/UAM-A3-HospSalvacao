@@ -24,6 +24,6 @@ public interface TokenController {
     ResponseEntity<List<Token>> getAllTokens();
 
     @PutMapping(value = "updateToken")
-    ResponseEntity<Token> updateToken(@RequestBody  Token token);
+    ResponseEntity<Token> updateToken( Token token);
 
 }

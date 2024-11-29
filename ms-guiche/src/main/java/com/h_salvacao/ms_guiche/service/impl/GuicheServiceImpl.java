@@ -1,10 +1,8 @@
 package com.h_salvacao.ms_guiche.service.impl;
 
 import com.h_salvacao.ms_guiche.feignCliente.GuicheFeignCliente;
-import com.h_salvacao.ms_guiche.model.AtendimentoStatus;
-import com.h_salvacao.ms_guiche.model.TipoAtendimento;
-import com.h_salvacao.ms_guiche.model.Token;
-import com.h_salvacao.ms_guiche.model.Triagem;
+import com.h_salvacao.ms_guiche.model.*;
+import com.h_salvacao.ms_guiche.service.GuicheProducerSender;
 import com.h_salvacao.ms_guiche.service.GuicheService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +15,8 @@ import java.time.LocalDateTime;
 public class GuicheServiceImpl implements GuicheService {
     @Autowired
     Triagem triagem;
+
+    private final GuicheProducerSender producerSender;
 
     private final GuicheFeignCliente guicheFeignCliente;
 
@@ -33,13 +33,35 @@ public class GuicheServiceImpl implements GuicheService {
 
     @Override
     public Token chamarProximo() {
-        String numToken = triagem.getFila().dequeue().getNumToken();
-
-        Token token = guicheFeignCliente.getToken(numToken).getBody();
-        if (token != null && token.getStatus() == AtendimentoStatus.AGUARD_GUICHE){
-            return token;
+        try {
+            String numToken = triagem.getFila().dequeue().getNumToken();
+            Token token = guicheFeignCliente.getToken(numToken).getBody();
+            if (token != null && token.getStatus() == AtendimentoStatus.AGUARD_GUICHE){
+                return token;
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
-        return new Token(0L,"0", LocalDateTime.now(), null, AtendimentoStatus.DESCONHECIDO, TipoAtendimento.DESCONHECIDO);
 
+
+            return new Token(0L,"0", LocalDateTime.now(), null, AtendimentoStatus.DESCONHECIDO, TipoAtendimento.DESCONHECIDO);
+    }
+
+    @Override
+    public Paciente salvarPaciente(Paciente paciente) {
+        return guicheFeignCliente.salvarPaciente(paciente);
+    }
+
+    @Override
+    public Paciente atualizarPaciente(Paciente paciente) {
+        return guicheFeignCliente.atualizarPaciente(paciente);
+    }
+
+    @Override
+    public Token encaminharToken(Token token) {
+        token.setStatus(AtendimentoStatus.AGUARD_DOUTOR);
+        Token tokenLocal = guicheFeignCliente.updateToken(token);
+        producerSender.send(tokenLocal);
+        return  tokenLocal;
     }
 }

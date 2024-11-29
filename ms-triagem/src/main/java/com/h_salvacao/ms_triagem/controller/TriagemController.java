@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 public interface TriagemController {
 
-    @GetMapping
+    @GetMapping(value = "getQtd")
     ResponseEntity<Integer> getQuantidadeTotalFila();
 
     @GetMapping(value = "getProximo")
