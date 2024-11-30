@@ -6,7 +6,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 
 public interface TokenConsumerListener {
 
-    @KafkaListener(topics = {"guiche-topic", "medico-topic","triagem-topic"},containerFactory = "tokenContainerFactory")
+    @KafkaListener(topics = {"guiche-topic", "medico-topic"},containerFactory = "tokenContainerFactory")
     public void listener(ConsumerRecord<String, Token> record);
 
 }

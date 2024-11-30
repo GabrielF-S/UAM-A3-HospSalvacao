@@ -1,5 +1,6 @@
 package com.h_salvacao.ms_connect.controller;
 
+import com.h_salvacao.ms_connect.entity.MyList;
 import com.h_salvacao.ms_connect.entity.Token;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +22,7 @@ public interface TokenController {
     ResponseEntity<Token> getToken(String numToken);
 
     @GetMapping(value ="get")
-    ResponseEntity<List<Token>> getAllTokens();
+    ResponseEntity<MyList> getAllTokens();
 
     @PutMapping(value = "updateToken")
     ResponseEntity<Token> updateToken( Token token);

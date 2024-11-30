@@ -1,5 +1,7 @@
 package com.h_salvacao.ms_atendimento.model;
 
+import java.io.Serializable;
+
 public class No {
     public Token dado;
     public No proximo;

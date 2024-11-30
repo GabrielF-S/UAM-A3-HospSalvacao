@@ -1,16 +1,19 @@
 package com.h_salvacao.ms_connect.service.impl;
 
+import com.h_salvacao.ms_connect.entity.MyList;
 import com.h_salvacao.ms_connect.entity.Token;
 import com.h_salvacao.ms_connect.repository.TokenRepository;
 import com.h_salvacao.ms_connect.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 @Service
 public class TokenServiceImpl implements TokenService {
     @Autowired
     TokenRepository repository;
+
+    @Autowired
+    MyList myList;
 
 
     @Override
@@ -29,8 +32,12 @@ public class TokenServiceImpl implements TokenService {
     }
 
     @Override
-    public List<Token> getAll() {
-        return repository.findAll();
+    public MyList getAll() {
+        for (Token t : repository.findAll()){
+            myList.inserirFim(t);
+        }
+
+         return myList;
     }
 
     @Override

@@ -1,13 +1,11 @@
 package com.h_salvacao.ms_triagem.listener.impl;
 
 
-import com.h_salvacao.ms_triagem.model.Token;
 import com.h_salvacao.ms_triagem.listener.TokenConsumerListener;
+import com.h_salvacao.ms_triagem.model.Token;
 import com.h_salvacao.ms_triagem.service.TriagemService;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Service;
 
 
@@ -21,11 +19,5 @@ public class TokenConsumerListenerImpl implements TokenConsumerListener {
         triagemService.adcionarFila(record.value());
     }
 
-//    @Override
-//    public void listener2(ConsumerRecords<String, Token> records) {
-//        records.records("triagem-topic").forEach( t ->{
-//            System.out.println(t.value());
-//
-//        });
-//    }
+
 }
