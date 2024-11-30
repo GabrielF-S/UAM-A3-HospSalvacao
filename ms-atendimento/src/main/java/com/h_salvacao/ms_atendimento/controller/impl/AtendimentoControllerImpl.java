@@ -5,11 +5,14 @@ import com.h_salvacao.ms_atendimento.model.Stack;
 import com.h_salvacao.ms_atendimento.model.Token;
 import com.h_salvacao.ms_atendimento.service.AtendimentoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "atendimento")
+@CrossOrigin(value = "http://localhost:4200/")
 public class AtendimentoControllerImpl implements AtendimentoController{
 
     @Autowired
@@ -18,5 +21,10 @@ public class AtendimentoControllerImpl implements AtendimentoController{
     @Override
     public Stack<Token> getStack() {
         return atendimentoService.getStack();
+    }
+
+    @Override
+    public Integer getTamanho() {
+        return  atendimentoService.getTamanho();
     }
 }

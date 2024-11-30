@@ -1,0 +1,44 @@
+<h1 class="mt-4">Painel de atendimento</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">Aguarde ser chamado</li>
+</ol>
+<div class="container"> 
+    <div class="row ">
+         <div class="col-md-6 bg-primary"> 
+            <div class="row ">
+                 <h2>Ultimos chamados:</h2>
+                 <table class="table  table-condensed table-hover">
+                    <thead>
+                        <tr>
+                            <th>Token</th>
+                            <th>Nome</th>
+                            <th>Atendimento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let token of tokens">
+                            <td>{{ token.numToken }}</td>
+                            <td ><p *ngIf="token.paciente">{{ token.paciente.nome }}</p></td>
+                            <td>{{ token.status }}</td>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+           
+        </div> 
+        <div class="col-md-6"> 
+            <div class="row">
+                <div class="row bg-success">
+                    <h2>Chamando:</h2>
+                    
+                </div>
+                <div class="row bg-secondary">
+                    <h3>Anuncios</h3>
+                </div> 
+            </div>
+            
+            
+        </div> 
+    </div> 
+</div>

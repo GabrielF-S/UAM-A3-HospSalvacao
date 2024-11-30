@@ -12,7 +12,7 @@ import { PacientesService } from './pacientes.service';
 import { FormsModule } from '@angular/forms';
 import { TriagemModule } from './triagem/triagem.module';
 import {GuicheModule } from './guiche/guiche.module';
-;
+import {AtendimentoModule }from './atendimento/atendimento.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +29,7 @@ import {GuicheModule } from './guiche/guiche.module';
     FormsModule,
     TriagemModule,
     GuicheModule,
+    AtendimentoModule,
  
 
   ],
