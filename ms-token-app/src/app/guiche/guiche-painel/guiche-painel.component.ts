@@ -4,6 +4,7 @@ import { Token } from 'src/app/token/token';
 import {GuicheService } from '../../guiche.service';
 import { Endereco } from 'src/app/pacientes/endereco';
 
+
 @Component({
   selector: 'app-guiche-painel',
   templateUrl: './guiche-painel.component.html',
@@ -24,6 +25,7 @@ export class GuichePainelComponent implements OnInit {
     this.token = new Token();
     this.paciente = new Paciente();
     this.endereco = new Endereco();
+
   }
 
   ngOnInit(): void {

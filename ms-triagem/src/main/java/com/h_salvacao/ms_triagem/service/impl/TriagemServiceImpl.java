@@ -65,7 +65,7 @@ public class TriagemServiceImpl implements TriagemService {
     public Ficha enviarFicha(Ficha ficha) {
         ficha = feignClient.sendFicha(ficha);
         ficha =  atualizarToken(ficha);
-        triagemProducerSender.sendFicha(ficha);
+        triagemProducerSender.sendFicha(ficha.getToken());
         return ficha;
     }
 

@@ -54,7 +54,7 @@ public class TriagemConsumerConfigImpl implements TriagemConsumerConfig {
         ConcurrentKafkaListenerContainerFactory<String, Token> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
-        factory.setBatchListener(true);  // <<<<<<<<<<<<<<<<<<<<<<<<<
+        factory.setBatchListener(true);
         return factory;
     }
 }
