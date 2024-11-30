@@ -8,4 +8,7 @@ public interface AtendimentoController {
 
     @GetMapping
     Stack<Token> getStack();
+
+    @GetMapping(value = "getTamanho")
+    Integer getTamanho();
 }
