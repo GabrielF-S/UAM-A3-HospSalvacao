@@ -22,6 +22,8 @@ public class TriagemServiceImpl implements TriagemService {
     private final TriagemFeignClient feignClient;
 
 
+
+
     @Override
     public void adcionarFila(Token token) {
 
@@ -57,6 +59,7 @@ public class TriagemServiceImpl implements TriagemService {
     @Override
     public Token chamarProximo() {
         Token proximo = getProximo();
+        triagemProducerSender.sendoToAtendimento(proximo);
         return proximo;
 
     }
@@ -72,11 +75,12 @@ public class TriagemServiceImpl implements TriagemService {
     @Override
     public Ficha atualizarToken(Ficha ficha) {
         Token token = ficha.getToken();
-        token.setStatus(AtendimentoStatus.AGUARD_GUICHE);
+        token.setStatus(AtendimentoStatus.GUICHE);
         feignClient.updateToken(token);
         ficha.setToken(token);
         return ficha;
     }
+
 
     private Token getProximo() {
 
@@ -84,7 +88,7 @@ public class TriagemServiceImpl implements TriagemService {
             String numToken = verificarFilar().getNumToken();
             Token token = feignClient.getToken(numToken).getBody();
 
-            if (token != null && token.getStatus() == AtendimentoStatus.AGUARD_TRIAGEM) {
+            if (token != null && token.getStatus() == AtendimentoStatus.TRIAGEM) {
                 return token;
             } else {
                 return getProximo();
@@ -103,6 +107,9 @@ public class TriagemServiceImpl implements TriagemService {
         }
         if (triagem.getFilaPreferencial().checkFirst() == null && triagem.getFilaComum().checkFirst() != null) {
             return triagem.getFilaComum().dequeue();
+        }
+        if(triagem.getFilaPreferencial().checkFirst() != null && triagem.getFilaComum().checkFirst() ==null){
+            return triagem.getFilaPreferencial().dequeue();
         }
         if (triagem.getFilaComum().checkFirst() != null && triagem.getFilaPreferencial().checkFirst() != null) {
             tokenComum = triagem.getFilaComum().checkFirst();

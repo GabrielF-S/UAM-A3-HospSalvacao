@@ -31,4 +31,5 @@ public class TriagemControllerImpl implements TriagemController {
 
         return ResponseEntity.ok().body(triagemService.enviarFicha(ficha));
     }
+
 }

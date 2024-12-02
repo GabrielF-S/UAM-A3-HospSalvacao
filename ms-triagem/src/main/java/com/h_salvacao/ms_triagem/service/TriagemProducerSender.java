@@ -5,5 +5,7 @@ import com.h_salvacao.ms_triagem.model.Token;
 
 public interface TriagemProducerSender {
 
-    public void sendFicha(Token token);
+     void sendFicha(Token token);
+
+     void sendoToAtendimento(Token token);
 }

@@ -18,3 +18,4 @@ public interface TriagemService {
 
     Ficha atualizarToken(Ficha ficha);
 }
+
