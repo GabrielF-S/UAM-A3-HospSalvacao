@@ -4,7 +4,7 @@ import com.h_salvacao.ms_atendimento.model.Stack;
 import com.h_salvacao.ms_atendimento.model.Token;
 
 public interface AtendimentoService {
-    void adicionarPilha(Token value);
+    Token adicionarPilha(Token value);
 
     Integer getTamanho();
 

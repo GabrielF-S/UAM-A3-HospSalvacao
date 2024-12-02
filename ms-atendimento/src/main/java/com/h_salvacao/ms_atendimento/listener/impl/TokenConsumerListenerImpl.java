@@ -13,19 +13,14 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class TokenConsumerListenerImpl implements TokenConsumerListener {
 
-   private final AtendimentoService atendimentoService;
+    private final AtendimentoService atendimentoService;
 
     @Override
     public void listener(ConsumerRecord<String, Token> record) {
         log.info("Token recebido:: " + record.value().getNumToken());
         log.info(record.topic());
         atendimentoService.adicionarPilha(record.value());
-//        try {
-//
-//        } catch (Exception e) {
-//            log.error("Erro ao processar mensagem do Kafka", e);
-//            throw e; // Re-throw the exception to be handled by the ErrorHandler
-//        }
+
 
     }
 }
