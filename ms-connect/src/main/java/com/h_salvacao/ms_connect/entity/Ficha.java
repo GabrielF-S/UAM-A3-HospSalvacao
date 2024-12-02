@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 @Builder
 @AllArgsConstructor
@@ -25,4 +26,17 @@ public class Ficha implements Serializable {
     private String sintomas;
     private  String pressao;
     private Float temperatura;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ficha ficha = (Ficha) o;
+        return Objects.equals(id, ficha.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

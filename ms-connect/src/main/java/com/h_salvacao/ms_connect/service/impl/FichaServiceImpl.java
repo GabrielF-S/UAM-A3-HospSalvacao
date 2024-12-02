@@ -16,4 +16,14 @@ public class FichaServiceImpl implements FichaService {
         return fichaRepository.save(ficha);
 
     }
+
+    @Override
+    public Ficha getFicha(Long tokenId) {
+        return  fichaRepository.findByNumToken(tokenId).get();
+    }
+
+    @Override
+    public Ficha atualizarFicha(Ficha ficha) {
+        return  fichaRepository.save(ficha);
+    }
 }

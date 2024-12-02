@@ -17,4 +17,14 @@ public class FichaControllerImpl implements FichaController {
     public ResponseEntity<Ficha> salvarFicha(Ficha ficha) {
         return ResponseEntity.ok().body(fichaService.salvarFicha(ficha));
     }
+
+    @Override
+    public ResponseEntity<Ficha> getFicha(Long tokenId) {
+        return  ResponseEntity.ok().body(fichaService.getFicha(tokenId));
+    }
+
+    @Override
+    public ResponseEntity<Ficha> atualizarFicha(Ficha ficha) {
+        return ResponseEntity.ok().body(fichaService.atualizarFicha(ficha));
+    }
 }

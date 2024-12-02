@@ -7,7 +7,6 @@ public class MyList {
     private No primeiro;
     private No ultimo;
     private String nomeLista;
-
     public MyList(){
         this("list");
     }
@@ -17,7 +16,6 @@ public class MyList {
         primeiro = ultimo = null;
 
     }
-
     public void inserirInicio(Token token){
         if (isEmpty()){
             this.primeiro = ultimo  =new No(token);
@@ -25,7 +23,6 @@ public class MyList {
             primeiro = new No(token, primeiro);
         }
     }
-
     public void inserirFim(Token token){
         if (isEmpty()){
             this.primeiro = ultimo  =new No(token);
@@ -34,9 +31,7 @@ public class MyList {
             ultimo.setNext(temp);
             ultimo = ultimo.getNext();
         }
-
     }
-
     public Token removerInicio(){
         if (isEmpty()){
             return  null;
@@ -50,7 +45,6 @@ public class MyList {
         }
         return tRemovido;
     }
-
     public Token removerFinal(){
         if (isEmpty()){
             return  null;
@@ -70,8 +64,6 @@ public class MyList {
 
         return  tRemovido;
     }
-
-
     public boolean isEmpty(){
         return  primeiro==null;
     }
