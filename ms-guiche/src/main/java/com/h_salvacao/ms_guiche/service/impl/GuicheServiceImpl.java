@@ -36,7 +36,8 @@ public class GuicheServiceImpl implements GuicheService {
         try {
             String numToken = triagem.getFila().dequeue().getNumToken();
             Token token = guicheFeignCliente.getToken(numToken).getBody();
-            if (token != null && token.getStatus() == AtendimentoStatus.AGUARD_GUICHE){
+            if (token != null && token.getStatus() == AtendimentoStatus.GUICHE){
+                producerSender.sendoToAtendimento(token);
                 return token;
             }
         }catch (Exception e){
@@ -59,7 +60,7 @@ public class GuicheServiceImpl implements GuicheService {
 
     @Override
     public Token encaminharToken(Token token) {
-        token.setStatus(AtendimentoStatus.AGUARD_DOUTOR);
+        token.setStatus(AtendimentoStatus.DOUTOR);
         Token tokenLocal = guicheFeignCliente.updateToken(token);
         producerSender.send(tokenLocal);
         return  tokenLocal;
