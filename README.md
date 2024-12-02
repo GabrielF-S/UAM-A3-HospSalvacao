@@ -49,6 +49,6 @@
         <li>Roberto Locatelli - 125111345367</li>
         <li>Gabriel Ferreira - 125111352359</li>
         <li>Ryan Matheus - 125111347106</li>
-        <li>Kavyn Viudes Torres - 125111361710/li>
+        <li>Kavyn Viudes Torres - 125111361710</li>
     </ul>
 </body>
