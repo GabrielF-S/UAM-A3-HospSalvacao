@@ -1,4 +1,4 @@
-<h1 class="mt-4">Triagem</h1>
+<h1 class="mt-4">Atendimento Medico</h1>
 <ol class="breadcrumb mb-4">
   <li class="breadcrumb-item active">Painel de Atendimento</li>
   <li class="breadcrumb-item active">Total de casos {{tamanhoFila}}</li>
@@ -16,8 +16,7 @@
         {{sucesso}}
     </div> 
 </div>
-
-<div class="row" *ngIf="token.numToken">
+<div class="row" *ngIf="!token.numToken">
     <div class="col-md-2">
         <div class="form-group">
             <label>Token:</label>
@@ -50,41 +49,57 @@
     </div>
     <div class="col-md-1">
         <div class="form-group">
-            <label hidden>Sintomas:</label><br>
-            <button class="btn btn-primary" (click)="adiconarSintomas()">
-                <i class="fa fa-receipt"></i> Sintomas
+            <label hidden>Ficha:</label><br>
+            <button class="btn btn-primary" (click)="getFicha()">
+                <i class="fa fa-receipt"></i> Ficha
               </button>
         </div>
     </div>
-   
-    <div class="row" *ngIf="habilitarSintomas==true">
-        <div class="col-md-5">
-            <div class="form-group">
-                <label>Sintomas:</label><br>
-                <textarea name="sintomas" id="sintomas" cols="70" rows="10" [(ngModel)]= "sintomas" class="form-control"></textarea>
-            </div>
-        </div>
-        <div class="col-md-2">
-        </div>     
-        <div class="col-md-3">
-            <div class="form-group">
-                <label>Pressão:</label>
-                <input type="text" name="pressao" id="" class="form-control"  [(ngModel)]= "pressao"  name = "pressao">  
-                <div class="form-group">
-                    <label>Temperatura:</label>
-                    <input type="number" name="temperatura" id="" class="form-control"  [(ngModel)]= "temperatura"  name = "temparatura">  
-                </div>                
-                    <div class="form-group">
-                          <label hidden>Salvar</label><br>
-                            <button class="btn btn-success" (click)="salvarEncaminhar()">
-                                <i class="fa fa-star-of-life"></i> Salvar
-                              </button>
-                    </div>
-               
-            </div>
-        </div>  
-      
-    </div>
+
 </div>
 
+<div class="row" *ngIf="!ficha.id">  
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>Sintomas:</label>
+            <textarea class="form-control">
+                {{ficha.sintomas}}
+            </textarea>
+            
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>Temperatura:</label>
+            <input type="number" name="temperatura" id="" class="form-control" [value]="ficha.temperatura"  name = "dataEntrada" disabled> 
+        </div>
+    </div>       
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>Pressão:</label>
+            <input type="text" name="pressao" id="" class="form-control"  [value]="ficha.pressao" disabled> 
+        </div>
+    </div>
 
+</div>
+
+<div class="row" *ngIf="!ficha.id">  
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>Medimamento:</label>
+            <input type="text" name="medicamento" id="" class="form-control">            
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>Dias:</label>
+            <input type="number" name="temperatura" id="" class="form-control"  name = "dataEntrada"> 
+        </div>
+    </div>       
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>Frequencia:</label>
+            <input type="text" name="periodo" id="" class="form-control" > 
+        </div>
+    </div>
+</div>

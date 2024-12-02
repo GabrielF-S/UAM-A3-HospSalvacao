@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { TriagemModule } from './triagem/triagem.module';
 import { GuicheModule } from './guiche/guiche.module';
 import { AtendimentoModule } from './atendimento/atendimento.module';
+import { MedicoModule } from './medico/medico.module';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -34,6 +35,7 @@ import { GuicheService } from './guiche.service';
     TriagemModule,
     GuicheModule,
     AtendimentoModule,
+    MedicoModule,
    
   ],
   providers: [

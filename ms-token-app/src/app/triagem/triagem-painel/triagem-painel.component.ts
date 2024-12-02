@@ -67,7 +67,7 @@ export class TriagemPainelComponent implements OnInit {
         this.token = response;
         console.log(this.token);
       }, error => {
-        console.error('Erro ao buscar o próximo paciente:', error);
+        this.falha = "Erro ao buscar proximo"
       }
     );
     this.getTamanhoFila();
