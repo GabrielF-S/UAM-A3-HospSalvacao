@@ -1,28 +1,24 @@
 package com.h_salvacao.ms_medico.controller;
 
-import com.h_salvacao.ms_medico.service.MedicoService;
-import com.h_salvacao.ms_triagem.model.Token;
+import com.h_salvacao.ms_medico.model.Ficha;
+import com.h_salvacao.ms_medico.model.Token;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
 
-@RestController
-@RequestMapping("/api/medico")
-public class MedicoController {
+public interface MedicoController {
 
-    private final MedicoService medicoService;
-    public MedicoController(MedicoService medicoService) {
-        this.medicoService = medicoService;
-    }
+    @GetMapping(value = "getQtd")
+    ResponseEntity<Integer> getQuantidadeTotalFila();
 
-    @GetMapping("/chamar-medico")
-    public ResponseEntity<Token> chamarMedico() {
-        Token token = medicoService.chamarMedico();
-        if (token != null) {
-            return ResponseEntity.ok(token);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+    @GetMapping(value = "getProximo")
+    ResponseEntity<Token> getProximo();
+
+    @GetMapping(value = "getFicha/{tokenId}")
+    ResponseEntity<Ficha> getFicha(Long tokenId);
+
+    @PostMapping(value = "atualizarFica")
+    ResponseEntity<Ficha> atualizarFicha(Ficha ficha);
+
+
 }

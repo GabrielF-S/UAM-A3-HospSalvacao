@@ -13,6 +13,5 @@ public interface MedicoConsumerConfig {
 
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, Token > tokenContainerFactory(ConsumerFactory<String, Token>  consumerFactory);
-    @Bean
-    public KafkaListenerContainerFactory<?> batchFactory();
+
 }

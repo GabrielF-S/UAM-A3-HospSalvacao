@@ -1,4 +1,4 @@
-package com.h_salvacao.ms_guiche.model;
+package com.h_salvacao.ms_medico.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;

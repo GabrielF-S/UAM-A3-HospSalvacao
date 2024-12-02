@@ -1,4 +1,4 @@
-package com.h_salvacao.ms_guiche.model;
+package com.h_salvacao.ms_medico.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
