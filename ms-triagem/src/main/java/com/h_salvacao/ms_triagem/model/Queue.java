@@ -15,11 +15,9 @@ public class  Queue<T> {
         this.fim = null;
         this.tamanho = 0;
     }
-
     public boolean isEmpty(){
         return  (inicio ==null);
     }
-//Adicionar ao final da fila
     public  void enqueue(Token value){
         No novoNo = new No(value);
       if (inicio==null){
@@ -31,23 +29,18 @@ public class  Queue<T> {
       }
        tamanho++;
     }
-//retirar do inicio da fila
     public Token dequeue(){
         if (isEmpty()){
             return  null;
         }
         No temp = inicio;
         inicio = inicio.next;
-
         if (inicio==null){
             fim = null;
         }
-
         tamanho--;
         return temp.dado;
     }
-
-
     //consultar o primeiro da fila
     public Token checkFirst(){
         if (inicio !=null){
@@ -55,11 +48,9 @@ public class  Queue<T> {
         }
         return null;
     }
-
     public int size(){
         return tamanho;
     }
-
     public List<No> display(){
 
         List<No> list = new ArrayList<>();
@@ -71,6 +62,4 @@ public class  Queue<T> {
             }
         return list;
     }
-
-
 }

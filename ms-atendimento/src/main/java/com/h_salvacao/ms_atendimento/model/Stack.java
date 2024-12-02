@@ -11,22 +11,18 @@ import java.io.Serializable;
 public class Stack<T> implements Serializable {
     private No topo;
     private int tamanho = 0;
-
     public Stack() {
         this.topo = null;
     }
-
     public boolean isEmpty() {
         return (topo == null);
     }
-
     public void push(Token value) {
         No newNo = new No(value);
         newNo.proximo = topo;
         topo = newNo;
         tamanho++;
     }
-
     public Token pop() {
         if (isEmpty()) {
             return null;
@@ -35,7 +31,6 @@ public class Stack<T> implements Serializable {
         topo = topo.proximo;
         return temp.dado;
     }
-
     public void display() {
         if (isEmpty()) {
             System.out.println("Pilha vazia");
@@ -48,8 +43,7 @@ public class Stack<T> implements Serializable {
             }
         }
         System.out.println();
-    }
-
+    }gi
     @JsonIgnore
     public Integer lenth() {
         return tamanho;
