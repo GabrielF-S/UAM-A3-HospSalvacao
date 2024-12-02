@@ -18,6 +18,7 @@ export class GuichePainelComponent implements OnInit {
   endereco: Endereco;
   cadastroOK: boolean = false;
   sucesso: string;
+  falha: string;
 
   constructor(
     private service: GuicheService,
@@ -32,8 +33,9 @@ export class GuichePainelComponent implements OnInit {
     this.getTamanhoFila();
   }
 
-  buscarProximo() {
-    
+  buscarProximo() {   
+    this.sucesso = null;
+    this.falha = null;
     this.service.buscarProximoPaciente().subscribe(response => {
       console.log(response);
       this.token = response;
@@ -46,11 +48,8 @@ export class GuichePainelComponent implements OnInit {
         }
         
       }
-      
-      console.log("Pacientethis: " + this.paciente.id);
-      
     }, erro => {
-      console.log("Erro", erro)
+      this.falha = "Erro ao buscar";
     })
     this.getTamanhoFila();
   };
@@ -66,44 +65,48 @@ export class GuichePainelComponent implements OnInit {
   };
 
   salvarPaciente() {   
+    this.sucesso = null;
+    this.falha = null;
     this.paciente.endereco = this.endereco;
     console.log(this.paciente);
     if (this.token.id != 0) {
       this.service.salvarPaciente(this.paciente).subscribe(
       response => {
-        console.log(response)
-        this.token.paciente = response;
-        console.log(this.token)
+          this.token.paciente = response; 
+        this.sucesso = "Cadastro do paciente salvo"  
         this.cadastroOK = true;
       }, erro => {
-        console.log("Houve um erro", erro)
+          this.falha = "Erro ao salvar paciente";
         }
     )
     }
     
   };
   atualizarPaciente() {
+    this.sucesso = null;
+    this.falha = null;
     if (this.paciente.endereco == null) {
       this.paciente.endereco = this.endereco;
     }
     this.service.atualizarPaciente(this.paciente).subscribe(
       response =>{
-          console.log(response)
+        this.sucesso = "Dados Atualizado com sucesso" 
       }, erro => {
-        console.log("erro: ", erro)
+        this.falha = "Erro ao atualizar paciente";
       }
     )
   };
 
   encaminharPaciente() {
+    this.sucesso = null;
+    this.falha = null;
     console.log(this.token);
     this.service.encaminharToken(this.token).subscribe(
       response => {
-        this.sucesso = "Encaminhado apra o medico";
-        console.log(response);
+        this.sucesso = "Encaminhado para o medico";
         this.getTamanhoFila();
       }, erro => {
-        console.log("Houve um erro", erro);
+        this.falha = "Erro ao enviar";
       }
 
     )

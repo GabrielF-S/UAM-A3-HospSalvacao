@@ -11,8 +11,8 @@ export class TriagemService {
   
 
   constructor(
-    private http : HttpClient,
-  ) { 
+    private http: HttpClient,
+  ) {
     
   }
 
@@ -29,4 +29,6 @@ export class TriagemService {
     return this.http.put<Ficha>('http://localhost:8020/triagem/save', ficha)
     
   }
+
+
 }

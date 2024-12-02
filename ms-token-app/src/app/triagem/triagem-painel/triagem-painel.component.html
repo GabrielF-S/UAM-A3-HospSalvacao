@@ -9,7 +9,12 @@
         <i class="fa fa-plus"></i> Chamar Proximo
       </button>
     </div>
-    
+    <div class="alert alert-danger" role="alert" *ngIf="falha" >
+        {{falha}}
+    </div>
+    <div class="alert alert-success" role="alert" *ngIf="sucesso" >
+        {{sucesso}}
+    </div> 
 </div>
 
 <div class="row" *ngIf="token.numToken">

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Token } from 'src/app/token/token';
-import {Paciente } from '../../pacientes/paciente';
+import { Paciente } from '../../pacientes/paciente';
 import { TriagemService } from '../../triagem.service';
 import { Ficha } from '../ficha';
-
 
 
 
@@ -22,16 +21,18 @@ export class TriagemPainelComponent implements OnInit {
   sintomas: string;
   ficha: Ficha;
   paciente: Paciente;
-
+  sucesso: string;
+  falha: string;
 
   constructor(
     private service: TriagemService,
+
 
   ) {
     this.token = new Token();
     this.ficha = new Ficha();
     this.paciente = new Paciente();
-   }
+  }
 
   ngOnInit(): void {
     this.getTamanhoFila();
@@ -42,35 +43,34 @@ export class TriagemPainelComponent implements OnInit {
   }
 
   salvarEncaminhar() {
-    
     this.ficha.token = this.token;
     this.ficha.pressao = this.pressao;
     this.ficha.sintomas = this.sintomas;
     this.ficha.temperatura = this.temperatura;
-    console.log(this.ficha)
-    this.service.enviarFicha(this.ficha).subscribe(response => {
-      console.log('success');
+    console.log(this.ficha);
+    this.service.enviarFicha(this.ficha).subscribe(response => {  
       this.resetCampos();
-      
+      this.getTamanhoFila();
+      this.sucesso = "Paciente encaminhado para fila so Guichê"
+      this.falha = null;
     }, erro => {
-      console.log("ocorreu um erro", erro)
-    }
-
-    );
-    
-    
+      this.falha = "Ocorreu um erro na solicitação"
+      this.sucesso = null;
+    });
   }
+
   buscarProximo() {
+    this.sucesso = null;
+    this.falha = null;
     this.service.buscarProximoPaciente().subscribe(
       response => {
         this.token = response;
-        console.log(this.token)
-      }, error=> {
+        console.log(this.token);
+      }, error => {
         console.error('Erro ao buscar o próximo paciente:', error);
       }
     );
     this.getTamanhoFila();
-
   }
 
   getTamanhoFila() {
@@ -80,7 +80,7 @@ export class TriagemPainelComponent implements OnInit {
       }, error => {
         this.tamanhoFila = 0;
       }
-    )
+    );
   }
 
   resetCampos() {
@@ -91,8 +91,7 @@ export class TriagemPainelComponent implements OnInit {
     this.pressao = "";
     this.temperatura = 0;
     this.sintomas = "";
-    
   }
 
-
+  
 }

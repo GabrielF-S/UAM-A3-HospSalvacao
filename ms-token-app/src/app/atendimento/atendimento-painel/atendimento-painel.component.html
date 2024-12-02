@@ -4,10 +4,10 @@
 </ol>
 <div class="container"> 
     <div class="row ">
-         <div class="col-md-6 bg-primary"> 
-            <div class="row ">
+         <div class="col-md-6 "> 
+            <div class="row bg-primary">
                  <h2>Ultimos chamados:</h2>
-                 <table class="table  table-condensed table-hover">
+                 <table class="table table-borderless table-striped table-hover">
                     <thead>
                         <tr>
                             <th>Token</th>
@@ -16,7 +16,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let token of tokens">
+                        <tr *ngFor="let token of tokens | slice:0:6">
                             <td>{{ token.numToken }}</td>
                             <td ><p *ngIf="token.paciente">{{ token.paciente.nome }}</p></td>
                             <td>{{ token.status }}</td>
@@ -24,21 +24,31 @@
                         </tr>
                     </tbody>
                 </table>
-            </div>
-           
+            </div>           
         </div> 
-        <div class="col-md-6"> 
+        <div class="col-md-1">            
+        </div> 
+        <div class="col-md-5"> 
             <div class="row">
                 <div class="row bg-success">
                     <h2>Chamando:</h2>
-                    
+                    <div *ngFor="let token of tokens | slice:0:1">
+                         <p style="color: white;">Token: <span style="color: bisque; font-weight: bold;
+">{{ token.numToken }}</span></p>
+                        <p style="color: white;">Paciente: <span style="color: bisque; font-weight: bold;
+" *ngIf="token.paciente">{{ token.paciente.nome }}</span></p>
+                        <p style="color: white;">Atendimento: <span style="color: bisque; font-weight: bold;
+">{{ token.status }}</span></p>
+                    </div> 
                 </div>
                 <div class="row bg-secondary">
                     <h3>Anuncios</h3>
+                    <div class="row">
+                        <p>Anuncie aqui!</p>
+                        
+                    </div>
                 </div> 
-            </div>
-            
-            
+            </div>            
         </div> 
     </div> 
 </div>
