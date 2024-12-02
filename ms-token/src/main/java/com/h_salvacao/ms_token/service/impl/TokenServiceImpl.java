@@ -35,7 +35,7 @@ public class TokenServiceImpl implements TokenService {
         return Token.builder()
                 .numToken(gerarToken(tipoAtendimento))
                 .paciente(paciente)
-                .status(AtendimentoStatus.AGUARD_TRIAGEM)
+                .status(AtendimentoStatus.TRIAGEM)
                 .atendimento(tipoAtendimento)
                 .build();
     }
@@ -44,7 +44,7 @@ public class TokenServiceImpl implements TokenService {
     public Token abrirFichaSemCadastro(TipoAtendimento atendimento) {
         return Token.builder()
                 .numToken(gerarToken(atendimento))
-                .status(AtendimentoStatus.AGUARD_TRIAGEM)
+                .status(AtendimentoStatus.TRIAGEM)
                 .atendimento(atendimento)
                 .build();
     }
