@@ -43,7 +43,7 @@ public class Stack<T> implements Serializable {
             }
         }
         System.out.println();
-    }gi
+    }
     @JsonIgnore
     public Integer lenth() {
         return tamanho;

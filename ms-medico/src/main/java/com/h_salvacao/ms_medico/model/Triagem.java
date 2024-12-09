@@ -13,7 +13,12 @@ public class Triagem {
     private  long id;
     Queue<Token> fila = new Queue<>();
 
+
     public  void adicionarFila(Token token){
         fila.enqueue(token);
+    }
+
+    public void adicionarMedicacao(Medicacao medicacao) {
+
     }
 }
