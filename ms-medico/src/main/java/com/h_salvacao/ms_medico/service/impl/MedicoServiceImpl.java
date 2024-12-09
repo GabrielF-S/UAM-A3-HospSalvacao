@@ -2,6 +2,7 @@ package com.h_salvacao.ms_medico.service.impl;
 
 import com.h_salvacao.ms_medico.feignCliente.MedicoFeignClient;
 import com.h_salvacao.ms_medico.model.*;
+import com.h_salvacao.ms_medico.service.MedicoProducerSender;
 import com.h_salvacao.ms_medico.service.MedicoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,10 @@ import java.time.LocalDateTime;
 public class MedicoServiceImpl implements MedicoService {
     @Autowired
     Triagem triagem;
+
+    private final MedicoProducerSender producerSender;
+
+
 
     private final MedicoFeignClient feignClient;
 
@@ -35,7 +40,7 @@ public class MedicoServiceImpl implements MedicoService {
             String numToken = triagem.getFila().dequeue().getNumToken();
             Token token = feignClient.getToken(numToken).getBody();
             if (token != null && token.getStatus() == AtendimentoStatus.DOUTOR){
-               // producerSender.sendoToAtendimento(token);
+               producerSender.sendoToAtendimento(token);
                 return token;
             }
         }catch (Exception e){
@@ -55,5 +60,16 @@ public class MedicoServiceImpl implements MedicoService {
     @Override
     public Ficha atualizarFicha(Ficha ficha) {
         return feignClient.atulizarFicha(ficha);
+    }
+
+    @Override
+    public Queue<Medicacao> adicionarMedicacao(Medicacao medicacao) {
+        triagem.adicionarMedicacao(medicacao);
+        return null;
+    }
+
+    @Override
+    public Queue<Medicacao> abrirReceita(Medicacao medicacao) {
+
     }
 }

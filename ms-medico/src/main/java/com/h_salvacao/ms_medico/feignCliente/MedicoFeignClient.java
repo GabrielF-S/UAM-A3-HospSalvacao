@@ -16,9 +16,9 @@ public interface MedicoFeignClient {
     @GetMapping(value = "connectToken/getToken/{tokenNumber}")
     ResponseEntity<Token> getToken(@PathVariable("tokenNumber")  String tokenNumber);
 
-    @GetMapping(value = "/connectFicha/get/{tokenId}")
+    @GetMapping(value = "connectFicha/get/{tokenId}")
     Ficha getFicha(@PathVariable("tokenId") Long tokenId);
 
-    @PostMapping(value = "/connectFicha/update")
+    @PostMapping(value = "connectFicha/update")
     Ficha atulizarFicha(Ficha ficha);
 }
