@@ -1,10 +1,10 @@
 package com.h_salvacao.ms_medico.model;
 
-public class No {
+public class No<T> {
     public No next;
-    public Token dado;
+    public T dado;
 
-    public <T> No(Token value) {
+    public No(T value) {
         this.dado = value;
 
     }
