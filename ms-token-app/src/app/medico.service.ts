@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Token } from './token/token'
 import { Ficha } from './triagem/ficha';
+import { Medicacao } from './pacientes/medicacao';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,10 @@ export class MedicoService {
   }
   getFicha(tokenId: number): Observable<Ficha> {
     return this.http.get<Ficha>(`http://localhost:8050/medico/getFicha/${tokenId}`)
+  }
+
+  adicionarMedicacao(medicacao: Medicacao): Observable<any>{
+    return this.http.post('http://localhost:8050/medico/adicionarMedicacao', medicacao)
   }
 
 }

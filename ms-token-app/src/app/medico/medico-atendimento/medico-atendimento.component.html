@@ -16,7 +16,7 @@
         {{sucesso}}
     </div> 
 </div>
-<div class="row" *ngIf="!token.numToken">
+<div class="row" *ngIf="token.numToken">
     <div class="col-md-2">
         <div class="form-group">
             <label>Token:</label>
@@ -58,12 +58,11 @@
 
 </div>
 
-<div class="row" *ngIf="!ficha.id">  
+<div class="row" *ngIf="ficha.id">  
     <div class="col-md-2">
         <div class="form-group">
             <label>Sintomas:</label>
-            <textarea class="form-control">
-                {{ficha.sintomas}}
+            <textarea class="form-control">{{ficha.sintomas}}
             </textarea>
             
         </div>
@@ -83,23 +82,48 @@
 
 </div>
 
-<div class="row" *ngIf="!ficha.id">  
+<div class="row" *ngIf="ficha.id">  
     <div class="col-md-2">
         <div class="form-group">
             <label>Medimamento:</label>
-            <input type="text" name="medicamento" id="" class="form-control">            
+            <input type="text" name="medicacao.nome" [(ngModel)]="medicacao.nome" id="" class="form-control">            
         </div>
     </div>
     <div class="col-md-2">
         <div class="form-group">
             <label>Dias:</label>
-            <input type="number" name="temperatura" id="" class="form-control"  name = "dataEntrada"> 
+            <input type="number" name="medicacao.tempoDeUso" id="" class="form-control" [(ngModel)]="medicacao.tempoDeUso" name = "dataEntrada"> 
         </div>
     </div>       
     <div class="col-md-2">
         <div class="form-group">
             <label>Frequencia:</label>
-            <input type="text" name="periodo" id="" class="form-control" > 
+            <input type="text" name="frequencia" id="" [(ngModel)]="medicacao.frequencia" class="form-control" > 
         </div>
+    </div>
+    <div class="col-md-3">
+        <button type="submit" class="btn btn-success"  (click)="AdicionarMedicacao()"><i class="fa fa-plus"></i> 
+                Adicionar
+        </button>
+    </div>
+    <div class="row">
+        <table class="table table-borderless table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Medimamento</th>
+                    <th>Dias</th>
+                    <th>Frequencia</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let medicacao of medicacoes">
+                    <td>{{ medicacao.nome}}</td>
+                    <td >{{ medicacao.tempoDeUso }}</td>
+                    <td>{{ medicacao.frequencia }}</td>
+                    <td><button class="btn btn-danger" (click)="removerMedicacao(medicacao)" data-toggle="modal" data-target="#modalDelecao"><i class="fa fa-trash"></i></button></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
