@@ -1,4 +1,4 @@
-package com.h_salvacao.ms_triagem.configs.impl;
+package com.h_salvacao.ms_medico.configs.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.admin.AdminClientConfig;
@@ -25,12 +25,6 @@ public class KafkaAdminConfig {
 
     @Bean
     public KafkaAdmin.NewTopics topics() {
-        return new KafkaAdmin.NewTopics(
-                TopicBuilder.name("guiche-topic").partitions(1).replicas(1).build()
-        );
-    }
-    @Bean
-    public KafkaAdmin.NewTopics topics2() {
         return new KafkaAdmin.NewTopics(
                 TopicBuilder.name("atendimento-topic").partitions(1).replicas(1).build()
         );
