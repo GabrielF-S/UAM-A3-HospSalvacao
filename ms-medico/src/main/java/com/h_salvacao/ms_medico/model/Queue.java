@@ -1,11 +1,14 @@
 package com.h_salvacao.ms_medico.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
+@JsonSerialize(using = QueueSerializer.class)
 public class  Queue<T> {
     private No  inicio, fim;
     private int tamanho;
@@ -20,7 +23,7 @@ public class  Queue<T> {
         return  (inicio ==null);
     }
 //Adicionar ao final da fila
-    public  void enqueue(Token value){
+    public  void enqueue(T value){
         No novoNo = new No(value);
       if (inicio==null){
           inicio = novoNo;
@@ -44,14 +47,14 @@ public class  Queue<T> {
         }
 
         tamanho--;
-        return temp.dado;
+        return (Token) temp.dado;
     }
 
 
     //consultar o primeiro da fila
     public Token checkFirst(){
         if (inicio !=null){
-            return inicio.dado;
+            return (Token) inicio.dado;
         }
         return null;
     }
@@ -72,5 +75,7 @@ public class  Queue<T> {
         return list;
     }
 
+    @JsonIgnore
+    public No getInicio() { return inicio; }
 
 }
