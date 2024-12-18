@@ -39,7 +39,7 @@
         <li>Kafdrop</li>
         <li>OpenFeign</li>
         <li>MySQL</li>
-        <li>Pgadmin</li>
+        <li>PhpMyAdmin</li>
         <li>Ações baseadas em eventos (Observer and Listener)</li>
         <li>Bootstrap</li>
     </ul>
