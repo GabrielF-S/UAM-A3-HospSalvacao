@@ -2,6 +2,7 @@ package com.h_salvacao.ms_medico.controller;
 
 import com.h_salvacao.ms_medico.model.Ficha;
 import com.h_salvacao.ms_medico.model.Medicacao;
+import com.h_salvacao.ms_medico.model.Receita;
 import com.h_salvacao.ms_medico.model.Token;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,8 +23,11 @@ public interface MedicoController {
     @PostMapping(value = "atualizarFica")
     ResponseEntity<Ficha> atualizarFicha(Ficha ficha);
 
-    @PostMapping(value = "adicionarMedicacao")
-    ResponseEntity<?> adicionarMedicacao(Medicacao medicacao);
+    @PostMapping(value = "salvarReceita")
+    ResponseEntity<?> salvarReceita(Receita receita);
+
+    @PostMapping(value = "imprimirReceita")
+    void imprimirReceita(Receita receita);
 
 
 }

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Token } from './token/token'
 import { Ficha } from './triagem/ficha';
 import { Medicacao } from './pacientes/medicacao';
+import { Receita } from './pacientes/receita';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,10 @@ export class MedicoService {
 
   adicionarMedicacao(medicacao: Medicacao): Observable<any>{
     return this.http.post('http://localhost:8050/medico/adicionarMedicacao', medicacao)
+  }
+
+  salvarImprimirReceita(receita: Receita): Observable<any>{
+    return this.http.post('http://localhost:8050/medico/salvarReceita', receita)
   }
 
 }

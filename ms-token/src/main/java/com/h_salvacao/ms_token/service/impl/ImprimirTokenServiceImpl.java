@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.format.DateTimeFormatter;
 
 
@@ -22,27 +23,32 @@ public class ImprimirTokenServiceImpl implements ImprimirTokenService {
     @Override
     public void Imprimir(Token token)  {
 
-//        new Thread();
 //
-        criarArquivo(token);
+       String arquivo = criarArquivo(token);
 //        try {
-//            imprimirArquivo();
+//            imprimirArquivo(arquivo);
 //        }finally {
 //
-//            excluirArquivo();
+//            excluirArquivo(arquivo);
 //        }
 
 
     }
 
     @Override
-    public void criarArquivo(Token token) {
+    public String criarArquivo(Token token) {
         Token dadosFicha = Token.builder()
                 .numToken(token.getNumToken())
                 .dataEntrada(token.getDataEntrada())
                 .atendimento(token.getAtendimento())
                 .build();
-        Path path = Path.of("C:\\Users\\gabri\\OneDrive\\Documentos\\Faculdade 2024.2\\Algoritomos\\A3\\UAM-A3-HospSalvacao\\ms-token\\Tokens");
+        Path relativePath = Paths.get("Tokens");
+        Path absolutePath = relativePath.toAbsolutePath();
+
+        StringBuilder nomeArquivo = new StringBuilder();
+        nomeArquivo.append("token-"+ dadosFicha.getNumToken() +".txt");
+
+
         if (token.getPaciente() == null){
             dadosFicha.setPaciente(pacienteService.pacienteSemCadastro());
         }else{
@@ -51,25 +57,29 @@ public class ImprimirTokenServiceImpl implements ImprimirTokenService {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm");
         try {
 
-            Path fichaImpressao = Files.createFile(path.resolve("token-"+ dadosFicha.getNumToken() +".txt"));
+            Path fichaImpressao = Files.createFile(absolutePath.resolve(nomeArquivo +".txt"));
             Files.writeString(fichaImpressao, "Hospital Salvação\n"
                     +"Data de entrada: "+ dadosFicha.getDataEntrada().format(formatter)+"\n"
                     +"Paciente: " + dadosFicha.getPaciente().getNome() +"\n"
-                    +"Ficha: "+ dadosFicha.getNumToken()+"\n"
+                    +"Token: "+ dadosFicha.getNumToken()+"\n"
                     +"Tipo de atendimento: " + dadosFicha.getAtendimento() );
 
 
-
+            nomeArquivo.append(".txt");
         } catch (IOException e) {
             throw new RuntimeException("Erro ao criar arquivo");
         }
+
+        return nomeArquivo.toString();
     }
 
     @Override
-    public void imprimirArquivo() {
+    public void imprimirArquivo(String nomeArquivo) {
+        Path relativePath = Paths.get("Tokens");
+        Path absolutePath = relativePath.toAbsolutePath();
         Desktop desktop = Desktop.getDesktop();
 
-        File arquivo = new File("C:\\Users\\gabri\\OneDrive\\Documentos\\Faculdade 2024.2\\Algoritomos\\A3\\UAM-A3-HospSalvacao\\ms-token\\Fichas\\ficha.txt");
+        File arquivo = new File(absolutePath+nomeArquivo);
         try {
             desktop.print(arquivo);
         } catch (IOException e) {
@@ -79,8 +89,11 @@ public class ImprimirTokenServiceImpl implements ImprimirTokenService {
     }
 
     @Override
-    public void excluirArquivo() {
-        Path path = Path.of("C:\\Users\\gabri\\OneDrive\\Documentos\\Faculdade 2024.2\\Algoritomos\\A3\\UAM-A3-HospSalvacao\\ms-token\\Fichas\\ficha.txt");
+    public void excluirArquivo(String nomeArquivo) {
+        Path relativePath = Paths.get("Tokens");
+        Path absolutePath = relativePath.toAbsolutePath();
+
+        Path path = Path.of(absolutePath+nomeArquivo);
         try {
             Files.deleteIfExists(path);
         } catch (IOException e) {

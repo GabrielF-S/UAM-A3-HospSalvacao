@@ -1,30 +1,34 @@
 package com.h_salvacao.ms_connect.entity;
 
-public class No {
-    private Token data;
+public class No<T> {
+    private T data;
     private No proximo;
 
-    public No(Token value){
+    public No(T value){
         this(value,null);
     }
 
-    public No(Token value, No no) {
+    public No(T value, No no) {
         this.data = value;
         proximo = no;
     }
 
-    public Token getObject(){
+    public T getObject(){
         return data;
     }
     public  No getNext(){
         return proximo;
     }
 
-    public void setObject(Token token){
+    public void setObject(T token){
         this.data = token;
     }
 
     public void setNext(No next){
         this.proximo = next;
+    }
+
+    public void displayNo() {
+        System.out.print(data);
     }
 }

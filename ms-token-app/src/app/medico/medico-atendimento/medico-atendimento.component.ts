@@ -4,6 +4,7 @@ import { MedicoService} from '../../medico.service'
 import { Token } from 'src/app/token/token';
 import { Ficha } from 'src/app/triagem/ficha';
 import { Medicacao } from 'src/app/pacientes/medicacao';
+import { Receita } from 'src/app/pacientes/receita';
 
 @Component({
   selector: 'app-medico-atendimento',
@@ -19,6 +20,7 @@ export class MedicoAtendimentoComponent implements OnInit {
   ficha: Ficha;
   medicacao: Medicacao;
   medicacoes: Medicacao[] = [];
+  receita: Receita;
 
   constructor(
     private service: MedicoService,
@@ -26,6 +28,7 @@ export class MedicoAtendimentoComponent implements OnInit {
     this.token = new Token();
     this.ficha = new Ficha();
     this.medicacao = new Medicacao();
+    this.receita = new Receita();
    }
 
   ngOnInit(): void {
@@ -92,6 +95,21 @@ export class MedicoAtendimentoComponent implements OnInit {
   }
 
   
+  salvarImprimir() {
+    this.receita.numToken = this.token.numToken;
+    this.receita.fichaId = this.ficha.id;
+    this.receita.medicacoes = this.medicacoes;
+    this.receita.nomePaciente = this.token.paciente.nome;
 
+    this.service.salvarImprimirReceita(this.receita).subscribe(
+      response => {
+        this.sucesso = "Registro Salvo"
+        this.falha = null;
+      }, erro => {
+        this.falha = "Erro ao adicinar medicação"
+        this.sucesso = null;
+      }
+    )
+  }
 
 }

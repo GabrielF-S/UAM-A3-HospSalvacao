@@ -2,6 +2,7 @@ package com.h_salvacao.ms_medico.service.impl;
 
 import com.h_salvacao.ms_medico.feignCliente.MedicoFeignClient;
 import com.h_salvacao.ms_medico.model.*;
+import com.h_salvacao.ms_medico.service.ImprimirReceitaService;
 import com.h_salvacao.ms_medico.service.MedicoProducerSender;
 import com.h_salvacao.ms_medico.service.MedicoService;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,9 @@ import java.time.LocalDateTime;
 public class MedicoServiceImpl implements MedicoService {
     @Autowired
     Triagem triagem;
+
+    @Autowired
+    ImprimirReceitaService receitaService;
 
     private final MedicoProducerSender producerSender;
 
@@ -39,7 +43,7 @@ public class MedicoServiceImpl implements MedicoService {
         try {
             String numToken = triagem.getFila().dequeue().getNumToken();
             Token token = feignClient.getToken(numToken).getBody();
-            if (token != null && token.getStatus() == AtendimentoStatus.DOUTOR){
+            if (token.getStatus() == AtendimentoStatus.DOUTOR){
                producerSender.sendoToAtendimento(token);
                 return token;
             }
@@ -63,13 +67,18 @@ public class MedicoServiceImpl implements MedicoService {
     }
 
     @Override
-    public Queue<Medicacao> adicionarMedicacao(Medicacao medicacao) {
-        triagem.adicionarMedicacao(medicacao);
-        return null;
+    public Receita salvarReceita(Receita receita) {
+        Receita receitaSalva = feignClient.salvarReceita(receita);
+        if (receitaSalva != null){
+            imprimirReceita(receitaSalva);
+        }
+        return receitaSalva;
     }
 
     @Override
-    public Queue<Medicacao> abrirReceita(Medicacao medicacao) {
-
+    public void imprimirReceita(Receita receita) {
+        receitaService.imprimir(receita);
     }
+
+
 }

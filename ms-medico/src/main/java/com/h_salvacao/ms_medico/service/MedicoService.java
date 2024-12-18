@@ -1,9 +1,6 @@
 package com.h_salvacao.ms_medico.service;
 
-import com.h_salvacao.ms_medico.model.Ficha;
-import com.h_salvacao.ms_medico.model.Medicacao;
-import com.h_salvacao.ms_medico.model.Queue;
-import com.h_salvacao.ms_medico.model.Token;
+import com.h_salvacao.ms_medico.model.*;
 
 
 public interface MedicoService {
@@ -17,9 +14,9 @@ public interface MedicoService {
 
     Ficha atualizarFicha(Ficha ficha);
 
-    Queue<Medicacao> adicionarMedicacao(Medicacao medicacao);
+    Receita salvarReceita(Receita receita);
 
-    Queue<Medicacao> abrirReceita(Medicacao medicacao);
+    void imprimirReceita(Receita receita);
 
 
 //    private final TriagemFeignClient triagemFeignClient;

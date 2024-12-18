@@ -7,9 +7,9 @@ public interface ImprimirTokenService {
 
     void Imprimir(Token token);
 
-    void criarArquivo(Token token);
+    String criarArquivo(Token token);
 
-    void imprimirArquivo();
+    void imprimirArquivo(String nomeArquivo);
 
-    void excluirArquivo();
+    void excluirArquivo(String nomeArquivo);
 }

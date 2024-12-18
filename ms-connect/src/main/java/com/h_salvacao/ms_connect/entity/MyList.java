@@ -3,7 +3,7 @@ package com.h_salvacao.ms_connect.entity;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MyList {
+public class MyList<T> {
     private No primeiro;
     private No ultimo;
     private String nomeLista;
@@ -32,11 +32,11 @@ public class MyList {
             ultimo = ultimo.getNext();
         }
     }
-    public Token removerInicio(){
+    public T removerInicio(){
         if (isEmpty()){
             return  null;
         }
-        Token tRemovido = primeiro.getObject();
+        T tRemovido = (T) primeiro.getObject();
 
         if(primeiro == ultimo){
             primeiro= ultimo = null;
@@ -45,11 +45,11 @@ public class MyList {
         }
         return tRemovido;
     }
-    public Token removerFinal(){
+    public T removerFinal(){
         if (isEmpty()){
             return  null;
         }
-        Token tRemovido = ultimo.getObject();
+         T tRemovido = (T) ultimo.getObject();
 
         if (primeiro==ultimo) {
             primeiro = ultimo = null;

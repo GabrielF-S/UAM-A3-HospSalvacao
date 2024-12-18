@@ -1,4 +1,4 @@
-package com.h_salvacao.ms_medico.model;
+package com.h_salvacao.ms_connect.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @JsonSerialize(using = QueueSerializer.class)
 @JsonDeserialize(using = QueueDeserializer.class)
-public class  Queue<T> {
+public class Queue<T> {
     private No  inicio, fim;
     private int tamanho;
 
@@ -20,51 +20,42 @@ public class  Queue<T> {
         this.fim = null;
         this.tamanho = 0;
     }
-
     public boolean isEmpty(){
         return  (inicio ==null);
     }
-//Adicionar ao final da fila
     public  void enqueue(T value){
         No novoNo = new No(value);
       if (inicio==null){
           inicio = novoNo;
           fim = inicio;
       }else {
-          fim.next = novoNo;
+          fim.setNext(novoNo);
           fim = novoNo;
       }
        tamanho++;
     }
-//retirar do inicio da fila
     public T dequeue(){
         if (isEmpty()){
             return  null;
         }
         No temp = inicio;
-        inicio = inicio.next;
-
+        inicio = inicio.getNext();
         if (inicio==null){
             fim = null;
         }
-
         tamanho--;
-        return (T) temp.dado;
+        return (T) temp.getObject();
     }
-
-
     //consultar o primeiro da fila
-    public Token checkFirst(){
+    public T checkFirst(){
         if (inicio !=null){
-            return (Token) inicio.dado;
+            return (T) inicio.getObject();
         }
         return null;
     }
-
     public int size(){
         return tamanho;
     }
-
     public List<No> display(){
 
         List<No> list = new ArrayList<>();
@@ -72,12 +63,11 @@ public class  Queue<T> {
             while (atual!= null){
                 atual.displayNo();
                 list.add(atual);
-                atual=atual.next;
+                atual.setNext(atual.getNext());
             }
         return list;
     }
 
     @JsonIgnore
     public No getInicio() { return inicio; }
-
 }
