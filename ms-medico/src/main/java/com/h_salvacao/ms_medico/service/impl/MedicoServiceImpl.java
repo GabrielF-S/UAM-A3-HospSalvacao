@@ -23,7 +23,6 @@ public class MedicoServiceImpl implements MedicoService {
     private final MedicoProducerSender producerSender;
 
 
-
     private final MedicoFeignClient feignClient;
 
     @Override
@@ -43,16 +42,16 @@ public class MedicoServiceImpl implements MedicoService {
         try {
             String numToken = triagem.getFila().dequeue().getNumToken();
             Token token = feignClient.getToken(numToken).getBody();
-            if (token.getStatus() == AtendimentoStatus.DOUTOR){
-               producerSender.sendoToAtendimento(token);
+            if (token.getStatus() == AtendimentoStatus.DOUTOR) {
+                producerSender.sendoToAtendimento(token);
                 return token;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
 
-        return new Token(0L,"0", LocalDateTime.now(), null, AtendimentoStatus.DESCONHECIDO, TipoAtendimento.DESCONHECIDO);
+        return new Token(0L, "0", LocalDateTime.now(), null, AtendimentoStatus.DESCONHECIDO, TipoAtendimento.DESCONHECIDO);
 
     }
 
@@ -69,7 +68,7 @@ public class MedicoServiceImpl implements MedicoService {
     @Override
     public Receita salvarReceita(Receita receita) {
         Receita receitaSalva = feignClient.salvarReceita(receita);
-        if (receitaSalva != null){
+        if (receitaSalva != null) {
             imprimirReceita(receitaSalva);
         }
         return receitaSalva;
@@ -78,6 +77,26 @@ public class MedicoServiceImpl implements MedicoService {
     @Override
     public void imprimirReceita(Receita receita) {
         receitaService.imprimir(receita);
+    }
+
+    @Override
+    public Encaminhamento encaminharPaciente(Encaminhamento encaminhamento) {
+
+        Token token = feignClient.getToken(encaminhamento.getNumToken()).getBody();
+        if (encaminhamento.getListaMedicacoes().isEmpty() || encaminhamento.getListaMedicacoes() == null) {
+            token.setStatus(AtendimentoStatus.RAIOX);
+            producerSender.sendoToRaioX(encaminhamento);
+
+        } else {
+            if (encaminhamento.getRegioesRaiox().isEmpty() || encaminhamento.getRegioesRaiox() == null) {
+                token.setStatus(AtendimentoStatus.MEDICACAO);
+            } else {
+                token.setStatus(AtendimentoStatus.MED_RAIOX);
+            }
+            producerSender.sentoToMedicacaoERaioX(encaminhamento);
+        }
+        feignClient.updateToken(token);
+        return encaminhamento;
     }
 
 

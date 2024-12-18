@@ -6,6 +6,7 @@ import { Ficha } from 'src/app/triagem/ficha';
 import { Medicacao } from 'src/app/pacientes/medicacao';
 import { Receita } from 'src/app/pacientes/receita';
 import { MedicacaoVeia} from '../../pacientes/medicacaoVeia';
+import { Encaminhamento } from 'src/app/pacientes/encaminhamento';
 
 @Component({
   selector: 'app-medico-atendimento',
@@ -28,6 +29,7 @@ export class MedicoAtendimentoComponent implements OnInit {
   encaminharRaioX: boolean;
   regiaoRaioX: string;
   regioesRaioX: string[] = [];
+  encaminhamento: Encaminhamento;
 
   constructor(
     private service: MedicoService,
@@ -85,6 +87,7 @@ export class MedicoAtendimentoComponent implements OnInit {
 
     this.medicacoes.push(this.medicacao)
     this.medicacao = new Medicacao();
+   
     
   }
 
@@ -130,8 +133,38 @@ export class MedicoAtendimentoComponent implements OnInit {
     this.regioesRaioX = this.regioesRaioX.filter(r => r !== regiaoRaioX);
   }
 
+  encaminharPaciente() {
+    this.sucesso = null;
+    this.falha = null;
+    this.encaminhamento = new Encaminhamento();
+    this.encaminhamento.numToken = this.token.numToken;
+    this.encaminhamento.fichaId = this.ficha.id;
+    this.encaminhamento.nomePaciente = this.token.paciente.nome;
+    if (this.encaminharMedicao && this.encaminharRaioX) {
+      this.encaminhamento.medicacaoIntravenosa = this.listaMedicacoesVeia;
+      this.encaminhamento.regiaoRaioX = this.regioesRaioX;
+      
+    } else {
+      if (this.encaminharMedicao) {
+        this.encaminhamento.medicacaoIntravenosa = this.listaMedicacoesVeia;
+      } 
+      if (this.encaminharRaioX) {
+        this.encaminhamento.regiaoRaioX = this.regioesRaioX;
+      }
+    }
+    this.service.encaminharPacienteMedicacaoRaioX(this.encaminhamento).subscribe(
+      response => {
+        this.sucesso = "Paciente encaminhado com sucesso"
+        this.falha = null;
+      }, erro => {
+        this.falha = "Erro ao encaminhar paciente"
+        this.falha = null;
+      }
+    )
+   
+  };
+
   encerrarAtendimento() { };
 
-  encaminharPaciente() { };
-
+ 
 }

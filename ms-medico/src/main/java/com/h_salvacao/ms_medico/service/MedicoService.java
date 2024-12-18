@@ -18,6 +18,8 @@ public interface MedicoService {
 
     void imprimirReceita(Receita receita);
 
+    Encaminhamento encaminharPaciente(Encaminhamento encaminhamento);
+
 
 //    private final TriagemFeignClient triagemFeignClient;
 //

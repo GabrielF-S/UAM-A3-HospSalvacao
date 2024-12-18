@@ -30,4 +30,18 @@ public class KafkaAdminConfig {
         );
     }
 
+    @Bean
+    public KafkaAdmin.NewTopics raioxTopic() {
+        return new KafkaAdmin.NewTopics(
+                TopicBuilder.name("raiox-topic").partitions(1).replicas(1).build()
+        );
+    }
+
+    @Bean
+    public KafkaAdmin.NewTopics intravenosaTopic() {
+        return new KafkaAdmin.NewTopics(
+                TopicBuilder.name("intravenosa-topic").partitions(1).replicas(1).build()
+        );
+    }
+
 }

@@ -82,7 +82,7 @@
 
 </div>
 
-<div class="row" *ngIf="!ficha.id">  
+<div class="row mt-5" *ngIf="!ficha.id">  
     <div class="col-md-2">
         <div class="form-group">
             <label>Medimamento:</label>
@@ -131,10 +131,10 @@
             </button>
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-5">
         <div> 
             <input type="checkbox" id="medicacaoVeia" name="medicacaoVeia" [(ngModel)] = "encaminharMedicao"> 
-            <label for="medicacaoVeia"> Medicação na veia </label>    
+            <label for="medicacaoVeia"> Medicação intravenosa </label>    
         </div> 
         <div *ngIf="encaminharMedicao">
             <div class="row">

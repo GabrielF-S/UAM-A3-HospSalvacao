@@ -1,10 +1,7 @@
 package com.h_salvacao.ms_medico.controller.impl;
 
 import com.h_salvacao.ms_medico.controller.MedicoController;
-import com.h_salvacao.ms_medico.model.Ficha;
-import com.h_salvacao.ms_medico.model.Medicacao;
-import com.h_salvacao.ms_medico.model.Receita;
-import com.h_salvacao.ms_medico.model.Token;
+import com.h_salvacao.ms_medico.model.*;
 import com.h_salvacao.ms_medico.service.MedicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -46,6 +43,11 @@ public class MedicoControllerImpl implements MedicoController {
     @Override
     public void imprimirReceita(@RequestBody Receita receita) {
         medicoService.imprimirReceita(receita);
+    }
+
+    @Override
+    public ResponseEntity<?> encaminharPaciente(Encaminhamento encaminhamento) {
+        return ResponseEntity.ok().body(medicoService.encaminharPaciente(encaminhamento));
     }
 
 
