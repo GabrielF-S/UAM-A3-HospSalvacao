@@ -5,6 +5,7 @@ import { Token } from 'src/app/token/token';
 import { Ficha } from 'src/app/triagem/ficha';
 import { Medicacao } from 'src/app/pacientes/medicacao';
 import { Receita } from 'src/app/pacientes/receita';
+import { MedicacaoVeia} from '../../pacientes/medicacaoVeia';
 
 @Component({
   selector: 'app-medico-atendimento',
@@ -21,6 +22,12 @@ export class MedicoAtendimentoComponent implements OnInit {
   medicacao: Medicacao;
   medicacoes: Medicacao[] = [];
   receita: Receita;
+  medicacoesVeia: MedicacaoVeia;
+  listaMedicacoesVeia: MedicacaoVeia[] =[]; 
+  encaminharMedicao: boolean;
+  encaminharRaioX: boolean;
+  regiaoRaioX: string;
+  regioesRaioX: string[] = [];
 
   constructor(
     private service: MedicoService,
@@ -29,6 +36,8 @@ export class MedicoAtendimentoComponent implements OnInit {
     this.ficha = new Ficha();
     this.medicacao = new Medicacao();
     this.receita = new Receita();
+    this.medicacoesVeia = new MedicacaoVeia();
+    
    }
 
   ngOnInit(): void {
@@ -76,17 +85,6 @@ export class MedicoAtendimentoComponent implements OnInit {
 
     this.medicacoes.push(this.medicacao)
     this.medicacao = new Medicacao();
-    // this.service.adicionarMedicacao(this.medicacao).subscribe(
-    //   response => {
-    //     this.sucesso = "Medicação adicionada";
-    //     this.falha = null;
-    //     this.medicacoes = response;
-    //     console.log(response);
-    //   }, erro => {
-    //     this.falha = "Falha ao adiconar medicaçao"
-    //     this.sucesso = null;
-    //   }
-    // )
     
   }
 
@@ -111,5 +109,29 @@ export class MedicoAtendimentoComponent implements OnInit {
       }
     )
   }
+
+  AdicionarMedicacaoVeia() {
+    this.listaMedicacoesVeia.push(this.medicacoesVeia);
+    this.medicacoesVeia = new MedicacaoVeia();
+    
+  }
+
+  removerMedicacaoVeia(medicacoesVeia) {
+    this.listaMedicacoesVeia = this.listaMedicacoesVeia.filter(m => m !== medicacoesVeia);
+  }
+
+
+  AdicionarRaioX() { 
+    this.regioesRaioX.push(this.regiaoRaioX);
+    this.regiaoRaioX = null;
+  };
+
+  removerRegiao(regiaoRaioX) {
+    this.regioesRaioX = this.regioesRaioX.filter(r => r !== regiaoRaioX);
+  }
+
+  encerrarAtendimento() { };
+
+  encaminharPaciente() { };
 
 }

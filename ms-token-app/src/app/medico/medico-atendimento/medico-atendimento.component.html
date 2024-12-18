@@ -82,7 +82,7 @@
 
 </div>
 
-<div class="row" *ngIf="ficha.id">  
+<div class="row" *ngIf="!ficha.id">  
     <div class="col-md-2">
         <div class="form-group">
             <label>Medimamento:</label>
@@ -92,7 +92,7 @@
     <div class="col-md-2">
         <div class="form-group">
             <label>Dias:</label>
-            <input type="number" name="medicacao.tempoDeUso" id="" class="form-control" [(ngModel)]="medicacao.tempoDeUso" name = "dataEntrada"> 
+            <input type="number" name="medicacao.tempoDeUso" id="" class="form-control" [(ngModel)]="medicacao.tempoDeUso" name = "tempoDeUso"> 
         </div>
     </div>       
     <div class="col-md-2">
@@ -101,7 +101,7 @@
             <input type="text" name="frequencia" id="" [(ngModel)]="medicacao.frequencia" class="form-control" > 
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3 mt-4">
         <button type="submit" class="btn btn-success"  (click)="AdicionarMedicacao()"><i class="fa fa-plus"></i> 
                 Adicionar
         </button>
@@ -130,5 +130,94 @@
                     Salvar/Imprimir Receita
             </button>
         </div>
+    </div>
+    <div class="row">
+        <div> 
+            <input type="checkbox" id="medicacaoVeia" name="medicacaoVeia" [(ngModel)] = "encaminharMedicao"> 
+            <label for="medicacaoVeia"> Medicação na veia </label>    
+        </div> 
+        <div *ngIf="encaminharMedicao">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>Medicacao:</label>
+                        <input type="text" name="medicacoesVeia.nome" id="" class="form-control" [(ngModel)]="medicacoesVeia.nome" name = "dataEntrada"> 
+                    </div>
+                </div>       
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>Mg:</label>
+                        <input type="text" name="medicacoesVeia.mg " id="" [(ngModel)]="medicacoesVeia.mg " class="form-control" > 
+                    </div>
+                </div>
+                <div class="col-md-3 mt-4">
+                    <button type="submit" class="btn btn-success"  (click)="AdicionarMedicacaoVeia()"><i class="fa fa-plus"></i> 
+                            Adicionar
+                    </button>
+            </div>
+           
+             <table class="table table-borderless table-striped table-hover" >
+            <thead>
+                <tr>
+                    <th>Medimamento</th>
+                    <th>mg</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let medicacoesVeia of listaMedicacoesVeia">
+                    <td>{{ medicacoesVeia.nome}}</td>
+                    <td >{{ medicacoesVeia.mg }}</td>
+                    <td><button class="btn btn-danger" (click)="removerMedicacaoVeia(medicacoesVeia)" data-toggle="modal" data-target="#modalDelecao"><i class="fa fa-trash"></i></button></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        </div>
+       
+        <div> 
+             <input type="checkbox" id="solicitaRaioX" name="solicitaRaioX" [(ngModel)] = "encaminharRaioX"> 
+            <label for="solicitaRaioX">Solicitar Raio-X </label>    
+        </div>
+        <div *ngIf="encaminharRaioX">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>Região:</label>
+                        <input type="text" name="regiaoRaioX" id="" class="form-control" [(ngModel)]="regiaoRaioX" name = "dataEntrada"> 
+                    </div>
+                </div>       
+                <div class="col-md-3 mt-4">
+                    <button type="submit" class="btn btn-success"  (click)="AdicionarRaioX()"><i class="fa fa-plus"></i> 
+                            Adicionar
+                    </button>
+            </div>
+           
+             <table class="table table-borderless table-striped table-hover" >
+            <thead>
+                <tr>
+                    <th>Região</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let regiaoRaioX of regioesRaioX">
+                    <td>{{ regiaoRaioX}}</td>
+                    <td><button class="btn btn-danger" (click)="removerRegiao(regiaoRaioX)" data-toggle="modal" data-target="#modalDelecao"><i class="fa fa-trash"></i></button></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        </div>
+   
+        <!-- <div class="col-md-3">
+            <button type="submit" class="btn btn-success"  (click)="salvarPaciente()"><i class="fa fa-save"></i> 
+                Salvar
+            </button>
+            <button type="submit" class="btn btn-primary"   (click)="atualizarPaciente()"><i class="fa fa-sync-alt"></i> Atualizar
+            </button>                                    
+        </div> -->
+        <button  type="button"class="btn btn-success  ml-1 mt-3"   (click)="encaminharPaciente()"><i class="fa fa-arrow-circle-right"></i> Encaminhar</button>
+       <button  type="button"class="btn btn-warning  ml-1 mt-3"  (click)="encerrarAtendimento()"><i class="fa fa-arrow-circle-right"></i> Encerrar Atendimento</button>
     </div>
 </div>
