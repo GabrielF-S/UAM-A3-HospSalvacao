@@ -6,6 +6,6 @@ import org.springframework.kafka.annotation.KafkaListener;
 
 public interface MedicoConsumerListener {
 
-    @KafkaListener(topics = "medico-topic", containerFactory = "tokenContainerFactory")
+    @KafkaListener(topics = "raiox-topic", containerFactory = "tokenContainerFactory")
     public void listener(ConsumerRecord<String, Encaminhamento> record);
 }

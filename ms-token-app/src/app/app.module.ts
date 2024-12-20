@@ -9,6 +9,8 @@ import { TriagemModule } from './triagem/triagem.module';
 import { GuicheModule } from './guiche/guiche.module';
 import { AtendimentoModule } from './atendimento/atendimento.module';
 import { MedicoModule } from './medico/medico.module';
+import { RaioxModule } from './raiox/raiox.module';
+import { MedicacaointravenosaModule } from './medicacaointravenosa/medicacaointravenosa.module';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -36,6 +38,8 @@ import { GuicheService } from './guiche.service';
     GuicheModule,
     AtendimentoModule,
     MedicoModule,
+    RaioxModule,
+    MedicacaointravenosaModule,
    
   ],
   providers: [

@@ -18,7 +18,7 @@ public interface MedicoController {
     @GetMapping(value = "getFicha/{tokenId}")
     ResponseEntity<Ficha> getFicha(@PathVariable("tokenId") Long tokenId);
 
-    @PostMapping(value = "atualizarFica")
+    @PostMapping(value = "atualizarFicha")
     ResponseEntity<Ficha> atualizarFicha(Ficha ficha);
 
     @PostMapping(value = "salvarReceita")

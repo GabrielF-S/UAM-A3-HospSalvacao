@@ -4,6 +4,7 @@ import com.h_salvacao.ms_raiox.configs.RaioXConsumerConfig;
 import com.h_salvacao.ms_raiox.model.Encaminhamento;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,9 +19,11 @@ import java.util.HashMap;
 
 @EnableKafka
 @Configuration
-@RequiredArgsConstructor
+
 public class RaioXConsumerConfigImpl implements RaioXConsumerConfig {
-    private final KafkaProperties kafkaProperties;
+    @Autowired
+    private KafkaProperties kafkaProperties;
+
     @Override
     @Bean
     public ConsumerFactory<String, Encaminhamento> consumerFactory() {
@@ -43,8 +46,6 @@ public class RaioXConsumerConfigImpl implements RaioXConsumerConfig {
         factory.setConsumerFactory(consumerFactory);
         return factory;
     }
-
-
 
 
 }

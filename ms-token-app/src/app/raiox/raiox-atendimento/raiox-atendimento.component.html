@@ -1,0 +1,18 @@
+<h1 class="mt-4">Raio-X</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">Painel de Atendimento</li>
+  <li class="breadcrumb-item active">Total de casos {{tamanhoFila}}</li>
+</ol>
+<div class="row">
+    <div class="col-md-2">
+      <button class="btn btn-success" (click)="buscarProximo()">
+        <i class="fa fa-plus"></i> Chamar Proximo
+      </button>
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="falha" >
+        {{falha}}
+    </div>
+    <div class="alert alert-success" role="alert" *ngIf="sucesso" >
+        {{sucesso}}
+    </div> 
+</div>
