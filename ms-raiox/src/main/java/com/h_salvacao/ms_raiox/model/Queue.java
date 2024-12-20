@@ -1,4 +1,4 @@
-package com.h_salvacao.ms_medico.model;
+package com.h_salvacao.ms_raiox.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -10,7 +10,6 @@ import java.util.List;
 
 @AllArgsConstructor
 @JsonSerialize(using = QueueSerializer.class)
-@JsonDeserialize(using = QueueDeserializer.class)
 public class  Queue<T> {
     private No  inicio, fim;
     private int tamanho;
@@ -55,7 +54,9 @@ public class  Queue<T> {
 
     //consultar o primeiro da fila
     public T checkFirst(){
-        if (inicio !=null) return (T) inicio.dado;
+        if (inicio !=null){
+            return (T) inicio.dado;
+        }
         return null;
     }
 
