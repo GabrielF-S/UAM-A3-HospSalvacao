@@ -16,6 +16,7 @@ export class RaioxAtendimentoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getTamanhoFila();
   }
 
 
@@ -29,5 +30,16 @@ export class RaioxAtendimentoComponent implements OnInit {
         this.falha = "Falha ao chamar proximo"
       }
     )
+    this.getTamanhoFila();
+  }
+
+  getTamanhoFila() {
+    this.service.getTamanhoFila().subscribe(
+      response => {
+        this.tamanhoFila = response;
+      }, error => {
+        this.tamanhoFila = 0;
+      }
+    );  
   }
 }

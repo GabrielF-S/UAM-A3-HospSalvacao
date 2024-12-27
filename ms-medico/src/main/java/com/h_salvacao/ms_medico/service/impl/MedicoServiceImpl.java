@@ -83,12 +83,12 @@ public class MedicoServiceImpl implements MedicoService {
     public Encaminhamento encaminharPaciente(Encaminhamento encaminhamento) {
 
         Token token = feignClient.getToken(encaminhamento.getNumToken()).getBody();
-        if (encaminhamento.getListaMedicacoes().isEmpty() || encaminhamento.getListaMedicacoes() == null) {
+        if (encaminhamento.getListaMedicacoes() == null) {
             token.setStatus(AtendimentoStatus.RAIOX);
             producerSender.sendoToRaioX(encaminhamento);
 
         } else {
-            if (encaminhamento.getRegioesRaiox().isEmpty() || encaminhamento.getRegioesRaiox() == null) {
+            if (encaminhamento.getRegioesRaiox() == null) {
                 token.setStatus(AtendimentoStatus.MEDICACAO);
             } else {
                 token.setStatus(AtendimentoStatus.MED_RAIOX);

@@ -19,7 +19,7 @@ public class TriagemProducerSenderImpl implements TriagemProducerSender {
             if (error!= null) {
                 log.error("Falaha ao enviar: {}", error.getMessage());
             }else {
-                log.info("Enviado com sucesso!");
+                log.info("Enviado com sucesso para proxima etapa!");
             }
         });
 
@@ -31,7 +31,7 @@ public class TriagemProducerSenderImpl implements TriagemProducerSender {
             if (error!= null) {
                 log.error("Falaha ao enviar: {}", error.getMessage());
             }else {
-                log.info("Enviado com sucesso!");
+                log.info("Enviado p/ painel de atendimento com sucesso!");
             }
         });
 

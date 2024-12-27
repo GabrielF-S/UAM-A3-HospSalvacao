@@ -5,6 +5,6 @@ export class Encaminhamento{
     numToken: string;
     fichaId: number;
     nomePaciente: String;
-    regiaoRaioX: string[];
+    regioesRaiox: string[];
     medicacaoIntravenosa: MedicacaoVeia[];
 }

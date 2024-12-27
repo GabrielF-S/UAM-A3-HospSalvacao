@@ -35,7 +35,7 @@ public class RaioXConsumerConfigImpl implements RaioXConsumerConfig {
         configs.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, JsonDeserializer.class.getName());
         configs.put(ErrorHandlingDeserializer.KEY_DESERIALIZER_CLASS, JsonDeserializer.class.getName());
         configs.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
-        configs.put(JsonDeserializer.VALUE_DEFAULT_TYPE, "com.h_salvacao.ms_medico.model.Encaminhamento");
+        configs.put(JsonDeserializer.VALUE_DEFAULT_TYPE, "com.h_salvacao.ms_raiox.model.Encaminhamento");
         return new DefaultKafkaConsumerFactory<>(configs);
     }
 

@@ -142,14 +142,16 @@ export class MedicoAtendimentoComponent implements OnInit {
     this.encaminhamento.nomePaciente = this.token.paciente.nome;
     if (this.encaminharMedicao && this.encaminharRaioX) {
       this.encaminhamento.medicacaoIntravenosa = this.listaMedicacoesVeia;
-      this.encaminhamento.regiaoRaioX = this.regioesRaioX;
+      this.encaminhamento.regioesRaiox = this.regioesRaioX;
       
     } else {
       if (this.encaminharMedicao) {
         this.encaminhamento.medicacaoIntravenosa = this.listaMedicacoesVeia;
       } 
       if (this.encaminharRaioX) {
-        this.encaminhamento.regiaoRaioX = this.regioesRaioX;
+        console.log(this.regioesRaioX);
+        this.encaminhamento.regioesRaiox = this.regioesRaioX;
+        console.log(this.encaminhamento.regioesRaiox)
       }
     }
     this.service.encaminharPacienteMedicacaoRaioX(this.encaminhamento).subscribe(
@@ -158,7 +160,7 @@ export class MedicoAtendimentoComponent implements OnInit {
         this.falha = null;
       }, erro => {
         this.falha = "Erro ao encaminhar paciente"
-        this.falha = null;
+        this.sucesso = null;
       }
     )
    

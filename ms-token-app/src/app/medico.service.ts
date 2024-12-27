@@ -36,7 +36,7 @@ export class MedicoService {
     return this.http.post('http://localhost:8050/medico/salvarReceita', receita)
   }
   encaminharPacienteMedicacaoRaioX(encaminhamento: Encaminhamento): Observable<any> {
-    return this.http.post('http://localhost:8050/medico/encaminahrPaciente', encaminhamento);
+    return this.http.post('http://localhost:8050/medico/encaminharPaciente', encaminhamento);
     
   }
 

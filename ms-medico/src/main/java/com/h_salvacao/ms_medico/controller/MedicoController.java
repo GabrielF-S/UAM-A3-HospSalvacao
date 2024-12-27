@@ -28,7 +28,7 @@ public interface MedicoController {
     void imprimirReceita(Receita receita);
 
     @PostMapping(value = "encaminharPaciente")
-    ResponseEntity<?> encaminharPaciente(@RequestBody Encaminhamento encaminhamento);
+    ResponseEntity<?> encaminharPaciente(Encaminhamento encaminhamento);
 
 
 }

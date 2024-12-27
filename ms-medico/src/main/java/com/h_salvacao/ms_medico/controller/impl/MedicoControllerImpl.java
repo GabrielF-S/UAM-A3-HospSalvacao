@@ -46,7 +46,7 @@ public class MedicoControllerImpl implements MedicoController {
     }
 
     @Override
-    public ResponseEntity<?> encaminharPaciente(Encaminhamento encaminhamento) {
+    public ResponseEntity<?> encaminharPaciente(@RequestBody Encaminhamento encaminhamento) {
         return ResponseEntity.ok().body(medicoService.encaminharPaciente(encaminhamento));
     }
 
