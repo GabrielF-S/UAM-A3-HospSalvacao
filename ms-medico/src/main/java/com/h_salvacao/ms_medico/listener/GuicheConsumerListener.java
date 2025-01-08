@@ -7,5 +7,8 @@ import org.springframework.kafka.annotation.KafkaListener;
 public interface GuicheConsumerListener {
 
     @KafkaListener(topics = "medico-topic", containerFactory = "tokenContainerFactory")
-    public void listener(ConsumerRecord<String, Token> record);
+    public void listenerRegular(ConsumerRecord<String, Token> record);
+
+    @KafkaListener(topics = "retorno-topic", containerFactory = "tokenContainerFactory")
+    public void listenerReturn(ConsumerRecord<String, Token> record);
 }

@@ -13,9 +13,10 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class GuicheConsumerListenerImpl implements GuicheConsumerListener {
     private final MedicoService medicoService;
+
     @Override
-    public void listener(ConsumerRecord<String, Token> record) {
-        System.out.println(record.value().getNumToken());
+    public void listenerRegular(ConsumerRecord<String, Token> record) {
+        log.info(record.value().getNumToken());
         try {
 
             medicoService.adicionarFila(record.value());
@@ -23,6 +24,17 @@ public class GuicheConsumerListenerImpl implements GuicheConsumerListener {
             log.error("Erro ao processar mensagem do Kafka", e);
         }
 
+
+    }
+
+    @Override
+    public void listenerReturn(ConsumerRecord<String, Token> record) {
+        log.info(record.value().getNumToken());
+        try {
+            medicoService.adicionarFilaRetorno(record.value());
+        }catch (Exception e){
+            log.error("Erro ao processar mensagem do Kafka", e);
+        }
 
     }
 }
