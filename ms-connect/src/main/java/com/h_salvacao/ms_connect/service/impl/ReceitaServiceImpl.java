@@ -1,6 +1,7 @@
 package com.h_salvacao.ms_connect.service.impl;
 
 import com.h_salvacao.ms_connect.entity.Receita;
+import com.h_salvacao.ms_connect.exceptions.ReceitaException;
 import com.h_salvacao.ms_connect.repository.ReceitaRepository;
 import com.h_salvacao.ms_connect.service.ReceitaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,11 @@ public class ReceitaServiceImpl implements ReceitaService {
 
     @Override
     public Receita save(Receita receita) {
-        return receitaRepo.save(receita);
+        if (receita != null){
+            return receitaRepo.save(receita);
+        }else {
+
+            throw new ReceitaException();
+        }
     }
 }

@@ -17,9 +17,14 @@ public class TriagemServiceImpl implements TriagemService {
     @Autowired
     Triagem triagem;
 
+    @Autowired
+    TempoAtendimentoService atendimentoService;
+
     private final TriagemProducerSender triagemProducerSender;
 
     private final TriagemFeignClient feignClient;
+
+
 
 
 
@@ -59,6 +64,8 @@ public class TriagemServiceImpl implements TriagemService {
     @Override
     public Token chamarProximo() {
         Token proximo = getProximo();
+        TempoAtendimento atendimento = feignClient.getTempoAtendimento(proximo.getNumToken());
+        atendimentoService.atualizarEntradaAtendimento(atendimento);
         triagemProducerSender.sendoToAtendimento(proximo);
         return proximo;
 
@@ -68,6 +75,8 @@ public class TriagemServiceImpl implements TriagemService {
     public Ficha enviarFicha(Ficha ficha) {
         ficha = feignClient.sendFicha(ficha);
         ficha =  atualizarToken(ficha);
+        TempoAtendimento atendimento = feignClient.getTempoAtendimento(ficha.getToken().getNumToken());
+        atendimentoService.atualizarSaidaAtendimento(atendimento);
         triagemProducerSender.sendFicha(ficha.getToken());
         return ficha;
     }

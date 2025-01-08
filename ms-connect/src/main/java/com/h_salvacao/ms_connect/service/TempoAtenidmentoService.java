@@ -8,4 +8,8 @@ public interface TempoAtenidmentoService {
     TempoAtendimento CriarTempoAtendimento(Token token);
 
     void salvarTempo(TempoAtendimento atendimento);
+
+    TempoAtendimento getByNumToken(String numToken);
+
+    TempoAtendimento updateAtendimento(TempoAtendimento atendimento);
 }

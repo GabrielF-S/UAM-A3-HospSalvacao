@@ -1,6 +1,7 @@
 package com.h_salvacao.ms_connect.service.impl;
 
 import com.h_salvacao.ms_connect.entity.Ficha;
+import com.h_salvacao.ms_connect.exceptions.FichaException;
 import com.h_salvacao.ms_connect.repository.FichaRepository;
 import com.h_salvacao.ms_connect.service.FichaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class FichaServiceImpl implements FichaService {
 
     @Override
     public Ficha atualizarFicha(Ficha ficha) {
+        if (ficha == null){
+            throw  new FichaException();
+        }
         return  fichaRepository.save(ficha);
     }
 }
