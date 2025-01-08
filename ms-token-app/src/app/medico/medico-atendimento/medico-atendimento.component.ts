@@ -7,6 +7,7 @@ import { Medicacao } from 'src/app/pacientes/medicacao';
 import { Receita } from 'src/app/pacientes/receita';
 import { MedicacaoVeia} from '../../pacientes/medicacaoVeia';
 import { Encaminhamento } from 'src/app/pacientes/encaminhamento';
+import { Regiao } from 'src/app/pacientes/regiao';
 
 @Component({
   selector: 'app-medico-atendimento',
@@ -28,8 +29,9 @@ export class MedicoAtendimentoComponent implements OnInit {
   encaminharMedicao: boolean;
   encaminharRaioX: boolean;
   regiaoRaioX: string;
-  regioesRaioX: string[] = [];
+  regioesRaioX: Regiao[] = [];
   encaminhamento: Encaminhamento;
+  regiao: Regiao;
 
   constructor(
     private service: MedicoService,
@@ -124,8 +126,10 @@ export class MedicoAtendimentoComponent implements OnInit {
   }
 
 
-  AdicionarRaioX() { 
-    this.regioesRaioX.push(this.regiaoRaioX);
+  AdicionarRaioX() {
+    this.regiao = new Regiao();
+    this.regiao.nome = this.regiaoRaioX;
+    this.regioesRaioX.push(this.regiao);
     this.regiaoRaioX = null;
   };
 
@@ -142,6 +146,7 @@ export class MedicoAtendimentoComponent implements OnInit {
     this.encaminhamento.nomePaciente = this.token.paciente.nome;
     if (this.encaminharMedicao && this.encaminharRaioX) {
       this.encaminhamento.medicacaoIntravenosa = this.listaMedicacoesVeia;
+      
       this.encaminhamento.regioesRaiox = this.regioesRaioX;
       
     } else {
@@ -163,10 +168,27 @@ export class MedicoAtendimentoComponent implements OnInit {
         this.sucesso = null;
       }
     )
+    this.resetCampos();
    
   };
 
   encerrarAtendimento() { };
 
- 
+  resetCampos() {
+
+    this.token = new Token();
+    this.ficha = new Ficha();
+    this.medicacao = new Medicacao();
+    this.receita = new Receita();
+    this.medicacoesVeia = new MedicacaoVeia();
+    this.encaminhamento = new Encaminhamento();
+
+    this.medicacoes = [];
+    this.listaMedicacoesVeia = []; 
+    this.regioesRaioX = [];
+
+    this.encaminharMedicao = false;
+    this.encaminharRaioX = false;
+    
+  }
 }
