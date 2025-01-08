@@ -17,7 +17,7 @@ public class MedicoConsumerListenerImpl implements MedicoConsumerListener {
     private final RaioXService raioXService;
     @Override
     public void listener(ConsumerRecord<String, Encaminhamento> record) {
-        System.out.println(record.value().getNumToken());
+        log.info(record.value().getNumToken());
         try {
 
             raioXService.adicionarFila(record.value());
