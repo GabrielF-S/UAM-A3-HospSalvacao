@@ -1,4 +1,4 @@
-package com.h_salvacao.ms_raiox.model;
+package com.h_salvacao.ms_medico.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
@@ -37,5 +37,15 @@ public class Token implements Serializable {
         return Objects.equals(id, token.id) && Objects.equals(numToken, token.numToken);
     }
 
+    @Override
+    public String toString() {
+        return "Hospital Salvação\n" +
+                "Data: " + dataEntrada + '\n' +
+                "-----------------------" + '\n' +
+                "Ficha: " + numToken + '\n' +
+                "paciente: " + (paciente != null ? paciente.getNome() : "N/A") + '\n' +
+                "atendimento: " + atendimento + '\n' +
+                "-----------------------"+ '\n' ;
+    }
 
 }

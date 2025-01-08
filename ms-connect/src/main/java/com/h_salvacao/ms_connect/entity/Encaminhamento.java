@@ -14,6 +14,6 @@ public class Encaminhamento implements Serializable {
     private String numToken;
     private Long fichaId;
     private  String nomePaciente;
-    private List<String> regioesRaiox;
+    private List<Regiao> regioesRaiox;
     private List<MedicacaoIntravenosa> listaMedicacoes;
 }

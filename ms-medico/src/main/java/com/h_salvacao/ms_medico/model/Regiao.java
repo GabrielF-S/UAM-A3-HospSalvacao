@@ -1,18 +1,14 @@
-package com.h_salvacao.ms_medico.model;
+package com.h_salvacao.ms_raiox.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Medicacao implements Serializable {
+public class Regiao  implements Serializable {
     private String nome;
-    private String descricao;
-    private Long tempoDeUso;
-    private String frequencia;
-
+    private boolean check;
 }

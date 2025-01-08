@@ -9,10 +9,8 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Medicacao implements Serializable {
+public class Regiao implements Serializable {
     private String nome;
-    private String descricao;
-    private Long tempoDeUso;
-    private String frequencia;
-
+    private boolean check;
+    private String diagnostico;
 }

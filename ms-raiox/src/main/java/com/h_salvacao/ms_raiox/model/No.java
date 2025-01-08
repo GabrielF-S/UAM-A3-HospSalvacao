@@ -1,4 +1,4 @@
-package com.h_salvacao.ms_raiox.model;
+package com.h_salvacao.ms_medico.model;
 
 public class No<T> {
     public No next;

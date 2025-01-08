@@ -1,4 +1,4 @@
-package com.h_salvacao.ms_raiox.model;
+package com.h_salvacao.ms_medico.model;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
