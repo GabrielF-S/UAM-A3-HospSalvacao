@@ -1,4 +1,4 @@
-package com.h_salvacao.ms_medico.model;
+package com.h_salvacao.ms_raiox.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +13,8 @@ public class Encaminhamento implements Serializable {
     private Long id;
     private String numToken;
     private Long fichaId;
-    private  String nomePaciente;
-    private List<String> regioesRaiox;
+    private String nomePaciente;
+    private List<Regiao> regioesRaiox;
     private List<MedicacaoIntravenosa> listaMedicacoes;
+
 }

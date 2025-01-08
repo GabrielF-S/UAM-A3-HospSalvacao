@@ -1,10 +1,11 @@
 import { MedicacaoVeia } from "./medicacaoVeia";
+import { Regiao } from "./regiao";
 
 export class Encaminhamento{
     id: number;
     numToken: string;
     fichaId: number;
     nomePaciente: String;
-    regioesRaiox: string[];
+    regioesRaiox: Regiao[];
     medicacaoIntravenosa: MedicacaoVeia[];
 }
