@@ -49,6 +49,12 @@ public class TempoAtendimento implements Serializable {
     private LocalTime saidaDoutor;
 
     @JsonFormat(pattern = "HH:mm")
+    private LocalTime entradaRetornoDoutor;
+
+    @JsonFormat(pattern = "HH:mm")
+    private LocalTime saidaSaidaDoutor;
+
+    @JsonFormat(pattern = "HH:mm")
     private LocalTime entradaMedicacao;
 
     @JsonFormat(pattern = "HH:mm")

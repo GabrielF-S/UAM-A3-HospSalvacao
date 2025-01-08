@@ -4,6 +4,7 @@ import com.h_salvacao.ms_guiche.feignCliente.GuicheFeignCliente;
 import com.h_salvacao.ms_guiche.model.*;
 import com.h_salvacao.ms_guiche.service.GuicheProducerSender;
 import com.h_salvacao.ms_guiche.service.GuicheService;
+import com.h_salvacao.ms_guiche.service.TempoAtendimentoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,9 @@ import java.time.LocalDateTime;
 public class GuicheServiceImpl implements GuicheService {
     @Autowired
     Triagem triagem;
+
+    @Autowired
+    TempoAtendimentoService atendimentoService;
 
     private final GuicheProducerSender producerSender;
 
@@ -38,6 +42,8 @@ public class GuicheServiceImpl implements GuicheService {
             Token token = guicheFeignCliente.getToken(numToken).getBody();
             if (token != null && token.getStatus() == AtendimentoStatus.GUICHE){
                 producerSender.sendoToAtendimento(token);
+                TempoAtendimento tempoAtendimento =  guicheFeignCliente.getTempoAtendimento(numToken);
+                atendimentoService.atualizarEntradaAtendimento(tempoAtendimento);
                 return token;
             }
         }catch (Exception e){
@@ -62,6 +68,8 @@ public class GuicheServiceImpl implements GuicheService {
     public Token encaminharToken(Token token) {
         token.setStatus(AtendimentoStatus.DOUTOR);
         Token tokenLocal = guicheFeignCliente.updateToken(token);
+        TempoAtendimento atendimento = guicheFeignCliente.getTempoAtendimento(tokenLocal.getNumToken());
+        atendimentoService.atualizarSaidaAtendimento(atendimento);
         producerSender.send(tokenLocal);
         return  tokenLocal;
     }

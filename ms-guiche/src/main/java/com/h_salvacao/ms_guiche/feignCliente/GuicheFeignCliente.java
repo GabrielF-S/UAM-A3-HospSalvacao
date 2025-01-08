@@ -1,6 +1,7 @@
 package com.h_salvacao.ms_guiche.feignCliente;
 
 import com.h_salvacao.ms_guiche.model.Paciente;
+import com.h_salvacao.ms_guiche.model.TempoAtendimento;
 import com.h_salvacao.ms_guiche.model.Token;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
@@ -22,4 +23,10 @@ public interface GuicheFeignCliente {
 
     @PutMapping(value = "connectToken/updateToken")
     Token updateToken( Token token);
+
+    @GetMapping(value = "connectAtendimento/getAtendimento/{numToken}")
+    TempoAtendimento getTempoAtendimento(@PathVariable("numToken")  String numToken);
+
+    @PutMapping(value = "connectAtendimento/updateAtendimento")
+    void updateAtendimento(@RequestBody TempoAtendimento atendimento);
 }

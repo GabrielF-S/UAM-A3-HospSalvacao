@@ -1,7 +1,6 @@
-package com.h_salvacao.ms_connect.entity;
+package com.h_salvacao.ms_guiche.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,17 +9,13 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Objects;
 
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "tb_tempo_atendimento")
 public class TempoAtendimento implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
     private  String numToken;
@@ -50,13 +45,13 @@ public class TempoAtendimento implements Serializable {
     private LocalTime entradaDoutor;
 
     @JsonFormat(pattern = "HH:mm")
-    private LocalTime saidaDoutor;
-
-    @JsonFormat(pattern = "HH:mm")
     private LocalTime entradaRetornoDoutor;
 
     @JsonFormat(pattern = "HH:mm")
     private LocalTime saidaSaidaDoutor;
+
+    @JsonFormat(pattern = "HH:mm")
+    private LocalTime saidaDoutor;
 
     @JsonFormat(pattern = "HH:mm")
     private LocalTime entradaMedicacao;
@@ -74,17 +69,5 @@ public class TempoAtendimento implements Serializable {
         this.numToken = numToken;
         this.dataEntrada = dataEntrada;
         this.horarioEntrada = time;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        TempoAtendimento that = (TempoAtendimento) o;
-        return Objects.equals(id, that.id) && Objects.equals(numToken, that.numToken);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, numToken);
     }
 }

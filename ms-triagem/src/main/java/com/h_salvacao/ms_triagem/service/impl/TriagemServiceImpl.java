@@ -18,7 +18,7 @@ public class TriagemServiceImpl implements TriagemService {
     Triagem triagem;
 
     @Autowired
-    TempoAtendimentoService atendimentoService;
+    TempoAtendimentoServiceImpl atendimentoService;
 
     private final TriagemProducerSender triagemProducerSender;
 
