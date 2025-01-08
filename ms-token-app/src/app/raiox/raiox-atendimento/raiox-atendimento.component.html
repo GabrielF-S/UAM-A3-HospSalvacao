@@ -9,10 +9,60 @@
         <i class="fa fa-plus"></i> Chamar Proximo
       </button>
     </div>
-    <div class="alert alert-danger" role="alert" *ngIf="falha" >
-        {{falha}}
+    <div class="alert alert-danger" role="alert"  *ngFor="let f of falha" >
+      <p>{{f}}</p>
     </div>
     <div class="alert alert-success" role="alert" *ngIf="sucesso" >
         {{sucesso}}
     </div> 
 </div>
+<div class="container" *ngIf="encaminhamento.numToken">
+  <div class="row mt-4" >
+      <div class="col-md-2">
+          <div class="form-group">
+              <label>Token:</label>
+              <input type="text" name="token" id="" class="form-control"  [value]="encaminhamento.numToken" name = "numToken" disabled>  
+          </div>
+      </div>
+      <div class="col-md-2">
+          <div class="form-group">
+              <label>Entrada</label>
+              <input type="text" name="nome" id="" class="form-control" [value]="encaminhamento.nomePaciente"  name = "nomePaciente" disabled> 
+          </div>
+      </div>  
+  </div>
+
+<div class="row mt-2" >   
+      <ol class="breadcrumb mb-1">
+          <li class="breadcrumb-item active">Regioes p/ Raio-X</li>
+      </ol>        
+      <div>
+        <div *ngIf=" encaminhamento.regioesRaiox">
+          <div class="row">
+                  
+          <table class="table table-borderless table-striped table-hover" >
+          <thead>
+              <tr>
+                  <th>Região</th>
+                  <th></th>
+                  <th></th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let regiaoRaioX of encaminhamento.regioesRaiox">
+                  <td>{{ regiaoRaioX.nome}}</td>
+                 <td><input type="checkbox" id="verificacao" name="verificacao" [(ngModel)] = "regiaoRaioX.check"></td>  
+                 <td *ngIf="regiaoRaioX.check"> <input type="text" name="diagnostico" id="diagnostico" [(ngModel)] = "regiaoRaioX.diagnostico"></td>
+              </tr>
+          </tbody>
+      </table>
+      </div>
+    </div>
+    </div>
+      
+    <div class="row">
+       <button  type="button"class="btn btn-warning  ml-1 mt-3"   (click)="encaminharPaciente()"><i class="fa fa-arrow-circle-right"></i> Encaminhar</button>
+    </div>
+
+</div>
+

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { RaioxRoutingModule } from './raiox-routing.module';
 import { RaioxAtendimentoComponent } from './raiox-atendimento/raiox-atendimento.component';
@@ -9,7 +10,8 @@ import { RaioxAtendimentoComponent } from './raiox-atendimento/raiox-atendimento
   declarations: [RaioxAtendimentoComponent],
   imports: [
     CommonModule,
-    RaioxRoutingModule
+    RaioxRoutingModule,
+    FormsModule
   ]
 })
 export class RaioxModule { }

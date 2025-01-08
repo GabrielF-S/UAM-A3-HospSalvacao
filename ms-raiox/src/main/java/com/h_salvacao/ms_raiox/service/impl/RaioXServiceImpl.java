@@ -5,6 +5,7 @@ import com.h_salvacao.ms_raiox.model.AtendimentoStatus;
 import com.h_salvacao.ms_raiox.model.Encaminhamento;
 import com.h_salvacao.ms_raiox.model.Token;
 import com.h_salvacao.ms_raiox.model.Triagem;
+import com.h_salvacao.ms_raiox.service.RaioXProducerSender;
 import com.h_salvacao.ms_raiox.service.RaioXService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import org.springframework.stereotype.Service;
 public class RaioXServiceImpl implements RaioXService {
     @Autowired
     Triagem triagem;
+
+    private  final RaioXProducerSender producerSender;
 
     private final raioXFeingClient feingClient;
 
@@ -32,10 +35,9 @@ public class RaioXServiceImpl implements RaioXService {
     @Override
     public Encaminhamento chamarProximo() {
         Encaminhamento encaminhamento = triagem.getFila().dequeue();
-       String numToken = encaminhamento.getNumToken();
+        String numToken = encaminhamento.getNumToken();
         Token token = feingClient.getToken(numToken).getBody();
         if (token != null && token.getStatus() == AtendimentoStatus.RAIOX){
-
             return  encaminhamento;
         }else {
             throw new RuntimeException("Token não localizado na base");
@@ -44,11 +46,13 @@ public class RaioXServiceImpl implements RaioXService {
 
     @Override
     public void encaminharPaciente(Encaminhamento encaminhamento) {
-        String numToken = encaminhamento.getNumToken();
-        Token token = feingClient.getToken(numToken).getBody();
-        if (token != null){
-            //TODO
-        }
+        feingClient.saveEncaminhamento(encaminhamento);
+        Token token = feingClient.getToken(encaminhamento.getNumToken()).getBody();
+        token.setStatus(AtendimentoStatus.DOUTOR);
+        feingClient.updateToken(token);
+        producerSender.senToMedico(token);
+
+
 
     }
 }

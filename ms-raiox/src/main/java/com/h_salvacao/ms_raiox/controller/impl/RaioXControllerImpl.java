@@ -27,7 +27,7 @@ public class RaioXControllerImpl implements RaioXController {
     }
 
     @Override
-    public void encaminahrToken(Encaminhamento encaminhamento) {
+    public void encaminahrPaciente(Encaminhamento encaminhamento) {
          raioXService.encaminharPaciente(encaminhamento);
     }
 }

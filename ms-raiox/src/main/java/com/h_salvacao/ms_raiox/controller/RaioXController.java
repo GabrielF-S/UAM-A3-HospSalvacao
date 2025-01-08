@@ -4,6 +4,7 @@ import com.h_salvacao.ms_raiox.model.Encaminhamento;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 public interface RaioXController {
     @GetMapping(value = "getQtd")
@@ -12,8 +13,9 @@ public interface RaioXController {
     @GetMapping(value = "getProximo")
     ResponseEntity<Encaminhamento> getProximo();
 
-    @PostMapping(value = "encaminharToken")
-    void encaminahrToken(Encaminhamento encaminhamento);
+    @PostMapping(value = "encaminharPaciente")
+    void encaminahrPaciente(@RequestBody  Encaminhamento encaminhamento);
+
 
 
 }
