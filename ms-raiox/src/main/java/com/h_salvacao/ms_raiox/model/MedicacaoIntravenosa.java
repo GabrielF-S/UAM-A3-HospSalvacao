@@ -1,4 +1,4 @@
-package com.h_salvacao.ms_medico.model;
+package com.h_salvacao.ms_raiox.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

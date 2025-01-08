@@ -34,11 +34,12 @@ public class MedicoServiceImpl implements MedicoService {
 
     @Override
     public Integer getTotal() {
-        return triagem.getFila().size();
+        return triagem.getValorTotal();
     }
 
     @Override
     public Token chamarProximo() {
+        Token proximo = getProximo();
         try {
             String numToken = triagem.getFila().dequeue().getNumToken();
             Token token = feignClient.getToken(numToken).getBody();
@@ -53,6 +54,31 @@ public class MedicoServiceImpl implements MedicoService {
 
         return new Token(0L, "0", LocalDateTime.now(), null, AtendimentoStatus.DESCONHECIDO, TipoAtendimento.DESCONHECIDO);
 
+    }
+
+    private Token getProximo() {
+        if (getTotal() > 0) {
+            String numToken = verificarFilas().getNumToken();
+        }
+    }
+
+    private Token verificarFilas() {
+        Token tokenComun, tokenRetorno;
+        if (triagem.getFila().checkFirst() != null && triagem.getFilaRetorno().checkFirst() == null){
+            return triagem.getFila().dequeue();
+        }
+        if (triagem.getFila().checkFirst()== null && triagem.getFilaRetorno().checkFirst() != null){
+            return triagem.getFilaRetorno().dequeue();
+        }
+        if (triagem.getFila().checkFirst() != null && triagem.getFilaRetorno().checkFirst() != null){
+            tokenComun = triagem.getFila().checkFirst();
+            tokenRetorno = triagem.getFilaRetorno().checkFirst();
+            getComumOuRetorno(tokenComun, tokenRetorno);
+        }
+    }
+
+    private void getComumOuRetorno(Token tokenComun, Token tokenRetorno) {
+        
     }
 
     @Override
@@ -97,6 +123,11 @@ public class MedicoServiceImpl implements MedicoService {
         }
         feignClient.updateToken(token);
         return encaminhamento;
+    }
+
+    @Override
+    public void adicionarFilaRetorno(Token value) {
+        triagem.adicionarFilaRetorno(value);
     }
 
 

@@ -20,6 +20,8 @@ public interface MedicoService {
 
     Encaminhamento encaminharPaciente(Encaminhamento encaminhamento);
 
+    void adicionarFilaRetorno(Token value);
+
 
 //    private final TriagemFeignClient triagemFeignClient;
 //
