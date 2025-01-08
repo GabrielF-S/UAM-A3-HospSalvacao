@@ -85,7 +85,7 @@ public class TriagemServiceImpl implements TriagemService {
     private Token getProximo() {
 
         if (pegarTotal() > 0) {
-            String numToken = verificarFilar().getNumToken();
+            String numToken = verificarFilas().getNumToken();
             Token token = feignClient.getToken(numToken).getBody();
 
             if (token != null && token.getStatus() == AtendimentoStatus.TRIAGEM) {
@@ -99,7 +99,7 @@ public class TriagemServiceImpl implements TriagemService {
 
     }
 
-    private Token verificarFilar() {
+    private Token verificarFilas() {
         Token tokenComum, tokenPreferencial;
 
         if (triagem.getFilaUrgente().checkFirst() != null) {

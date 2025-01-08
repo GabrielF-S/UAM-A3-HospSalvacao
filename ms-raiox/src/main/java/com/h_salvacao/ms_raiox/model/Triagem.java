@@ -1,4 +1,4 @@
-package com.h_salvacao.ms_medico.model;
+package com.h_salvacao.ms_raiox.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,11 +11,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class Triagem {
     private  long id;
-    Queue<Token> fila = new Queue<>();
+    Queue<Encaminhamento> fila = new Queue<>();
 
 
-    public  void adicionarFila(Token token){
-        fila.enqueue(token);
+    public  void adicionarFila(Encaminhamento encaminhamento){
+        fila.enqueue(encaminhamento);
     }
 
 

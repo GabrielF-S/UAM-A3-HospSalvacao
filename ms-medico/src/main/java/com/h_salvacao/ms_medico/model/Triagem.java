@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 public class Triagem {
     private  long id;
     Queue<Token> fila = new Queue<>();
+    Queue<Token> filaRetorno = new Queue<>();
 
 
     public  void adicionarFila(Token token){
@@ -19,4 +20,11 @@ public class Triagem {
     }
 
 
+    public void adicionarFilaRetorno(Token token) {
+        filaRetorno.enqueue(token);
+    }
+
+    public Integer getValorTotal() {
+        return fila.size() + filaRetorno.size();
+    }
 }
