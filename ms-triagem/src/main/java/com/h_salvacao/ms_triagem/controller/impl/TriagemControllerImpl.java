@@ -27,8 +27,7 @@ public class TriagemControllerImpl implements TriagemController {
     }
 
     @Override
-    public ResponseEntity<Ficha> abrirFicha(@RequestBody Ficha ficha) {
-
+    public ResponseEntity<Ficha> abrirFichaEncaminharPaciente(@RequestBody Ficha ficha) {
         return ResponseEntity.ok().body(triagemService.enviarFicha(ficha));
     }
 

@@ -4,7 +4,6 @@ import com.h_salvacao.ms_triagem.model.Ficha;
 import com.h_salvacao.ms_triagem.model.Token;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
 public interface TriagemController {
@@ -16,7 +15,7 @@ public interface TriagemController {
     ResponseEntity<Token> getProximo();
 
     @PutMapping(value = "save")
-    ResponseEntity<Ficha> abrirFicha(Ficha ficha);
+    ResponseEntity<Ficha> abrirFichaEncaminharPaciente(Ficha ficha);
 
 
 

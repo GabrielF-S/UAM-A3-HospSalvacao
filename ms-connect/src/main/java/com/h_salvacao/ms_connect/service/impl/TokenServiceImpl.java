@@ -3,6 +3,8 @@ package com.h_salvacao.ms_connect.service.impl;
 import com.h_salvacao.ms_connect.entity.MyList;
 import com.h_salvacao.ms_connect.entity.TempoAtendimento;
 import com.h_salvacao.ms_connect.entity.Token;
+import com.h_salvacao.ms_connect.exceptions.NumTokenException;
+import com.h_salvacao.ms_connect.exceptions.TokenException;
 import com.h_salvacao.ms_connect.repository.TokenRepository;
 import com.h_salvacao.ms_connect.service.TempoAtenidmentoService;
 import com.h_salvacao.ms_connect.service.TokenService;
@@ -23,33 +25,44 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public Token salvarToken(Token token) {
-        repository.save(token);
-        TempoAtendimento atendimento = tempoAtenidmentoService.CriarTempoAtendimento(token);
-        tempoAtenidmentoService.salvarTempo(atendimento);
-       return  token;
+        if (token != null) {
+            repository.save(token);
+            TempoAtendimento atendimento = tempoAtenidmentoService.CriarTempoAtendimento(token);
+            tempoAtenidmentoService.salvarTempo(atendimento);
+            return token;
+        }
+        throw new TokenException();
     }
 
     @Override
     public Token getToken(Long id) {
-        return  repository.findById(id).get();
+        return repository.findById(id).get();
     }
 
     @Override
     public Token getByToken(String numToken) {
-        return  repository.findBynumToken(numToken).get();
+        if (numToken.isEmpty()){
+            throw new NumTokenException();
+        }
+        return repository.findBynumToken(numToken).get();
     }
 
     @Override
     public MyList getAll() {
-        for (Token t : repository.findAll()){
+        for (Token t : repository.findAll()) {
             myList.inserirFim(t);
         }
 
-         return myList;
+        return myList;
     }
 
     @Override
     public Token atualizarToken(Token token) {
-        return repository.save(token);
+        if (token != null) {
+
+            return repository.save(token);
+        } else {
+            throw new TokenException();
+        }
     }
 }
