@@ -1,4 +1,4 @@
-package com.h_salvacao.ms_medico.configs.impl;
+package com.h_salvacao.ms_raiox.configs.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.admin.AdminClientConfig;
@@ -26,22 +26,10 @@ public class KafkaAdminConfig {
     @Bean
     public KafkaAdmin.NewTopics topics() {
         return new KafkaAdmin.NewTopics(
-                TopicBuilder.name("atendimento-topic").partitions(1).replicas(1).build()
+                TopicBuilder.name("retorno-topic").partitions(1).replicas(1).build()
         );
     }
 
-    @Bean
-    public KafkaAdmin.NewTopics raioxTopic() {
-        return new KafkaAdmin.NewTopics(
-                TopicBuilder.name("raiox-topic").partitions(1).replicas(1).build()
-        );
-    }
 
-    @Bean
-    public KafkaAdmin.NewTopics intravenosaTopic() {
-        return new KafkaAdmin.NewTopics(
-                TopicBuilder.name("intravenosa-topic").partitions(1).replicas(1).build()
-        );
-    }
 
 }
