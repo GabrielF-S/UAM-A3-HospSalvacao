@@ -38,7 +38,7 @@ export class RaioxAtendimentoComponent implements OnInit {
         this.encaminhamento = response;
         console.log(this.encaminhamento)  
       }, error => {
-        this.falha.push("Falha ao chamar proximo");
+        this.falha.push(error.error.message);
       }
     )
     this.getTamanhoFila();

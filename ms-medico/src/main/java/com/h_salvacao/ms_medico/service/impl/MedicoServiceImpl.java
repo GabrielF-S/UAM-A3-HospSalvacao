@@ -99,31 +99,31 @@ public class MedicoServiceImpl implements MedicoService {
 
         if (tokenComun.getAtendimento() == tokenRetorno.getAtendimento()) {
             if (comumTime.isBefore(retornoTime)) {
-                return tokenComun;
+                return triagem.getFila().dequeue();
             } else {
-                return tokenRetorno;
+                return triagem.getFilaRetorno().dequeue();
             }
         } else {
             //Verifica se um dos dois é Urgente
             if (tokenComun.getAtendimento() == TipoAtendimento.URGENTE) {
-                return tokenComun;
+                return triagem.getFila().dequeue();
             }
             if (tokenRetorno.getAtendimento() == TipoAtendimento.URGENTE) {
-                return tokenRetorno;
+                return triagem.getFilaRetorno().dequeue();
             }
             if (tokenComun.getAtendimento() == TipoAtendimento.COMUM) {
                 if (comumTime.until(retornoTime, ChronoUnit.MINUTES) > 30) {
-                    return tokenComun;
+                    return triagem.getFila().dequeue();
                 } else {
-                    return tokenRetorno;
+                    return triagem.getFilaRetorno().dequeue();
                 }
 
             }
             if (tokenRetorno.getAtendimento() == TipoAtendimento.COMUM) {
                 if (retornoTime.until(comumTime, ChronoUnit.MINUTES) > 30) {
-                    return tokenRetorno;
+                    return triagem.getFilaRetorno().dequeue();
                 } else {
-                    return tokenComun;
+                    return triagem.getFila().dequeue();
                 }
 
             }

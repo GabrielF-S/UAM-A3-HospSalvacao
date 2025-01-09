@@ -39,7 +39,7 @@ public class  Queue<T> {
 //retirar do inicio da fila
     public T dequeue(){
         if (isEmpty()){
-            return  null;
+            throw new RuntimeException("Fila vazia");
         }
         No temp = inicio;
         inicio = inicio.next;

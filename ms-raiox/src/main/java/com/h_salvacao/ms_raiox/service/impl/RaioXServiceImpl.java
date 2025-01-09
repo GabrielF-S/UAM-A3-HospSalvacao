@@ -1,15 +1,14 @@
 package com.h_salvacao.ms_raiox.service.impl;
 
-import com.h_salvacao.ms_raiox.feingClient.raioXFeingClient;
-import com.h_salvacao.ms_raiox.model.AtendimentoStatus;
-import com.h_salvacao.ms_raiox.model.Encaminhamento;
-import com.h_salvacao.ms_raiox.model.Token;
-import com.h_salvacao.ms_raiox.model.Triagem;
+import com.h_salvacao.ms_raiox.feingClient.RaioXFeingClient;
+import com.h_salvacao.ms_raiox.model.*;
 import com.h_salvacao.ms_raiox.service.RaioXProducerSender;
 import com.h_salvacao.ms_raiox.service.RaioXService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalTime;
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +18,7 @@ public class RaioXServiceImpl implements RaioXService {
 
     private  final RaioXProducerSender producerSender;
 
-    private final raioXFeingClient feingClient;
+    private final RaioXFeingClient feingClient;
 
     @Override
     public void adicionarFila(Encaminhamento encaminhamento) {
@@ -38,10 +37,17 @@ public class RaioXServiceImpl implements RaioXService {
         String numToken = encaminhamento.getNumToken();
         Token token = feingClient.getToken(numToken).getBody();
         if (token != null && token.getStatus() == AtendimentoStatus.RAIOX){
+            atualizarEntradaAtendimento(token.getNumToken());
             return  encaminhamento;
         }else {
             throw new RuntimeException("Token não localizado na base");
         }
+    }
+
+    private void atualizarEntradaAtendimento(String numToken) {
+        TempoAtendimento tempoAtendimento = feingClient.getTempoAtendimento(numToken);
+        tempoAtendimento.setEntradaRaioX(LocalTime.now());
+        feingClient.updateAtendimento(tempoAtendimento);
     }
 
     @Override
@@ -50,9 +56,17 @@ public class RaioXServiceImpl implements RaioXService {
         Token token = feingClient.getToken(encaminhamento.getNumToken()).getBody();
         token.setStatus(AtendimentoStatus.DOUTOR);
         feingClient.updateToken(token);
+        atualizarSaidaAtendimento(token.getNumToken());
         producerSender.senToMedico(token);
 
 
+
+    }
+
+    private void atualizarSaidaAtendimento(String numToken) {
+        TempoAtendimento tempoAtendimento = feingClient.getTempoAtendimento(numToken);
+        tempoAtendimento.setSaidaRaioX(LocalTime.now());
+        feingClient.updateAtendimento(tempoAtendimento);
 
     }
 }
