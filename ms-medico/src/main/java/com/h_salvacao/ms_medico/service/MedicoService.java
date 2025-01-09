@@ -20,23 +20,8 @@ public interface MedicoService {
 
     Encaminhamento encaminharPaciente(Encaminhamento encaminhamento);
 
-    void adicionarFilaRetorno(Token value);
+    void adicionarFilaRetornoDoRaioX(Token value);
 
 
-//    private final TriagemFeignClient triagemFeignClient;
-//
-//    public MedicoService(TriagemFeignClient triagemFeignClient) {
-//        this.triagemFeignClient = triagemFeignClient;
-//    }
-//
-//    public Token chamarMedico() {
-//        Token primeiroElemento = triagemFeignClient.chamarMedico();
-//
-//        if (primeiroElemento == null) {
-//            System.out.println("A fila está vazia.");
-//        }
-//
-//        return primeiroElemento;
-//    }
 }
 

@@ -31,7 +31,7 @@ public class GuicheConsumerListenerImpl implements GuicheConsumerListener {
     public void listenerReturn(ConsumerRecord<String, Token> record) {
         log.info(record.value().getNumToken());
         try {
-            medicoService.adicionarFilaRetorno(record.value());
+            medicoService.adicionarFilaRetornoDoRaioX(record.value());
         }catch (Exception e){
             log.error("Erro ao processar mensagem do Kafka", e);
         }
