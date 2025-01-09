@@ -55,8 +55,8 @@ export class MedicoAtendimentoComponent implements OnInit {
       response => {
         this.token = response;
         console.log(response);
-      }, error => {
-        this.falha = "Erro ao buscar proximo"
+      }, erro => {
+        this.falha = erro.error.message;
       }
     );
     this.getTamanhoFila();
@@ -80,7 +80,7 @@ export class MedicoAtendimentoComponent implements OnInit {
         this.ficha = response
         this.falha = null;
       }, erro => {
-        this.falha = "Falha ao obter ficha"
+        this.falha = erro.error.message;
       }
     )
   }
@@ -109,7 +109,7 @@ export class MedicoAtendimentoComponent implements OnInit {
         this.sucesso = "Registro Salvo"
         this.falha = null;
       }, erro => {
-        this.falha = "Erro ao adicinar medicação"
+        this.falha = erro.error.message;
         this.sucesso = null;
       }
     )
@@ -164,7 +164,7 @@ export class MedicoAtendimentoComponent implements OnInit {
         this.sucesso = "Paciente encaminhado com sucesso"
         this.falha = null;
       }, erro => {
-        this.falha = "Erro ao encaminhar paciente"
+        this.falha = erro.error.message;
         this.sucesso = null;
       }
     )
