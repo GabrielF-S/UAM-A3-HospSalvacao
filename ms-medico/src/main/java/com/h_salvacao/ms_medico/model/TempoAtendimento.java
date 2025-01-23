@@ -52,7 +52,7 @@ public class TempoAtendimento implements Serializable {
     private LocalTime entradaRetornoDoutor;
 
     @JsonFormat(pattern = "HH:mm")
-    private LocalTime saidaSaidaDoutor;
+    private LocalTime saidaRetornoDoutor;
 
     @JsonFormat(pattern = "HH:mm")
     private LocalTime entradaMedicacao;

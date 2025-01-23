@@ -31,4 +31,7 @@ public interface MedicoController {
     ResponseEntity<?> encaminharPaciente(Encaminhamento encaminhamento);
 
 
+    @PostMapping(value = "encerrarAtendimento")
+    ResponseEntity<Token> encerrarAtendimento(Token token);
+
 }

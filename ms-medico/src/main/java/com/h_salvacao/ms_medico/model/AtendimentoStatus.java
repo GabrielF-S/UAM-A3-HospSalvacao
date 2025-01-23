@@ -9,6 +9,7 @@ public enum AtendimentoStatus {
 
     MED_RAIOX,
     RAIOX_MED,
+    ENCERRADO,
 
     DESCONHECIDO
 

@@ -50,5 +50,10 @@ public class MedicoControllerImpl implements MedicoController {
         return ResponseEntity.ok().body(medicoService.encaminharPaciente(encaminhamento));
     }
 
+    @Override
+    public ResponseEntity<Token> encerrarAtendimento(@RequestBody Token token) {
+        return ResponseEntity.ok().body(medicoService.encerrarAtendimento(token));
+    }
+
 
 }

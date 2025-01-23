@@ -36,7 +36,6 @@ export class RaioxAtendimentoComponent implements OnInit {
     this.service.buscarProximo().subscribe(
       response => {
         this.encaminhamento = response;
-        console.log(this.encaminhamento)  
       }, error => {
         this.falha.push(error.error.message);
       }
@@ -82,5 +81,9 @@ export class RaioxAtendimentoComponent implements OnInit {
     }
     
     
+  }
+
+  resetCampos() {
+    this.encaminhamento = new Encaminhamento();
   }
 }

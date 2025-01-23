@@ -172,7 +172,18 @@ export class MedicoAtendimentoComponent implements OnInit {
    
   };
 
-  encerrarAtendimento() { };
+  encerrarAtendimento() { 
+    this.service.encerrarAtendimento(this.token).subscribe(
+      response =>
+      {
+        this.sucesso = "Atendimento Encerrado";
+        this.resetCampos();
+      }, erro => {
+        erro = erro.error.message;
+      }
+
+    )
+  };
 
   resetCampos() {
 

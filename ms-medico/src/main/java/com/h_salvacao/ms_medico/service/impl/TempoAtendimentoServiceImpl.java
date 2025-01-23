@@ -2,6 +2,7 @@ package com.h_salvacao.ms_medico.service.impl;
 
 import com.h_salvacao.ms_medico.feignCliente.MedicoFeignClient;
 import com.h_salvacao.ms_medico.model.TempoAtendimento;
+import com.h_salvacao.ms_medico.model.Token;
 import com.h_salvacao.ms_medico.service.TempoAtendimentoService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,7 +32,14 @@ public class TempoAtendimentoServiceImpl implements TempoAtendimentoService {
     }
     @Override
     public void atualizarSaidaRetorno(TempoAtendimento atendimento) {
-        atendimento.setSaidaSaidaDoutor(LocalTime.now());
+        atendimento.setSaidaRetornoDoutor(LocalTime.now());
         feignClient.updateAtendimento(atendimento);
     }
+
+    @Override
+    public void encerrarAtendimento(TempoAtendimento atendimento) {
+        atendimento.setHorarioSaida(LocalTime.now());
+        feignClient.updateAtendimento(atendimento);
+    }
+
 }

@@ -181,7 +181,7 @@ public class MedicoServiceImpl implements MedicoService {
             }
             producerSender.sentoToMedicacaoERaioX(encaminhamento);
         }
-        atendimento.setSaidaSaidaDoutor(LocalTime.now());
+        atendimento.setSaidaDoutor(LocalTime.now());
         feignClient.updateToken(token);
         atendimentoService.atualizarSaidaMedico(atendimento);
         return encaminhamento;
@@ -190,6 +190,17 @@ public class MedicoServiceImpl implements MedicoService {
     @Override
     public void adicionarFilaRetornoDoRaioX(Token value) {
         triagem.adicionarFilaRetorno(value);
+    }
+
+    @Override
+    public Token encerrarAtendimento(Token token) {
+        token.setStatus(AtendimentoStatus.ENCERRADO);
+        feignClient.updateToken(token);
+        TempoAtendimento atendimento = feignClient.getTempoAtendimento(token.getNumToken());
+        atendimentoService.encerrarAtendimento(atendimento);
+
+        return token;
+
     }
 
 
