@@ -13,7 +13,7 @@ import java.util.List;
 public interface TokenController {
 
     @PostMapping(value = "save")
-    ResponseEntity<Token> salvarToken(Token token);
+    void salvarToken(Token token);
 
     @GetMapping(value = "getId/{id}")
     ResponseEntity<Token> getTokenById(Long id);
@@ -25,6 +25,6 @@ public interface TokenController {
     ResponseEntity<MyList> getAllTokens();
 
     @PutMapping(value = "updateToken")
-    ResponseEntity<Token> updateToken( Token token);
+    void updateToken( Token token);
 
 }

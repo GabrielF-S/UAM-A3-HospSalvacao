@@ -23,8 +23,8 @@ public class TokenControllerImpl implements TokenController {
 
 
     @Override
-    public ResponseEntity<Token> salvarToken(@RequestBody  Token token) {
-       return ResponseEntity.ok(tokenService.salvarToken(token));
+    public void salvarToken(@RequestBody  Token token) {
+        ResponseEntity.accepted().body(tokenService.salvarToken(token));
     }
 
     @Override
@@ -43,8 +43,8 @@ public class TokenControllerImpl implements TokenController {
     }
 
     @Override
-    public ResponseEntity<Token> updateToken(@RequestBody  Token token) {
-        return  ResponseEntity.ok().body(tokenService.atualizarToken(token));
+    public void updateToken(@RequestBody  Token token) {
+        ResponseEntity.accepted().body(tokenService.atualizarToken(token));
     }
 
 
