@@ -7,10 +7,7 @@ import com.h_salvacao.ms_connect.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,8 +20,9 @@ public class TokenControllerImpl implements TokenController {
 
 
     @Override
+    @ResponseStatus(HttpStatus.CREATED)
     public void salvarToken(@RequestBody  Token token) {
-        ResponseEntity.accepted().body(tokenService.salvarToken(token));
+       tokenService.salvarToken(token);
     }
 
     @Override
@@ -42,10 +40,11 @@ public class TokenControllerImpl implements TokenController {
           return new ResponseEntity<>(tokenService.getAll(), HttpStatus.OK);
     }
 
-    @Override
-    public void updateToken(@RequestBody  Token token) {
-        ResponseEntity.accepted().body(tokenService.atualizarToken(token));
-    }
 
+    @Override
+    @ResponseStatus(HttpStatus.CREATED)
+    public void updateToken(@RequestBody  Token token) {
+        tokenService.atualizarToken(token);
+    }
 
 }
