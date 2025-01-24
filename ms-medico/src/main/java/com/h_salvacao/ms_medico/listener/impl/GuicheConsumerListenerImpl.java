@@ -18,7 +18,7 @@ public class GuicheConsumerListenerImpl implements GuicheConsumerListener {
     public void listenerRegular(ConsumerRecord<String, Token> record) {
         log.info(record.value().getNumToken());
         try {
-
+            record.value().setRetorno(false);
             medicoService.adicionarFila(record.value());
         }catch (Exception e){
             log.error("Erro ao processar mensagem do Kafka", e);
@@ -31,6 +31,7 @@ public class GuicheConsumerListenerImpl implements GuicheConsumerListener {
     public void listenerReturn(ConsumerRecord<String, Token> record) {
         log.info(record.value().getNumToken());
         try {
+            record.value().setRetorno(true);
             medicoService.adicionarFilaRetornoDoRaioX(record.value());
         }catch (Exception e){
             log.error("Erro ao processar mensagem do Kafka", e);

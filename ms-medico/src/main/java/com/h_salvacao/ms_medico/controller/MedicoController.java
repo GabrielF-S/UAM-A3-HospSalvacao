@@ -34,4 +34,7 @@ public interface MedicoController {
     @PostMapping(value = "encerrarAtendimento")
     ResponseEntity<Token> encerrarAtendimento(Token token);
 
+    @GetMapping(value = "getEncaminhamento/{numToken}")
+    ResponseEntity<Encaminhamento> getEncaminhamento(@PathVariable("numToken") String numToken);
+
 }

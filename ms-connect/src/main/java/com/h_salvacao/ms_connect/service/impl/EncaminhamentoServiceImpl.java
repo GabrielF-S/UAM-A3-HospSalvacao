@@ -19,4 +19,9 @@ public class EncaminhamentoServiceImpl implements EncaminhamentoService {
         }
         return encaminhamentoRepository.save(encaminhamento);
     }
+
+    @Override
+    public Encaminhamento getEncaminhamento(String numToken) {
+        return encaminhamentoRepository.findBynumToken(numToken).get();
+    }
 }

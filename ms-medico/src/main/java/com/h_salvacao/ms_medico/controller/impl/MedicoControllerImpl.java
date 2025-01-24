@@ -55,5 +55,10 @@ public class MedicoControllerImpl implements MedicoController {
         return ResponseEntity.ok().body(medicoService.encerrarAtendimento(token));
     }
 
+    @Override
+    public ResponseEntity<Encaminhamento> getEncaminhamento(@PathVariable("numToken") String numToken) {
+        return ResponseEntity.ok().body(medicoService.getEncaminhamento(numToken));
+    }
+
 
 }

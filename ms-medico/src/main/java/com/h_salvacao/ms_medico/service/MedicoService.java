@@ -23,5 +23,7 @@ public interface MedicoService {
     void adicionarFilaRetornoDoRaioX(Token value);
 
     Token encerrarAtendimento(Token token);
+
+    Encaminhamento getEncaminhamento(String numToken);
 }
 

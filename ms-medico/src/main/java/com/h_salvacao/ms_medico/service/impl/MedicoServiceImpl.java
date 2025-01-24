@@ -203,5 +203,11 @@ public class MedicoServiceImpl implements MedicoService {
 
     }
 
+    @Override
+    public Encaminhamento getEncaminhamento(String numToken) {
+        Encaminhamento encaminhamento = feignClient.getEncaminhamento(numToken);
+        return encaminhamento;
+    }
+
 
 }

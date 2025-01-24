@@ -54,7 +54,8 @@ export class MedicoAtendimentoComponent implements OnInit {
     this.service.buscarProximoPaciente().subscribe(
       response => {
         this.token = response;
-        console.log(response);
+       
+
       }, erro => {
         this.falha = erro.error.message;
       }
@@ -78,7 +79,11 @@ export class MedicoAtendimentoComponent implements OnInit {
     this.service.getFicha(this.token.id).subscribe(
       response => {
         this.ficha = response
+        if (this.token.retorno) {
+          this.verificarEncaminhamento(response.token.numToken)
+        }
         this.falha = null;
+        
       }, erro => {
         this.falha = erro.error.message;
       }
@@ -184,6 +189,17 @@ export class MedicoAtendimentoComponent implements OnInit {
 
     )
   };
+  verificarEncaminhamento(numToken : string) {
+    this.service.getEncaminhamento(numToken).subscribe(
+      response => {
+        console.log(response);
+        this.encaminhamento = response;
+
+       }
+     );
+
+   
+  }
 
   resetCampos() {
 
