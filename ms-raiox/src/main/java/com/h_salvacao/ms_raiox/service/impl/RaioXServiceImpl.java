@@ -55,6 +55,7 @@ public class RaioXServiceImpl implements RaioXService {
         feingClient.saveEncaminhamento(encaminhamento);
         Token token = feingClient.getToken(encaminhamento.getNumToken()).getBody();
         token.setStatus(AtendimentoStatus.DOUTOR);
+        token.setRetorno(true);
         feingClient.updateToken(token);
         atualizarSaidaAtendimento(token.getNumToken());
         producerSender.senToMedico(token);
