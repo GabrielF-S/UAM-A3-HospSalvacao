@@ -64,7 +64,7 @@ export class RaioxAtendimentoComponent implements OnInit {
         if (regiaoRaioX.diagnostico == null) {
           this.falha.push(`Verificar região` + regiaoRaioX.nome)
           this.erro = true
-      } 
+        } 
     } 
       
     }

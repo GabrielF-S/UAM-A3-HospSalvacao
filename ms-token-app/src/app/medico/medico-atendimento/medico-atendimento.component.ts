@@ -88,6 +88,7 @@ export class MedicoAtendimentoComponent implements OnInit {
         this.falha = erro.error.message;
       }
     )
+    this.getTamanhoFila();
   }
 
   AdicionarMedicacao() {
@@ -174,6 +175,7 @@ export class MedicoAtendimentoComponent implements OnInit {
       }
     )
     this.resetCampos();
+    this.getTamanhoFila();
    
   };
 
