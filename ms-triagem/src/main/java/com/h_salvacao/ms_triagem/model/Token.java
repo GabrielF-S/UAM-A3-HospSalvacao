@@ -28,6 +28,7 @@ public class Token implements Serializable {
     private AtendimentoStatus status;
 
     private TipoAtendimento atendimento;
+    private boolean retorno;
 
     @Override
     public boolean equals(Object o) {

@@ -33,6 +33,8 @@ public class Token implements Serializable {
 
     private TipoAtendimento atendimento;
 
+    private boolean retorno;
+
     @PrePersist
     public void prePersist(){
         setDataEntrada(LocalDateTime.now());

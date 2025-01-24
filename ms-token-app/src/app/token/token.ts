@@ -7,4 +7,5 @@ export class Token{
     paciente: Paciente;
     status: string;
     atendimento: string;
+    retorno: boolean;
 }
