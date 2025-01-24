@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface EncaminhamentoRepository extends JpaRepository<Encaminhamento, Long> {
-    Optional<Encaminhamento> findBynumToken(String numToken);
+    Encaminhamento findBynumToken(String numToken);
 }

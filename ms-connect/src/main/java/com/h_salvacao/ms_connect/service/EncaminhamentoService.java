@@ -8,4 +8,6 @@ public interface EncaminhamentoService {
     Encaminhamento save(Encaminhamento encaminhamento);
 
     Encaminhamento getEncaminhamento(String numToken);
+
+    Encaminhamento updateEncaminhamento(Encaminhamento encaminhamento);
 }

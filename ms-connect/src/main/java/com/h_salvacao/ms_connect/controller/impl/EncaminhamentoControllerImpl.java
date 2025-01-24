@@ -24,4 +24,11 @@ public class EncaminhamentoControllerImpl implements EncaminhamentoController  {
     public ResponseEntity<Encaminhamento> getEncaminhamento(@PathVariable("numToken")  String numToken) {
         return ResponseEntity.ok().body(encaminhamentoService.getEncaminhamento(numToken));
     }
+
+    @Override
+    public ResponseEntity<Encaminhamento> updateEncaminhamento(Encaminhamento encaminhamento) {
+        return  ResponseEntity.ok().body(encaminhamentoService.updateEncaminhamento(encaminhamento));
+    }
+
+
 }

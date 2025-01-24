@@ -11,4 +11,5 @@ import java.io.Serializable;
 public class Regiao  implements Serializable {
     private String nome;
     private boolean check;
+    private String diagnostico;
 }

@@ -104,7 +104,8 @@ public class TriagemServiceImpl implements TriagemService {
             }
         }
 
-        return new Token(0L,"0", LocalDateTime.now(), null, AtendimentoStatus.DESCONHECIDO, TipoAtendimento.DESCONHECIDO);
+        return new Token(0L,"0", LocalDateTime.now(), null, AtendimentoStatus.DESCONHECIDO, TipoAtendimento.DESCONHECIDO, false
+        );
 
     }
 

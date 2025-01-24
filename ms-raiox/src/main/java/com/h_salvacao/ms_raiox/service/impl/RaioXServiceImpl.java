@@ -52,7 +52,14 @@ public class RaioXServiceImpl implements RaioXService {
 
     @Override
     public void encaminharPaciente(Encaminhamento encaminhamento) {
-        feingClient.saveEncaminhamento(encaminhamento);
+        Encaminhamento enc = feingClient.getEncaminhamento(encaminhamento.getNumToken());
+        if (enc == null){
+            feingClient.saveEncaminhamento(encaminhamento);
+        }else {
+            feingClient.updateEncaminhamento(encaminhamento);
+        }
+
+
         Token token = feingClient.getToken(encaminhamento.getNumToken()).getBody();
         token.setStatus(AtendimentoStatus.DOUTOR);
         token.setRetorno(true);

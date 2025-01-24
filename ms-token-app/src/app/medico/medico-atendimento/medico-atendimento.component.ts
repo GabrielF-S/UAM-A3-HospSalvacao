@@ -194,6 +194,14 @@ export class MedicoAtendimentoComponent implements OnInit {
       response => {
         console.log(response);
         this.encaminhamento = response;
+        this.regioesRaioX = this.encaminhamento.regioesRaiox;
+        if (this.regioesRaioX != null) {
+          this.encaminharRaioX = true;
+        }
+        this.listaMedicacoesVeia = this.encaminhamento.medicacaoIntravenosa;
+        if (this.listaMedicacoesVeia != null) {
+          this.encaminharMedicao = true;
+        }
 
        }
      );

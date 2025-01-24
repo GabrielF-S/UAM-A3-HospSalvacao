@@ -17,6 +17,7 @@ public interface RaioXFeingClient {
 
     @PostMapping("connectEncaminhamento/save")
     ResponseEntity<Encaminhamento> saveEncaminhamento(@RequestBody Encaminhamento encaminhamento);
+
     @PutMapping(value = "connectToken/updateToken")
     Token updateToken( Token token);
 
@@ -25,4 +26,10 @@ public interface RaioXFeingClient {
 
     @PutMapping(value = "connectAtendimento/updateAtendimento")
     void updateAtendimento(@RequestBody TempoAtendimento atendimento);
+
+    @GetMapping(value = "connectEncaminhamento/get/{numToken}")
+    Encaminhamento getEncaminhamento(@PathVariable("numToken")  String numToken);
+
+    @PutMapping(value = "connectEncaminhamento/update")
+    Encaminhamento updateEncaminhamento(@RequestBody Encaminhamento encaminhamento);
 }
