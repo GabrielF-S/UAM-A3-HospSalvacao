@@ -77,7 +77,9 @@ export class RaioxAtendimentoComponent implements OnInit {
        
         this.falha.push(erro.statusText)
       }
-    )
+      )
+      this.getTamanhoFila();
+      this.resetCampos();
     }
     
     

@@ -203,6 +203,7 @@
             <tbody>
                 <tr *ngFor="let regiaoRaioX of regioesRaioX">
                     <td>{{ regiaoRaioX.nome}}</td>
+                    <td *ngIf="regiaoRaioX.check"> <input type="text" name="diagnostico" id="diagnostico" [(ngModel)] = "regiaoRaioX.diagnostico" disabled></td>
                     <td><button class="btn btn-danger" (click)="removerRegiao(regiaoRaioX)" data-toggle="modal" data-target="#modalDelecao"><i class="fa fa-trash"></i></button></td>
                 </tr>
             </tbody>
