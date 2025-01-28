@@ -19,7 +19,6 @@ public class MedicoConsumerListenerImpl implements MedicoConsumerListener {
     public void listener(ConsumerRecord<String, Encaminhamento> record) {
         log.info(record.value().getNumToken());
         try {
-
             raioXService.adicionarFila(record.value());
         }catch (Exception e){
             log.error("Erro ao processar mensagem do Kafka", e);

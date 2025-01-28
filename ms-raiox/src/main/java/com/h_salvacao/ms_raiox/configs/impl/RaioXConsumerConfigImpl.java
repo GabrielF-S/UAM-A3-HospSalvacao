@@ -19,7 +19,6 @@ import java.util.HashMap;
 
 @EnableKafka
 @Configuration
-
 public class RaioXConsumerConfigImpl implements RaioXConsumerConfig {
     @Autowired
     private KafkaProperties kafkaProperties;

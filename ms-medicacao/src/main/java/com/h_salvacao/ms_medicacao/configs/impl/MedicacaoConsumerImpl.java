@@ -5,6 +5,9 @@ import com.h_salvacao.ms_medicacao.model.Encaminhamento;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
@@ -12,12 +15,14 @@ import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 import java.util.HashMap;
-
+@EnableKafka
+@Configuration
 public class MedicacaoConsumerImpl implements MedicacaoConsumer {
     @Autowired
     private KafkaProperties kafkaProperties;
 
     @Override
+    @Bean
     public ConsumerFactory<String, Encaminhamento> consumerFactory() {
         var configs = new HashMap<String, Object>();
         configs.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaProperties.getBootstrapServers());
@@ -33,6 +38,7 @@ public class MedicacaoConsumerImpl implements MedicacaoConsumer {
     }
 
     @Override
+    @Bean
     public ConcurrentKafkaListenerContainerFactory<String, Encaminhamento> tokenContainerFactory(ConsumerFactory<String, Encaminhamento> consumerFactory) {
         var factory = new ConcurrentKafkaListenerContainerFactory<String, Encaminhamento>();
         factory.setConsumerFactory(consumerFactory);
