@@ -2,6 +2,7 @@ package com.h_salvacao.ms_medicacao.services.impl;
 
 import com.h_salvacao.ms_medicacao.feingClient.MedicacaoFeingClient;
 import com.h_salvacao.ms_medicacao.model.*;
+import com.h_salvacao.ms_medicacao.services.MedicacaoProducerSender;
 import com.h_salvacao.ms_medicacao.services.MedicacaoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ public class MedicacaoServiceImpl implements MedicacaoService {
     Queue<Encaminhamento> lista;
 
     private final MedicacaoFeingClient feingClient;
+
+    private final MedicacaoProducerSender producerSender;
 
 
     public void adicionarFila(Encaminhamento encaminhamento){
@@ -33,6 +36,7 @@ public class MedicacaoServiceImpl implements MedicacaoService {
         Token token = feingClient.getToken(encaminhamento.getNumToken()).getBody();
         if ((token != null) && (token.getStatus() == AtendimentoStatus.MEDICACAO ||token.getStatus() == AtendimentoStatus.MED_RAIOX )){
             atualizarEntradaAtendimento(token.getNumToken());
+            producerSender.sendoToAtendimento(token);
             return  encaminhamento;
         }else {
             throw new RuntimeException("Token não localizado na base");
@@ -58,14 +62,14 @@ public class MedicacaoServiceImpl implements MedicacaoService {
         atualizarSaidaAtendimento(tempoAtendimento);
         if (token.getStatus()== AtendimentoStatus.MEDICACAO){
             token.setStatus(AtendimentoStatus.DOUTOR);
-            //TODO
-            //Encaminhar para topico do doutor
+            producerSender.sentoToMedico(token);
 
         } else if (token.getStatus()== AtendimentoStatus.MED_RAIOX) {
-            //TODO
-            //Encaminhar para topico do raiox
+            token.setStatus(AtendimentoStatus.RAIOX);
+            producerSender.sendoToRaioX(encaminhamento);
 
         }
+        feingClient.updateToken(token);
 
     }
 
