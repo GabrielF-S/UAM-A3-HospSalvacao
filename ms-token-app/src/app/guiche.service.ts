@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Token } from './token/token';
-import { Paciente } from './pacientes/paciente';
+import { Token } from './entity/token';
+import { Paciente } from './entity/paciente';
 
 
 @Injectable({

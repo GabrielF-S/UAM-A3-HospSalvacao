@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { PacientesService } from '../../pacientes.service';
-import { Paciente } from '../paciente';
-import { TokenAtendimento} from '../../token/tokenAtendimento';
+import { Paciente } from '../../entity/paciente';
+import { TokenAtendimento} from '../../entity/tokenAtendimento';
 import { TokensService } from '../../tokens.service';
-import { Token } from 'src/app/token/token';
+import { Token } from 'src/app/entity/token';
 
 
 

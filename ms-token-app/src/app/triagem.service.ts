@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Token } from './token/token'
-import { Ficha } from './triagem/ficha';
+import { Token } from './entity/token'
+import { Ficha } from './entity/ficha';
 
 @Injectable({
   providedIn: 'root'

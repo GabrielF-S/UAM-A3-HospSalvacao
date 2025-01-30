@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Encaminhamento } from 'src/app/pacientes/encaminhamento';
+import { Encaminhamento } from 'src/app/entity/encaminhamento';
 import { RaioxService } from 'src/app/raiox.service';
 
 

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MedicoService} from '../../medico.service'
-import { Token } from 'src/app/token/token';
-import { Ficha } from 'src/app/triagem/ficha';
-import { Medicacao } from 'src/app/pacientes/medicacao';
-import { Receita } from 'src/app/pacientes/receita';
-import { MedicacaoVeia} from '../../pacientes/medicacaoVeia';
-import { Encaminhamento } from 'src/app/pacientes/encaminhamento';
-import { Regiao } from 'src/app/pacientes/regiao';
+import { Token } from 'src/app/entity/token';
+import { Ficha } from 'src/app/entity/ficha';
+import { Medicacao } from 'src/app/entity/medicacao';
+import { Receita } from 'src/app/entity/receita';
+import { MedicacaoVeia} from '../../entity/medicacaoVeia';
+import { Encaminhamento } from 'src/app/entity/encaminhamento';
+import { Regiao } from 'src/app/entity/regiao';
 
 @Component({
   selector: 'app-medico-atendimento',
@@ -19,20 +19,26 @@ export class MedicoAtendimentoComponent implements OnInit {
   sucesso: string;
   falha: string;
   tamanhoFila: number = 0;
+
+
   token: Token;
   ficha: Ficha;
+  receita: Receita;
+  encaminhamento: Encaminhamento;
+
   medicacao: Medicacao;
   medicacoes: Medicacao[] = [];
-  receita: Receita;
+  
   medicacoesVeia: MedicacaoVeia;
   listaMedicacoesVeia: MedicacaoVeia[] =[]; 
-  encaminharMedicao: boolean;
-  encaminharRaioX: boolean;
+  
   regiaoRaioX: string;
   regioesRaioX: Regiao[] = [];
-  encaminhamento: Encaminhamento;
+ 
   regiao: Regiao;
 
+  encaminharMedicacao: boolean;
+  encaminharRaioX: boolean;
   constructor(
     private service: MedicoService,
   ) {
@@ -121,9 +127,15 @@ export class MedicoAtendimentoComponent implements OnInit {
     )
   }
 
+
+
+
   AdicionarMedicacaoVeia() {
+  
+    
     this.listaMedicacoesVeia.push(this.medicacoesVeia);
     this.medicacoesVeia = new MedicacaoVeia();
+    
     
   }
 
@@ -150,25 +162,28 @@ export class MedicoAtendimentoComponent implements OnInit {
     this.encaminhamento.numToken = this.token.numToken;
     this.encaminhamento.fichaId = this.ficha.id;
     this.encaminhamento.nomePaciente = this.token.paciente.nome;
-    if (this.encaminharMedicao && this.encaminharRaioX) {
+    if (this.encaminharMedicacao && this.encaminharRaioX) {
       this.encaminhamento.medicacaoIntravenosa = this.listaMedicacoesVeia;
-      
       this.encaminhamento.regioesRaiox = this.regioesRaioX;
       
     } else {
-      if (this.encaminharMedicao) {
+      if (this.encaminharMedicacao) {
+        console.log(this.listaMedicacoesVeia);
         this.encaminhamento.medicacaoIntravenosa = this.listaMedicacoesVeia;
+        console.log(this.encaminhamento.medicacaoIntravenosa)
       } 
       if (this.encaminharRaioX) {
-        console.log(this.regioesRaioX);
+    
         this.encaminhamento.regioesRaiox = this.regioesRaioX;
-        console.log(this.encaminhamento.regioesRaiox)
+   
       }
     }
+    console.log(this.encaminhamento)
     this.service.encaminharPacienteMedicacaoRaioX(this.encaminhamento).subscribe(
       response => {
         this.sucesso = "Paciente encaminhado com sucesso"
         this.falha = null;
+        
       }, erro => {
         this.falha = erro.error.message;
         this.sucesso = null;
@@ -202,7 +217,7 @@ export class MedicoAtendimentoComponent implements OnInit {
         }
         this.listaMedicacoesVeia = this.encaminhamento.medicacaoIntravenosa;
         if (this.listaMedicacoesVeia != null) {
-          this.encaminharMedicao = true;
+          this.encaminharMedicacao = true;
         }
 
        }
@@ -224,7 +239,7 @@ export class MedicoAtendimentoComponent implements OnInit {
     this.listaMedicacoesVeia = []; 
     this.regioesRaioX = [];
 
-    this.encaminharMedicao = false;
+    this.encaminharMedicacao = false;
     this.encaminharRaioX = false;
     
   }

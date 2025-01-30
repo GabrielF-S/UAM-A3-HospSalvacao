@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Token } from './token/token';
+import { Token } from './entity/token';
+import { Encaminhamento } from './entity/encaminhamento';
 
 @Injectable({
   providedIn: 'root'
@@ -9,16 +10,9 @@ import { Token } from './token/token';
 export class MedicacaoService {
 
   constructor(
-    private http: HttpClient,
+   
   ) { }
 
 
-  buscarProximoPaciente(): Observable<Token>{
-     return this.http.get<Token>('http://localhost:8090/medicacao/getProximo');
-    
-  }
-
-  getTamanhoFila(): Observable <number>{ 
-     return this.http.get<number>('http://localhost:8090/medicacao/getQtd');;
-  }
+  
 }

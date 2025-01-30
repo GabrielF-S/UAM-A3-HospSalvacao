@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Token } from 'src/app/token/token';
-import { Paciente } from '../../pacientes/paciente';
+import { Token } from 'src/app/entity/token';
+import { Paciente } from '../../entity/paciente';
 import { TriagemService } from '../../triagem.service';
-import { Ficha } from '../ficha';
+import { Ficha } from '../../entity/ficha';
 
 
 

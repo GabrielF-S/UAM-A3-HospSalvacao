@@ -1,5 +1,5 @@
 import { Component, OnInit , OnDestroy} from '@angular/core';
-import { Token } from 'src/app/token/token';
+import { Token } from 'src/app/entity/token';
 import { AtendimentoService } from '../../atendimento.service';
 
 

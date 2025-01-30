@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Paciente } from 'src/app/pacientes/paciente';
-import { Token } from 'src/app/token/token';
+import { Paciente } from 'src/app/entity/paciente';
+import { Token } from 'src/app/entity/token';
 import {GuicheService } from '../../guiche.service';
-import { Endereco } from 'src/app/pacientes/endereco';
+import { Endereco } from 'src/app/entity/endereco';
 
 
 @Component({

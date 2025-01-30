@@ -32,37 +32,36 @@
       </div>  
   </div>
 
-<div class="row mt-2" >   
+  <div class="row mt-2" >   
       <ol class="breadcrumb mb-1">
           <li class="breadcrumb-item active">Regioes p/ Raio-X</li>
       </ol>        
-      <div>
+    <div>
         <div *ngIf=" encaminhamento.regioesRaiox">
-          <div class="row">
-                  
+          <div class="row">     
           <table class="table table-borderless table-striped table-hover" >
-          <thead>
-              <tr>
-                  <th>Região</th>
-                  <th></th>
-                  <th></th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let regiaoRaioX of encaminhamento.regioesRaiox">
-                  <td>{{ regiaoRaioX.nome}}</td>
-                 <td><input type="checkbox" id="verificacao" name="verificacao" [(ngModel)] = "regiaoRaioX.check"></td>  
-                 <td *ngIf="regiaoRaioX.check"> <input type="text" name="diagnostico" id="diagnostico" [(ngModel)] = "regiaoRaioX.diagnostico"></td>
-              </tr>
-          </tbody>
-      </table>
+            <thead>
+                <tr>
+                    <th>Região</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let regiaoRaioX of encaminhamento.regioesRaiox">
+                    <td>{{ regiaoRaioX.nome}}</td>
+                  <td><input type="checkbox" id="verificacao" name="verificacao" [(ngModel)] = "regiaoRaioX.check"></td>  
+                  <td *ngIf="regiaoRaioX.check"> <input type="text" name="diagnostico" id="diagnostico" [(ngModel)] = "regiaoRaioX.diagnostico"></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
       </div>
-    </div>
     </div>
       
     <div class="row">
        <button  type="button"class="btn btn-warning  ml-1 mt-3"   (click)="encaminharPaciente()"><i class="fa fa-arrow-circle-right"></i> Encaminhar</button>
     </div>
-
+  </div>
 </div>
 

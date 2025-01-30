@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common'
-import { Token } from 'src/app/token/token';
-import { TokenAtendimento} from '../../token/tokenAtendimento';
+import { Token } from 'src/app/entity/token';
+import { TokenAtendimento} from '../../entity/tokenAtendimento';
 import { TokensService } from '../../tokens.service';
-import { Paciente } from '../paciente'
+import { Paciente } from '../../entity/paciente'
 
 
 

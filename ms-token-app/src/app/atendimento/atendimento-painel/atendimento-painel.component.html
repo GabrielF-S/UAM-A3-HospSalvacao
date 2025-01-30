@@ -5,8 +5,9 @@
 <div class="container"> 
     <div class="row ">
          <div class="col-md-6 "> 
-            <div class="row bg-primary">
-                 <h2>Ultimos chamados:</h2>
+            <div class="row">
+                <fieldset>
+                     <legend>Ultimos chamados:</legend>
                  <table class="table table-borderless table-striped table-hover">
                     <thead>
                         <tr>
@@ -24,14 +25,17 @@
                         </tr>
                     </tbody>
                 </table>
+                </fieldset>
+                
             </div>           
         </div> 
         <div class="col-md-1">            
         </div> 
         <div class="col-md-5"> 
             <div class="row">
-                <div class="row bg-success">
-                    <h2>Chamando:</h2>
+                <div class="row">
+                    <fieldset>
+                        <legend>Chamando:</legend>
                     <div *ngFor="let token of tokens | slice:0:1">
                          <p style="color: white;">Token: <span style="color: bisque; font-weight: bold;
 ">{{ token.numToken }}</span></p>
@@ -39,14 +43,22 @@
 " *ngIf="token.paciente">{{ token.paciente.nome }}</span></p>
                         <p style="color: white;">Atendimento: <span style="color: bisque; font-weight: bold;
 ">{{ token.status }}</span></p>
-                    </div> 
+                    </div>  
+                    </fieldset>
+                   
                 </div>
-                <div class="row bg-secondary">
-                    <h3>Anuncios</h3>
+                <div class="row">
+                    <fieldset>
+                         <legend>Tempo de Atendimento</legend>
                     <div class="row">
-                        <p>Anuncie aqui!</p>
-                        
+                        <p>Triagem: </p>
+                        <p>Guiche: </p>
+                        <p>Atendimento Medico :</p>
+                        <p>Raio-X: </p>
+                        <p>Medicação: </p>
                     </div>
+                    </fieldset>
+                   
                 </div> 
             </div>            
         </div> 

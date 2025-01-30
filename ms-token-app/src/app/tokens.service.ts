@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { TokenAtendimento } from './token/tokenAtendimento';
-import { Token } from './token/token';
-import { Paciente } from './pacientes/paciente'
+import { TokenAtendimento } from './entity/tokenAtendimento';
+import { Token } from './entity/token';
+import { Paciente } from './entity/paciente'
 
 @Injectable({
   providedIn: 'root'

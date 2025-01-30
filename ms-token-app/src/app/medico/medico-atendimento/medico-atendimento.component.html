@@ -133,10 +133,10 @@
     </div>
     <div class="row mt-5">
         <div> 
-            <input type="checkbox" id="medicacaoVeia" name="medicacaoVeia" [(ngModel)] = "encaminharMedicao"> 
+            <input type="checkbox" id="encaminharMedicacao" name="encaminharMedicacao" [(ngModel)] = "encaminharMedicacao"> 
             <label for="medicacaoVeia"> Medicação intravenosa </label>    
         </div> 
-        <div *ngIf="encaminharMedicao">
+        <div *ngIf="encaminharMedicacao">
             <div class="row">
                 <div class="col-md-2">
                     <div class="form-group">
@@ -210,14 +210,6 @@
         </table>
         </div>
         </div>
-   
-        <!-- <div class="col-md-3">
-            <button type="submit" class="btn btn-success"  (click)="salvarPaciente()"><i class="fa fa-save"></i> 
-                Salvar
-            </button>
-            <button type="submit" class="btn btn-primary"   (click)="atualizarPaciente()"><i class="fa fa-sync-alt"></i> Atualizar
-            </button>                                    
-        </div> -->
         <button  type="button"class="btn btn-success  ml-1 mt-3"   (click)="encaminharPaciente()"><i class="fa fa-arrow-circle-right"></i> Encaminhar</button>
        <button  type="button"class="btn btn-warning  ml-1 mt-3"  (click)="encerrarAtendimento()"><i class="fa fa-arrow-circle-right"></i> Encerrar Atendimento</button>
     </div>

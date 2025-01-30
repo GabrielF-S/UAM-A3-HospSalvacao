@@ -9,10 +9,75 @@
         <i class="fa fa-plus"></i> Chamar Proximo
       </button>
     </div>
-    <div class="alert alert-danger" role="alert" *ngIf="falha" >
+    <div class="alert alert-danger" role="alert" *ngFor="let f of falha" >
         {{falha}}
     </div>
     <div class="alert alert-success" role="alert" *ngIf="sucesso" >
         {{sucesso}}
     </div> 
+</div>
+<div class="container"> 
+  <div class="row ">
+    <div class="col-md-8 "> 
+      <h2>Some text</h2>
+      <div  *ngIf="encaminhamento.numToken">
+        <div class="row" >
+          <div class="col-md-3">
+              <div class="form-group">
+                  <label>Token:</label>
+                  <input type="text" name="token" id="" class="form-control"  [value]="encaminhamento.numToken" name = "numToken" disabled>  
+              </div>
+          </div>
+          <div class="col-md-3">
+              <div class="form-group">
+                  <label>Entrada</label>
+                  <input type="text" name="nome" id="" class="form-control" [value]="encaminhamento.nomePaciente"  name = "nomePaciente" disabled> 
+              </div>
+          </div>  
+      </div>
+        <div class="row">
+          <div class="col-md-3">
+            <table class="table table-borderless table-striped table-hover" >
+              <thead>
+                  <tr>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let medicacoesVeia of encaminhamento.medicacaoIntravenosa">
+                      <td>{{ medicacoesVeia.nome}}</td>
+                      <td >{{ medicacoesVeia.mg }}</td>
+                      
+                  </tr>
+              </tbody> 
+            </table>
+          </div>
+          <div class="col-md-3">
+            <button class="btn btn-success" (click)="receberMedicacao()">
+              <i class="fa fa-syringe"></i> Medicar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 "> 
+      <app-fila-espera></app-fila-espera>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table table-borderless table-striped table-hover" >
+      <thead>
+          <tr>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let encaminhamento of listaMedicados">
+              <td>{{ encaminhamento.numToken}}</td>
+              <td >{{ encaminhamento.nomePaciente }}</td>
+              <td > <button class="btn btn-success" (click)="buscarProximo()">
+                <i class="fa fa-receipt"></i> 
+              </button></td>             
+          </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
