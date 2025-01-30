@@ -2,6 +2,7 @@ package com.h_salvacao.ms_medicacao.controller.impl;
 
 import com.h_salvacao.ms_medicacao.controller.MedicacaoController;
 import com.h_salvacao.ms_medicacao.model.Encaminhamento;
+import com.h_salvacao.ms_medicacao.model.Queue;
 import com.h_salvacao.ms_medicacao.services.MedicacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "medicacao")
@@ -33,5 +36,10 @@ public class MedicacaoControllerImpl implements MedicacaoController {
     public void encaminahrPaciente(Encaminhamento encaminhamento) {
         service.encaminharPaciente(encaminhamento);
 
+    }
+
+    @Override
+    public ResponseEntity<Queue<Encaminhamento>> getLista() {
+        return ResponseEntity.ok().body(service.getLista());
     }
 }
