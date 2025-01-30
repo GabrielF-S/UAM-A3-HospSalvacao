@@ -1,5 +1,7 @@
 package com.h_salvacao.ms_medico.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,5 +17,6 @@ public class Encaminhamento implements Serializable {
     private Long fichaId;
     private  String nomePaciente;
     private List<Regiao> regioesRaiox;
+    @JsonProperty(value = "medicacaoIntravenosa")
     private List<MedicacaoIntravenosa> listaMedicacoes;
 }
