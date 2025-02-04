@@ -13,7 +13,7 @@ export class RaioxAtendimentoComponent implements OnInit {
   falha: string [];
   tamanhoFila: number = 0;
   encaminhamento: Encaminhamento;
-  erro: boolean;
+  
 
   constructor(
     private service: RaioxService,
@@ -54,21 +54,22 @@ export class RaioxAtendimentoComponent implements OnInit {
   }
 
   encaminharPaciente() {
+    let erro: boolean;
     this.falha = [];
-    this.erro = false;
+    erro = false;
     for (let regiaoRaioX  of this.encaminhamento.regioesRaiox) {
       if (regiaoRaioX.check == false) {
         this.falha.push(`Verificar região` + regiaoRaioX.nome)
-        this.erro = true
+        erro = true
       } else {
         if (regiaoRaioX.diagnostico == null) {
           this.falha.push(`Verificar região` + regiaoRaioX.nome)
-          this.erro = true
+         erro = true
         } 
     } 
       
     }
-    if (!this.erro) {
+    if (!erro) {
       this.service.encaminharPaciente(this.encaminhamento).subscribe(
       response => {
         this.sucesso = "Paciente encaminhado para Médico"
@@ -84,6 +85,8 @@ export class RaioxAtendimentoComponent implements OnInit {
     
     
   }
+
+
 
   resetCampos() {
     this.encaminhamento = new Encaminhamento();

@@ -8,6 +8,7 @@ import { Encaminhamento } from './entity/encaminhamento';
   providedIn: 'root'
 })
 export class MedicacaoinravenosaService {
+  
 
   constructor(private http: HttpClient,
     
@@ -23,4 +24,8 @@ export class MedicacaoinravenosaService {
  getTamanhoFila(): Observable <number>{ 
     return this.http.get<number>('http://localhost:8090/medicacao/getQtd');
  }
+  
+ encaminharPaciente(encaminhado: Encaminhamento): Observable<any> {
+  return this.http.post<any>('http://localhost:8090/medicacao/encaminharPaciente', encaminhado);
+}
 }

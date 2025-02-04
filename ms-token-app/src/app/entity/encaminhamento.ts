@@ -8,4 +8,5 @@ export class Encaminhamento{
     nomePaciente: String;
     regioesRaiox: Regiao[];
     medicacaoIntravenosa: MedicacaoVeia[];
+    liberacao: boolean;
 }

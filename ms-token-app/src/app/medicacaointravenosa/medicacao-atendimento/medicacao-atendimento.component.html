@@ -19,7 +19,6 @@
 <div class="container"> 
   <div class="row ">
     <div class="col-md-8 "> 
-      <h2>Some text</h2>
       <div  *ngIf="encaminhamento.numToken">
         <div class="row" >
           <div class="col-md-3">
@@ -73,11 +72,52 @@
           <tr *ngFor="let encaminhamento of listaMedicados">
               <td>{{ encaminhamento.numToken}}</td>
               <td >{{ encaminhamento.nomePaciente }}</td>
-              <td > <button class="btn btn-success" (click)="buscarProximo()">
+              <td > <button class="btn btn-success" data-toggle="modal" data-target="#modalMedicacao" (click)="selecionarEncaminhamento(encaminhamento)">
                 <i class="fa fa-receipt"></i> 
+              </button></td>  
+              <td > <button class="btn btn-success" (click)="liberarPaciente(encaminhamento)">
+                <i class="fa fa-check"></i> 
               </button></td>             
           </tr>
       </tbody>
     </table>
+  </div>
+</div>
+
+
+<div id="modalMedicacao" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        
+          <h4 class="modal-title">Medicacao do paciente {{encaminhamentoSelecionado?.nomePaciente}}</h4>
+          <button type="button" class="btn-close" data-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-danger" role="alert" *ngFor="let f of falha" >
+          {{falha}}
+      </div>
+          <table class="table table-borderless table-striped table-hover" >
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Dosagem (mg)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let medicacao of encaminhamentoSelecionado?.medicacaoIntravenosa">
+                    <td>{{medicacao.nome}} </td>
+                    <td> {{medicacao.mg}}</td>
+                    <td><input type="checkbox" id="verificacao" name="verificacao" [(ngModel)]="medicacao.check"></td>    
+                </tr>
+            </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" data-dismiss="modal" (click)="finalizarMedicacao(encaminhamentoSelecionado)">Concluir</button>
+        
+      </div>
+    </div>
   </div>
 </div>

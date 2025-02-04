@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MedicacaoService } from 'src/app/medicacao.service';
 import { Token } from 'src/app/entity/token';
 import { Encaminhamento } from 'src/app/entity/encaminhamento';
 import { MedicacaoinravenosaService } from 'src/app/medicacaoinravenosa.service';
 import { MedicacaoVeia } from 'src/app/entity/medicacaoVeia';
+
 
 @Component({
   selector: 'app-medicacao-atendimento',
@@ -20,6 +20,8 @@ export class MedicacaoAtendimentoComponent implements OnInit {
   medicacoesVeia: MedicacaoVeia;
   listaMedicacoesVeia: MedicacaoVeia[] = []; 
   listaMedicados: Encaminhamento[] = [];
+
+  encaminhamentoSelecionado: Encaminhamento | null = null;
 
   constructor(
     private service: MedicacaoinravenosaService,
@@ -39,15 +41,19 @@ export class MedicacaoAtendimentoComponent implements OnInit {
           this.tamanhoFila = 0;
         }
       );
-    }
+  }
+  
   buscarProximo() { 
     this.sucesso = null;
     this.falha = [];
     this.service.buscarProximoPaciente().subscribe(
       response => {
+        
         this.encaminhamento = response;
-        this.listaMedicacoesVeia = this.encaminhamento.medicacaoIntravenosa;
-        console.log(this.encaminhamento)
+        this.listaMedicacoesVeia = this.encaminhamento?.medicacaoIntravenosa || [];
+        if (response.liberacao == null) {
+          this.encaminhamento.liberacao = false;
+        }
       }, error => {
         this.falha.push(error.error.message);
       }
@@ -55,12 +61,52 @@ export class MedicacaoAtendimentoComponent implements OnInit {
     this.getTamanhoFila();
 
   }
-
   receberMedicacao() {
-    this.listaMedicados.push(this.encaminhamento);
-    this.encaminhamento = new Encaminhamento();
+      this.listaMedicados.push(this.encaminhamento);
+      this.encaminhamento = new Encaminhamento();
+      
+    }
+  
+  selecionarEncaminhamento(encaminhamento: Encaminhamento) {
+    this.encaminhamentoSelecionado = encaminhamento;
+  }
+  
+  finalizarMedicacao(encaminhado: Encaminhamento) {
+    let erro: boolean;
+    encaminhado.liberacao = false;
+    this.falha = [];
+    for (let medicacao of encaminhado.medicacaoIntravenosa) {
+      if (!medicacao.check) {
+        this.falha.push(`Não é possivel concluir atendimento verifique se as medicações foram apliacadas: ` + medicacao.nome + " ");
+          erro = true;
+      }       
+    }
+    if (!erro) {
+      this.falha = [];
+      encaminhado.liberacao = true;
+      // this.liberarPaciente(encaminhado)
+      // this.listaMedicados = this.listaMedicados.filter(m => m !== encaminhado);
+    } 
     
   }
- 
+
+  liberarPaciente(encaminhado: Encaminhamento) {
+    this.falha = []
+
+    if (encaminhado.liberacao) {
+      this.listaMedicados = this.listaMedicados.filter(m => m !== encaminhado);
+      this.service.encaminharPaciente(encaminhado).subscribe(
+          response =>{ 
+        }, error =>{
+          this.falha.push(error.error.message);
+        }
+      )
+    } else {
+      this.falha.push("Não é possivel liberar paciente ")
+    }
+    
+    
+  }
+  
 
 }
