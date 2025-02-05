@@ -1,6 +1,8 @@
 package com.h_salvacao.ms_medicacao.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.h_salvacao.ms_medicacao.util.Medicacao;
+import com.h_salvacao.ms_medicacao.util.Queue;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

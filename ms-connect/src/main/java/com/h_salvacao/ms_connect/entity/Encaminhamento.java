@@ -1,5 +1,6 @@
 package com.h_salvacao.ms_connect.entity;
 
+import com.h_salvacao.ms_connect.util.Regiao;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,5 +1,6 @@
 package com.h_salvacao.ms_raiox.model;
 
+import com.h_salvacao.ms_raiox.util.Regiao;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

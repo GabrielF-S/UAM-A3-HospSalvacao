@@ -2,7 +2,7 @@ package com.h_salvacao.ms_raiox.controller.impl;
 
 import com.h_salvacao.ms_raiox.controller.RaioXController;
 import com.h_salvacao.ms_raiox.model.Encaminhamento;
-import com.h_salvacao.ms_raiox.service.RaioXService;
+import com.h_salvacao.ms_raiox.service.EncaminhamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class RaioXControllerImpl implements RaioXController {
 
     @Autowired
-    RaioXService raioXService;
+    EncaminhamentoService raioXService;
     @Override
     public ResponseEntity<Integer> getQuantidadeTotalFila() {
         return ResponseEntity.ok().body(raioXService.getTotal());

@@ -1,6 +1,6 @@
 package com.h_salvacao.ms_connect.service;
 
-import com.h_salvacao.ms_connect.entity.MyList;
+import com.h_salvacao.ms_connect.util.MyList;
 import com.h_salvacao.ms_connect.entity.Token;
 
 public interface TokenService {

@@ -2,7 +2,7 @@ package com.h_salvacao.ms_medicacao.listener.impl;
 
 import com.h_salvacao.ms_medicacao.listener.MedicoConsumerListener;
 import com.h_salvacao.ms_medicacao.model.Encaminhamento;
-import com.h_salvacao.ms_medicacao.services.MedicacaoService;
+import com.h_salvacao.ms_medicacao.services.EncaminhamentoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class MedicoConsumerListenerImpl implements MedicoConsumerListener {
 
     @Autowired
-    MedicacaoService service;
+    EncaminhamentoService service;
 
     @Override
     public void listener(ConsumerRecord<String, Encaminhamento> record) {

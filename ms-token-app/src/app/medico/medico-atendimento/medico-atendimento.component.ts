@@ -60,7 +60,6 @@ export class MedicoAtendimentoComponent implements OnInit {
     this.service.buscarProximoPaciente().subscribe(
       response => {
         this.token = response;
-       
 
       }, erro => {
         this.falha = erro.error.message;
@@ -131,12 +130,8 @@ export class MedicoAtendimentoComponent implements OnInit {
 
 
   AdicionarMedicacaoVeia() {
-  
-    
     this.listaMedicacoesVeia.push(this.medicacoesVeia);
-    this.medicacoesVeia = new MedicacaoVeia();
-    
-    
+    this.medicacoesVeia = new MedicacaoVeia();      
   }
 
   removerMedicacaoVeia(medicacoesVeia) {
@@ -211,7 +206,7 @@ export class MedicoAtendimentoComponent implements OnInit {
       response => {
         console.log(response);
         this.encaminhamento = response;
-        this.regioesRaioX = this.encaminhamento.regioesRaiox;
+        this.regioesRaioX = this.encaminhamento.regioesRaiox ||  null;
         if (this.regioesRaioX != null) {
           this.encaminharRaioX = true;
         }

@@ -1,7 +1,7 @@
 package com.h_salvacao.ms_connect.controller.impl;
 
 import com.h_salvacao.ms_connect.controller.TokenController;
-import com.h_salvacao.ms_connect.entity.MyList;
+import com.h_salvacao.ms_connect.util.MyList;
 import com.h_salvacao.ms_connect.entity.Token;
 import com.h_salvacao.ms_connect.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/connectToken")

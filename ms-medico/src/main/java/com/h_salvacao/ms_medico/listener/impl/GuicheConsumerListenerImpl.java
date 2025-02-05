@@ -2,7 +2,7 @@ package com.h_salvacao.ms_medico.listener.impl;
 
 import com.h_salvacao.ms_medico.listener.GuicheConsumerListener;
 import com.h_salvacao.ms_medico.model.Token;
-import com.h_salvacao.ms_medico.service.MedicoService;
+import com.h_salvacao.ms_medico.service.TokenService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class GuicheConsumerListenerImpl implements GuicheConsumerListener {
-    private final MedicoService medicoService;
+    private final TokenService medicoService;
 
     @Override
     public void listenerRegular(ConsumerRecord<String, Token> record) {

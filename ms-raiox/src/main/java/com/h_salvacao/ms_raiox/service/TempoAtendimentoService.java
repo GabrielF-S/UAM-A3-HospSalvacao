@@ -4,9 +4,11 @@ package com.h_salvacao.ms_raiox.service;
 import com.h_salvacao.ms_raiox.model.TempoAtendimento;
 
 public interface TempoAtendimentoService {
-    void atualizarEntraRaioX(TempoAtendimento atendimento);
+    void atualizarEntradaAtendimento(String numToken);
 
-    void atualizarSaidaRaioX(TempoAtendimento atendimento);
+    void atualizarSaidaAtendimento(TempoAtendimento atendimento);
+
+    TempoAtendimento getTempoAtendimento(String numToken);
 
 
 }

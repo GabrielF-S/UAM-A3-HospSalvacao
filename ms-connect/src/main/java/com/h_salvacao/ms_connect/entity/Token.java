@@ -1,6 +1,8 @@
 package com.h_salvacao.ms_connect.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.h_salvacao.ms_connect.util.AtendimentoStatus;
+import com.h_salvacao.ms_connect.util.TipoAtendimento;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,7 +31,7 @@ public class Token implements Serializable {
     @JoinColumn(name = "paciente.id")
     private Paciente paciente;
 
-    private  AtendimentoStatus status;
+    private AtendimentoStatus status;
 
     private TipoAtendimento atendimento;
 

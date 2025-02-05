@@ -1,6 +1,6 @@
 package com.h_salvacao.ms_connect.service.impl;
 
-import com.h_salvacao.ms_connect.entity.MyList;
+import com.h_salvacao.ms_connect.util.MyList;
 import com.h_salvacao.ms_connect.entity.TempoAtendimento;
 import com.h_salvacao.ms_connect.entity.Token;
 import com.h_salvacao.ms_connect.exceptions.NumTokenException;

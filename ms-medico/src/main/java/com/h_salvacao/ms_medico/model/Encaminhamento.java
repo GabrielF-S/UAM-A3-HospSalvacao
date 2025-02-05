@@ -1,7 +1,7 @@
 package com.h_salvacao.ms_medico.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.h_salvacao.ms_medico.util.Regiao;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
