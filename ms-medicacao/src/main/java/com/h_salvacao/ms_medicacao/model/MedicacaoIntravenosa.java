@@ -12,4 +12,6 @@ public class MedicacaoIntravenosa implements Serializable {
     private Long id;
     private String nome;
     private String mg;
+    private boolean check;
+
 }

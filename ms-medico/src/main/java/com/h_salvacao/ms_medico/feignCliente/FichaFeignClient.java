@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Component
-@FeignClient(name = "ms-connect/connectFicha", url ="http://localhost:8001")
+@FeignClient(name = "ms-connect/connectFicha", url ="http://localhost:8001/connectFicha")
 public interface FichaFeignClient {
 
     @GetMapping(value = "/get/{tokenId}")

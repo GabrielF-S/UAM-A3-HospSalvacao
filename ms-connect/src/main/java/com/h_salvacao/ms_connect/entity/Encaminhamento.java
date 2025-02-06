@@ -1,5 +1,6 @@
 package com.h_salvacao.ms_connect.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.h_salvacao.ms_connect.util.Regiao;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,17 +26,18 @@ public class Encaminhamento implements Serializable {
     private Long fichaId;
     private  String nomePaciente;
     private List<Regiao> regioesRaiox;
+    @JsonProperty(value = "medicacaoIntravenosa")
     private List<MedicacaoIntravenosa> listaMedicacoes;
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Encaminhamento that = (Encaminhamento) o;
-        return Objects.equals(numToken, that.numToken) && Objects.equals(fichaId, that.fichaId);
+        return Objects.equals(id, that.id) && Objects.equals(numToken, that.numToken) && Objects.equals(fichaId, that.fichaId) && Objects.equals(nomePaciente, that.nomePaciente);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(numToken, fichaId);
+        return Objects.hash(id, numToken, fichaId, nomePaciente);
     }
 }

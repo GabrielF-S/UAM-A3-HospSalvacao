@@ -35,7 +35,7 @@ public class MedicacaoProducerSenderImpl implements MedicacaoProducerSender {
             if (error != null) {
                 log.error("Falaha ao enviar: {}", error.getMessage());
             } else {
-                log.info("Enviado com sucesso!");
+                log.info("Enviado ao Medico com sucesso!");
             }
         });
 
@@ -47,7 +47,7 @@ public class MedicacaoProducerSenderImpl implements MedicacaoProducerSender {
             if (error != null) {
                 log.error("Falaha ao enviar: {}", error.getMessage());
             } else {
-                log.info("Enviado com sucesso!");
+                log.info("Enviado ao Raio X com sucesso!");
             }
         });
     }

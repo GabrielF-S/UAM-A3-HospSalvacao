@@ -37,6 +37,9 @@ public class TempoAtendimentoServiceImpl implements TempoAtendimentoService {
 
     @Override
     public void encerrarAtendimento(TempoAtendimento atendimento) {
+        if(atendimento.getEntradaRetornoDoutor() !=null){
+            atendimento.setSaidaRetornoDoutor(LocalTime.now());
+        }
         atendimento.setHorarioSaida(LocalTime.now());
         atendimentoFeigClient.updateAtendimento(atendimento);
     }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 
 @Component
-@FeignClient(name = "ms-connect/connectToken", url ="http://localhost:8001")
+@FeignClient(name = "ms-connect/connectToken", url ="http://localhost:8001/connectToken")
 public interface TokenFeignClient {
     @GetMapping(value = "/getToken/{tokenNumber}")
     ResponseEntity<Token> getToken(@PathVariable("tokenNumber") String tokenNumber);

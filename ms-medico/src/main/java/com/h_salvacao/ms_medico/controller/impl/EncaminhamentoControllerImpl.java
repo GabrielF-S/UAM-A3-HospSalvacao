@@ -3,6 +3,7 @@ package com.h_salvacao.ms_medico.controller.impl;
 import com.h_salvacao.ms_medico.controller.EncaminhamentoController;
 import com.h_salvacao.ms_medico.model.Encaminhamento;
 import com.h_salvacao.ms_medico.service.EncaminhamentoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "medico/encaminhamento")
 @CrossOrigin(value = "http://localhost:4200/", methods = {RequestMethod.GET, RequestMethod.PUT, RequestMethod.POST })
 public class EncaminhamentoControllerImpl implements EncaminhamentoController {
+    @Autowired
     EncaminhamentoService encaminhamentoService;
 
     @Override

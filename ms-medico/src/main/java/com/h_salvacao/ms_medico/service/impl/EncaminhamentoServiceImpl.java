@@ -24,8 +24,9 @@ public class EncaminhamentoServiceImpl implements EncaminhamentoService {
     TempoAtendimentoService tempoAtendimentoService;
 
     @Override
-    public void saveEncaminhamento(Encaminhamento encaminhamento) {
-        encaminhamentoFeingClient.saveEncaminhamento(encaminhamento);
+    public Encaminhamento saveEncaminhamento(Encaminhamento encaminhamento) {
+        return encaminhamento = encaminhamentoFeingClient.saveEncaminhamento(encaminhamento).getBody();
+
     }
 
     @Override
@@ -37,6 +38,12 @@ public class EncaminhamentoServiceImpl implements EncaminhamentoService {
     public Encaminhamento encaminharPaciente(Encaminhamento encaminhamento) {
         Token token = tokenService.getToken(encaminhamento.getNumToken());
         TempoAtendimento atendimento= tempoAtendimentoService.getTempoAtendimento(token.getNumToken());
+        if(encaminhamento.getId() == null){
+            encaminhamento = saveEncaminhamento(encaminhamento);
+        }else{
+            encaminhamento = atualizarEncaminhamento(encaminhamento);
+        }
+
         if (encaminhamento.getListaMedicacoes() == null) {
             token = tokenService.setStatus(token, AtendimentoStatus.RAIOX);
             producerSender.sendoToRaioX(encaminhamento);
@@ -50,7 +57,10 @@ public class EncaminhamentoServiceImpl implements EncaminhamentoService {
         }
         tempoAtendimentoService.atualizarSaidaMedico(atendimento);
         tokenService.updateToken(token);
-        saveEncaminhamento(encaminhamento);
         return encaminhamento;
+    }
+
+    private Encaminhamento atualizarEncaminhamento(Encaminhamento encaminhamento) {
+        return encaminhamentoFeingClient.updateEncaminhamento(encaminhamento);
     }
 }

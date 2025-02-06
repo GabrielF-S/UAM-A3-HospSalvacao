@@ -40,7 +40,7 @@ public class EncaminhamentoServiceImpl implements EncaminhamentoService {
     @Override
     public Encaminhamento getProximo() {
         Encaminhamento encaminhamento= lista.dequeue();
-        Token token = feingClient.getToken(encaminhamento.getNumToken()).getBody();
+        Token token = tokenService.getToken(encaminhamento.getNumToken());
         if ((token != null) && (token.getStatus() == AtendimentoStatus.MEDICACAO ||token.getStatus() == AtendimentoStatus.MED_RAIOX )){
             atendimentoService.atualizarEntradaAtendimento(token.getNumToken());
             producerSender.sendoToAtendimento(token);

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 @Component
-@FeignClient(name = "ms-connect/connectFicha", url ="http://localhost:8001")
+@FeignClient(name = "ms-connect/connectFicha", url ="http://localhost:8001/connectFicha")
 public interface FichaFeingClient {
 
     @PostMapping(value = "/save")

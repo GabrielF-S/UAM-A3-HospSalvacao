@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Component
-@FeignClient(name = "ms-connect/connectAtendimento", url ="http://localhost:8001")
+@FeignClient(name = "ms-connect/connectAtendimento", url ="http://localhost:8001/connectAtendimento")
 public interface TempoAtendimentoFeignClient {
 
     @GetMapping(value = "/getAtendimento/{numToken}")

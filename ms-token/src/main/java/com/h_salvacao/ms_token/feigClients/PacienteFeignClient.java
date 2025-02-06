@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Component
-@FeignClient(name = "ms-connect/connectPaciente", url ="http://localhost:8001")
+@FeignClient(name = "ms-connect/paciente", url ="http://localhost:8001/connectPaciente")
 public interface PacienteFeignClient {
 
     @GetMapping(value = "/getCpf/{cpf}")

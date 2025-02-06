@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 @Component
-@FeignClient(name = "ms-connect/connectAtendimento", url ="http://localhost:8001")
+@FeignClient(name = "ms-connect/connectAtendimento", url ="http://localhost:8001/connectAtendimento")
 public interface TempoAtendimentoFeigClient {
     @GetMapping(value = "connectToken/getToken/{tokenNumber}")
     ResponseEntity<Token> getToken(@PathVariable("tokenNumber")  String tokenNumber);

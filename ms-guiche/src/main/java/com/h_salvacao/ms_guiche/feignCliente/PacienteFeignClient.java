@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 @Component
-@FeignClient(name = "ms-connect/connectPaciente", url ="http://localhost:8001")
+@FeignClient(name = "ms-connect/connectPaciente", url ="http://localhost:8001/connectPaciente")
 public interface PacienteFeignClient {
 
 

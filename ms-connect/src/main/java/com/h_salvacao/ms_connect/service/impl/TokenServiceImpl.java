@@ -59,7 +59,6 @@ public class TokenServiceImpl implements TokenService {
     @Override
     public Token atualizarToken(Token token) {
         if (token != null) {
-
             return repository.save(token);
         } else {
             throw new TokenException();

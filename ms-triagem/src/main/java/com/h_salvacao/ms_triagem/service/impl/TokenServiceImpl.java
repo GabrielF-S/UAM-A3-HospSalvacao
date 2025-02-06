@@ -17,12 +17,12 @@ import java.time.temporal.ChronoUnit;
 @RequiredArgsConstructor
 @Service
 public class TokenServiceImpl implements TokenService {
-    @Autowired
-    Queue<Token> filaComum;
-    @Autowired
-    Queue<Token> filaPreferencial;
-    @Autowired
-    Queue<Token> filaUrgente;
+
+    Queue<Token> filaComum = new Queue<>();
+
+    Queue<Token> filaPreferencial = new Queue<>();
+
+    Queue<Token> filaUrgente = new Queue<>();
 
     @Autowired
     TempoAtendimentoServiceImpl atendimentoService;

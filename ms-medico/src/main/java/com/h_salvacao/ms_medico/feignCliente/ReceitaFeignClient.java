@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Component
-@FeignClient(name = "ms-connect/connectReceita", url ="http://localhost:8001")
+@FeignClient(name = "ms-connect/connectReceita", url ="http://localhost:8001/connectReceita")
 public interface ReceitaFeignClient {
     @PostMapping(value = "connectReceita/salvar")
     Receita salvarReceita(@RequestBody Receita receita);

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import java.net.CacheRequest;
 
 @Component
-@FeignClient(name = "ms-connect/connectToken", url ="http://localhost:8001")
+@FeignClient(name = "ms-connect/token", url ="http://localhost:8001/connectToken")
 public interface TokenFeignClient {
 
     @PostMapping(value = "/save")

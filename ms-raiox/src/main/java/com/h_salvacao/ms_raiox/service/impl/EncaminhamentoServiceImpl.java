@@ -44,7 +44,6 @@ public class EncaminhamentoServiceImpl implements EncaminhamentoService {
     @Override
     public Encaminhamento chamarProximo() {
         Encaminhamento encaminhamento = lista.dequeue();
-
         Token token = tokenService.getToken(encaminhamento.getNumToken());
         if (token != null && token.getStatus() == AtendimentoStatus.RAIOX) {
             tempoAtendimentoService.atualizarEntradaAtendimento(token.getNumToken());
@@ -57,14 +56,13 @@ public class EncaminhamentoServiceImpl implements EncaminhamentoService {
 
     @Override
     public void encaminharPaciente(Encaminhamento encaminhamento) {
-
-        encaminhamentoFeingClient.updateEncaminhamento(encaminhamento);
         Token token =  tokenService.getToken(encaminhamento.getNumToken());
         TempoAtendimento atendimento = tempoAtendimentoService.getTempoAtendimento(token.getNumToken());
-        token = tokenService.setStatus(token,AtendimentoStatus.DOUTOR);
-        token= tokenService.setRetorno(token);
-        tokenService.updateToken(token);
         tempoAtendimentoService.atualizarSaidaAtendimento(atendimento);
+        token= tokenService.setRetorno(token);
+        token = tokenService.setStatus(token,AtendimentoStatus.DOUTOR);
+        tokenService.updateToken(token);
+        encaminhamentoFeingClient.updateEncaminhamento(encaminhamento);
         producerSender.senToMedico(token);
 
     }

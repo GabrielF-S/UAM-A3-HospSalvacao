@@ -6,13 +6,10 @@ import com.h_salvacao.ms_medicacao.util.Queue;
 import com.h_salvacao.ms_medicacao.services.EncaminhamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "medicacao")
+@RequestMapping(value = "medicacao/encaminhamento")
 @CrossOrigin(value = "http://localhost:4200/", methods = {RequestMethod.GET, RequestMethod.PUT, RequestMethod.POST })
 public class EncaminhamentoControllerImpl implements EncaminhamentoController {
 
@@ -31,7 +28,7 @@ public class EncaminhamentoControllerImpl implements EncaminhamentoController {
     }
 
     @Override
-    public void encaminahrPaciente(Encaminhamento encaminhamento) {
+    public void encaminahrPaciente(@RequestBody Encaminhamento encaminhamento) {
         service.encaminharPaciente(encaminhamento);
 
     }

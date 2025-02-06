@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Component
-@FeignClient(name = "ms-connect/connectToken", url ="http://localhost:8001")
+@FeignClient(name = "ms-connect/connectToken", url ="http://localhost:8001/connectToken")
 public interface TokenFeignClient {
 
     @GetMapping(value = "/get/{id}")

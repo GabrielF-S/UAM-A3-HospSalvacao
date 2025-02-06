@@ -8,10 +8,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 @Component
-@FeignClient(name = "ms-connect/connectEncaminhamento", url ="http://localhost:8001")
+@FeignClient(name = "ms-connect/connectEncaminhamento", url ="http://localhost:8001/connectEncaminhamento")
 public interface EncaminhamentoFeingClient {
-    @GetMapping(value = "connectToken/getToken/{tokenNumber}")
-    ResponseEntity<Token> getToken(@PathVariable("tokenNumber")  String tokenNumber);
 
     @PostMapping("/save")
     ResponseEntity<Encaminhamento> saveEncaminhamento(@RequestBody Encaminhamento encaminhamento);

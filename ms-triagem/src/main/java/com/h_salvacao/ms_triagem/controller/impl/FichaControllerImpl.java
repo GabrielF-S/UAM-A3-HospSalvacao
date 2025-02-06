@@ -5,10 +5,7 @@ import com.h_salvacao.ms_triagem.model.Ficha;
 import com.h_salvacao.ms_triagem.service.FichaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "triagem/ficha")
@@ -17,7 +14,7 @@ public class FichaControllerImpl implements FichaController {
     @Autowired
     FichaService fichaService;
     @Override
-    public ResponseEntity<Ficha> abrirFichaEncaminharPaciente(Ficha ficha) {
+    public ResponseEntity<Ficha> abrirFichaEncaminharPaciente(@RequestBody Ficha ficha) {
         return ResponseEntity.ok().body(fichaService.enviarFicha(ficha));
     }
 }

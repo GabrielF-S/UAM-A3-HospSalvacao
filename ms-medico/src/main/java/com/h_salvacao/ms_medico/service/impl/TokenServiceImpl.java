@@ -17,19 +17,13 @@ import java.time.temporal.ChronoUnit;
 @Service
 public class TokenServiceImpl implements TokenService {
 
-    @Autowired
-    Queue<Token> listaAtendimento;
-    @Autowired
-    Queue<Token> listaRetorno;
+
+    Queue<Token> listaAtendimento = new Queue<>();
+
+    Queue<Token> listaRetorno = new Queue<>();;
 
     @Autowired
-    ReceitaService receitaService;
-    @Autowired
     TempoAtendimentoService atendimentoService;
-    @Autowired
-    FichaService fichaService;
-    @Autowired
-    EncaminhamentoService encaminhamentoService;
 
     private  final TokenProducerSender tokenProducerSender;
     private final TokenFeignClient tokenFeignClient;
@@ -124,11 +118,6 @@ public class TokenServiceImpl implements TokenService {
         throw new RuntimeException("Erro ao chamar proximo da fila");
     }
 
-
-
-
-
-
     public Token setStatus(Token token, AtendimentoStatus atendimentoStatus) {
         token.setStatus(atendimentoStatus);
         return token;
@@ -141,6 +130,7 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public void updateToken(Token token) {
+        tokenFeignClient.updateToken(token);
 
     }
 
