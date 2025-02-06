@@ -1,6 +1,6 @@
 package com.h_salvacao.ms_raiox.controller.impl;
 
-import com.h_salvacao.ms_raiox.controller.RaioXController;
+import com.h_salvacao.ms_raiox.controller.EncaminhamentoController;
 import com.h_salvacao.ms_raiox.model.Encaminhamento;
 import com.h_salvacao.ms_raiox.service.EncaminhamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 @RestController
-@RequestMapping(value = "raiox")
+@RequestMapping(value = "raiox/encaminhamento")
 @CrossOrigin(value = "http://localhost:4200/", methods = {RequestMethod.GET, RequestMethod.PUT, RequestMethod.POST })
-public class RaioXControllerImpl implements RaioXController {
+public class EncaminhamentoControllerImpl implements EncaminhamentoController {
 
     @Autowired
     EncaminhamentoService raioXService;
