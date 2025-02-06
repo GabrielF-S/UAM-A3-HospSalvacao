@@ -1,11 +1,10 @@
 package com.h_salvacao.ms_atendimento.controller;
 
-import com.h_salvacao.ms_atendimento.model.Stack;
+import com.h_salvacao.ms_atendimento.util.Stack;
 import com.h_salvacao.ms_atendimento.model.Token;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
-public interface AtendimentoController {
+public interface TokenController {
 
     @GetMapping
     Stack<Token> getStack();

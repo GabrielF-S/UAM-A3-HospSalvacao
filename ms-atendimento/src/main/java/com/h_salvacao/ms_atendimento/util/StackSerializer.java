@@ -1,8 +1,9 @@
-package com.h_salvacao.ms_atendimento.model;
+package com.h_salvacao.ms_atendimento.util;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
+import com.h_salvacao.ms_atendimento.model.Token;
 
 import java.io.IOException;
 

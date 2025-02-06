@@ -1,6 +1,6 @@
-package com.h_salvacao.ms_atendimento.model;
+package com.h_salvacao.ms_atendimento.util;
 
-import java.io.Serializable;
+import com.h_salvacao.ms_atendimento.model.Token;
 
 public class No {
     public Token dado;

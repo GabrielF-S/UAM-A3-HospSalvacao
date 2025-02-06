@@ -1,11 +1,13 @@
-package com.h_salvacao.ms_atendimento.model;
+package com.h_salvacao.ms_atendimento.util;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.h_salvacao.ms_atendimento.model.Token;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
-
+@Component
 @AllArgsConstructor
 @JsonSerialize(using = StackSerializer.class)
 public class Stack<T> implements Serializable {
