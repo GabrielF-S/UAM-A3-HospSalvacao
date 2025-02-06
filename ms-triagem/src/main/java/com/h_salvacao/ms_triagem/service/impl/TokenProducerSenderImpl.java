@@ -1,8 +1,7 @@
 package com.h_salvacao.ms_triagem.service.impl;
 
-import com.h_salvacao.ms_triagem.model.Ficha;
 import com.h_salvacao.ms_triagem.model.Token;
-import com.h_salvacao.ms_triagem.service.TriagemProducerSender;
+import com.h_salvacao.ms_triagem.service.TokenProducerSender;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -10,11 +9,11 @@ import org.springframework.stereotype.Service;
 @Log4j2
 @Service
 @RequiredArgsConstructor
-public class TriagemProducerSenderImpl implements TriagemProducerSender {
+public class TokenProducerSenderImpl implements TokenProducerSender {
     public final KafkaTemplate<String, Token> kafkaTemplate;
 
     @Override
-    public void sendFicha(Token token) {
+    public void sendToken(Token token) {
         kafkaTemplate.send("guiche-topic",0, null, token).whenComplete((success, error) ->{
             if (error!= null) {
                 log.error("Falaha ao enviar: {}", error.getMessage());

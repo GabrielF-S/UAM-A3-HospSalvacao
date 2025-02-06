@@ -1,11 +1,10 @@
 package com.h_salvacao.ms_triagem.service;
 
-import com.h_salvacao.ms_triagem.model.Ficha;
 import com.h_salvacao.ms_triagem.model.Token;
 
-public interface TriagemProducerSender {
+public interface TokenProducerSender {
 
-     void sendFicha(Token token);
+     void sendToken(Token token);
 
      void sendoToAtendimento(Token token);
 }

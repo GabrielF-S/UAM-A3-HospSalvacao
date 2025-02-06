@@ -6,4 +6,6 @@ public interface TempoAtendimentoService {
     void atualizarEntradaAtendimento(TempoAtendimento atendimento);
 
     void atualizarSaidaAtendimento(TempoAtendimento atendimento);
+
+    TempoAtendimento getTempoAtendimento(String numToken);
 }
