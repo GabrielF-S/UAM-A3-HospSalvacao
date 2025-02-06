@@ -1,5 +1,6 @@
 package com.h_salvacao.ms_token.service.impl;
 
+import com.h_salvacao.ms_token.feigClients.PacienteFeignClient;
 import com.h_salvacao.ms_token.feigClients.TokenFeignClient;
 import com.h_salvacao.ms_token.model.Paciente;
 import com.h_salvacao.ms_token.service.PacienteService;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class PacienteServiceImpl implements PacienteService {
 
-    private  final TokenFeignClient feignClient;
+    private  final PacienteFeignClient feignClient;
 
     @Override
     public Paciente buscarPaciente(String cpf) {
