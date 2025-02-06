@@ -13,7 +13,7 @@ export class PacientesService {
   }
   
   buscarPaciente(cpf: String): Observable<Paciente> {
-    return this.http.get<any>(`http://localhost:8010/paciente/buscarRegistro/${cpf}`)
+    return this.http.get<any>(`http://localhost:8010/token/paciente/buscarRegistro/${cpf}`)
   
 }
 

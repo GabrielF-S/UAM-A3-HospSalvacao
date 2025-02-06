@@ -16,23 +16,19 @@ export class GuicheService {
   ) { }
 
   getTamanhoFila(): Observable<number>{
-    return this.http.get<number>('http://localhost:8030/guiche/getQtd');
+    return this.http.get<number>('http://localhost:8030/guiche/token/getQtd');
   }
-
   buscarProximoPaciente(): Observable<Token> {
-    return this.http.get<Token>('http://localhost:8030/guiche/getProximo');
-    
-  }
-
-  salvarPaciente(paciente : Paciente): Observable<Paciente> {
-    return this.http.post<Paciente>('http://localhost:8030/guiche/salvarPaciente', paciente);
-  }
-
-  atualizarPaciente(paciente: Paciente): Observable<Paciente>{
-    return this.http.put<Paciente>('http://localhost:8030/guiche/atualizarPaciente', paciente)
+    return this.http.get<Token>('http://localhost:8030/guiche/token/getProximo');
   }
   encaminharToken(token: Token): Observable<Token> {
-   return this.http.post<Token>('http://localhost:8030/guiche/encaminharToken', token)
-    
+   return this.http.post<Token>('http://localhost:8030/guiche/token/encaminharToken', token)
   }
+  salvarPaciente(paciente : Paciente): Observable<Paciente> {
+    return this.http.post<Paciente>('http://localhost:8030/guiche/paciente/salvarPaciente', paciente);
+  }
+  atualizarPaciente(paciente: Paciente): Observable<Paciente>{
+    return this.http.put<Paciente>('http://localhost:8030/guiche/paciente/atualizarPaciente', paciente)
+  }
+ 
 }

@@ -11,14 +11,14 @@ export class RaioxService {
   constructor(private http: HttpClient) { }
 
   getTamanhoFila(): Observable<number> {
-    return this.http.get<number>('http://localhost:8060/raiox/getQtd');
+    return this.http.get<number>('http://localhost:8060/raiox/encaminhamento/getQtd');
   }
 
   
   buscarProximo(): Observable<any>{
-    return this.http.get<any>('http://localhost:8060/raiox/getProximo')
+    return this.http.get<any>('http://localhost:8060/raiox/encaminhamento/getProximo')
   }
   encaminharPaciente(encaminhamento: Encaminhamento): Observable<any>{
-    return this.http.post('http://localhost:8060/raiox/encaminharPaciente', encaminhamento);
+    return this.http.post('http://localhost:8060/raiox/encaminhamento/encaminharPaciente', encaminhamento);
   }
 }

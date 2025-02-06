@@ -17,7 +17,7 @@ export class TokensService {
   
 
   gerarToken(tokenAtendimento: TokenAtendimento): Observable<Token> {
-    return this.http.post<Token>('http://localhost:8010/token/gerarFicha', tokenAtendimento);
+    return this.http.post<Token>('http://localhost:8010/token/token/gerarFicha', tokenAtendimento);
     
   }
 }
