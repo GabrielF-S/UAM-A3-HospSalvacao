@@ -1,5 +1,6 @@
-package com.h_salvacao.ms_guiche.model;
+package com.h_salvacao.ms_guiche.util;
 
+import com.h_salvacao.ms_guiche.model.Token;
 import lombok.AllArgsConstructor;
 
 import java.util.ArrayList;

@@ -1,5 +1,6 @@
 package com.h_salvacao.ms_guiche.model;
 
+import com.h_salvacao.ms_guiche.util.Queue;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
