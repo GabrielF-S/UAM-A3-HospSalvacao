@@ -1,4 +1,4 @@
-package com.h_salvacao.ms_triagem.model;
+package com.h_salvacao.ms_triagem.util;
 
 public enum TipoAtendimento {
     COMUM, PREFERENCIAL, EMERGENCIAL, URGENTE, DESCONHECIDO
