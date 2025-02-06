@@ -36,11 +36,11 @@
                     <fieldset style="background-color: rgb(226, 236, 236);">
                         <legend>Chamando:</legend>
                     <div *ngFor="let token of tokens | slice:0:1">
-                         <p style="color: white;">Token: <span style="color: bisque; font-weight: bold;
+                         <p style="color: black;">Token: <span style="color: black; font-weight: bold;
 ">{{ token.numToken }}</span></p>
-                        <p style="color: white;">Paciente: <span style="color: bisque; font-weight: bold;
+                        <p style="color: black;">Paciente: <span style="color: black; font-weight: bold;
 " *ngIf="token.paciente">{{ token.paciente.nome }}</span></p>
-                        <p style="color: white;">Atendimento: <span style="color: bisque; font-weight: bold;
+                        <p style="color: black;">Atendimento: <span style="color: black; font-weight: bold;
 ">{{ token.status }}</span></p>
                     </div>  
                     </fieldset>

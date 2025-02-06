@@ -84,6 +84,7 @@ export class MedicacaoAtendimentoComponent implements OnInit {
     if (!erro) {
       this.falha = [];
       encaminhado.liberacao = true;
+      this.sucesso = "Paciente {{encaminhamentoSelecionado.nomePaciente}} já pode ser liberado"
       // this.liberarPaciente(encaminhado)
       // this.listaMedicados = this.listaMedicados.filter(m => m !== encaminhado);
     } 
@@ -96,7 +97,8 @@ export class MedicacaoAtendimentoComponent implements OnInit {
     if (encaminhado.liberacao) {
       this.listaMedicados = this.listaMedicados.filter(m => m !== encaminhado);
       this.service.encaminharPaciente(encaminhado).subscribe(
-          response =>{ 
+        response => { 
+          this.sucesso = "Paciente {{encaminhamentoSelecionado.nomePaciente}} liberado"
         }, error =>{
           this.falha.push(error.error.message);
         }

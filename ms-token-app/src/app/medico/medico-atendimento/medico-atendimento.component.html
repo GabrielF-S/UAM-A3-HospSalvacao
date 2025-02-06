@@ -162,12 +162,14 @@
                     <th>Medimamento</th>
                     <th>mg</th>
                     <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let medicacoesVeia of listaMedicacoesVeia">
                     <td>{{ medicacoesVeia.nome}}</td>
                     <td >{{ medicacoesVeia.mg }}</td>
+                    <td *ngIf="medicacoesVeia.check"> <input type="checkbox" id="medicacaoVeiaCheck" name="medicacaoVeiaCheck" [(ngModel)] = "medicacoesVeia.check" disabled> </td>
                     <td><button class="btn btn-danger" (click)="removerMedicacaoVeia(medicacoesVeia)" data-toggle="modal" data-target="#modalDelecao"><i class="fa fa-trash"></i></button></td>
                 </tr>
             </tbody>

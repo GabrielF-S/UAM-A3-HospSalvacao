@@ -17,15 +17,15 @@ export class MedicacaoinravenosaService {
    }
 
   buscarProximoPaciente(): Observable<Encaminhamento>{
-    return this.http.get<Encaminhamento>('http://localhost:8090/medicacao/getProximo');
+    return this.http.get<Encaminhamento>('http://localhost:8090/medicacao/encaminhamento/getProximo');
    
  }
 
  getTamanhoFila(): Observable <number>{ 
-    return this.http.get<number>('http://localhost:8090/medicacao/getQtd');
+    return this.http.get<number>('http://localhost:8090/medicacao/encaminhamento/getQtd');
  }
   
  encaminharPaciente(encaminhado: Encaminhamento): Observable<any> {
-  return this.http.post<any>('http://localhost:8090/medicacao/encaminharPaciente', encaminhado);
+  return this.http.post<any>('http://localhost:8090/medicacao/encaminhamento/encaminharPaciente', encaminhado);
 }
 }

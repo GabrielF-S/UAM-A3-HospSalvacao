@@ -151,6 +151,7 @@ export class MedicoAtendimentoComponent implements OnInit {
   }
 
   encaminharPaciente() {
+    let servico: string;
     this.sucesso = null;
     this.falha = null;
     this.encaminhamento = new Encaminhamento();
@@ -160,23 +161,22 @@ export class MedicoAtendimentoComponent implements OnInit {
     if (this.encaminharMedicacao && this.encaminharRaioX) {
       this.encaminhamento.medicacaoIntravenosa = this.listaMedicacoesVeia;
       this.encaminhamento.regioesRaiox = this.regioesRaioX;
-      
+      servico="Medicacao"
     } else {
       if (this.encaminharMedicacao) {
-        console.log(this.listaMedicacoesVeia);
         this.encaminhamento.medicacaoIntravenosa = this.listaMedicacoesVeia;
-        console.log(this.encaminhamento.medicacaoIntravenosa)
+        servico="Medicacao"
       } 
       if (this.encaminharRaioX) {
     
         this.encaminhamento.regioesRaiox = this.regioesRaioX;
+        servico="Raio X"
    
       }
     }
-    console.log(this.encaminhamento)
     this.service.encaminharPacienteMedicacaoRaioX(this.encaminhamento).subscribe(
       response => {
-        this.sucesso = "Paciente encaminhado com sucesso"
+        this.sucesso = "Paciente encaminhado com sucesso para " + servico;
         this.falha = null;
         
       }, erro => {
