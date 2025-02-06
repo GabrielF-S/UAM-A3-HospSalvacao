@@ -1,6 +1,8 @@
 package com.h_salvacao.ms_token.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.h_salvacao.ms_token.util.AtendimentoStatus;
+import com.h_salvacao.ms_token.util.TipoAtendimento;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

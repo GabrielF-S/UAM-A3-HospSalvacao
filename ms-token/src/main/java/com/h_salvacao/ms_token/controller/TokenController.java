@@ -1,7 +1,7 @@
 package com.h_salvacao.ms_token.controller;
 
 import com.h_salvacao.ms_token.model.Token;
-import com.h_salvacao.ms_token.model.TokenAtendimento;
+import com.h_salvacao.ms_token.util.TokenAtendimento;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 

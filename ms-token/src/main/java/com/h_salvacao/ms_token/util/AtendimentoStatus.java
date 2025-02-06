@@ -1,4 +1,4 @@
-package com.h_salvacao.ms_token.model;
+package com.h_salvacao.ms_token.util;
 
 public enum AtendimentoStatus {
     TRIAGEM,

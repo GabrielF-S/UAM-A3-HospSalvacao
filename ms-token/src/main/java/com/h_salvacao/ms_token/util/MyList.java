@@ -1,6 +1,6 @@
-package com.h_salvacao.ms_token.model;
+package com.h_salvacao.ms_token.util;
 
-import org.apache.kafka.streams.processor.To;
+import com.h_salvacao.ms_token.model.Token;
 
 public class MyList {
     private No primeiro;

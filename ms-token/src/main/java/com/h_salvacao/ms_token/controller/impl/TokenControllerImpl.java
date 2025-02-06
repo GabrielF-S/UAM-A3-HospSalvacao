@@ -2,7 +2,7 @@ package com.h_salvacao.ms_token.controller.impl;
 
 import com.h_salvacao.ms_token.controller.TokenController;
 import com.h_salvacao.ms_token.model.Token;
-import com.h_salvacao.ms_token.model.TokenAtendimento;
+import com.h_salvacao.ms_token.util.TokenAtendimento;
 import com.h_salvacao.ms_token.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

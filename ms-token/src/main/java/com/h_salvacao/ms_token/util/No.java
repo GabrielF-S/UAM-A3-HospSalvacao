@@ -1,4 +1,6 @@
-package com.h_salvacao.ms_token.model;
+package com.h_salvacao.ms_token.util;
+
+import com.h_salvacao.ms_token.model.Token;
 
 public class No {
     private Token data;

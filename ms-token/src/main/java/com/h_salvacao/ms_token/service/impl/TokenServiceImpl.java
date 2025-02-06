@@ -6,6 +6,8 @@ import com.h_salvacao.ms_token.service.ImprimirTokenService;
 import com.h_salvacao.ms_token.service.TokenProducerSender;
 import com.h_salvacao.ms_token.service.TokenService;
 import com.h_salvacao.ms_token.service.PacienteService;
+import com.h_salvacao.ms_token.util.AtendimentoStatus;
+import com.h_salvacao.ms_token.util.TipoAtendimento;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
