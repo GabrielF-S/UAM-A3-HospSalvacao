@@ -1,10 +1,10 @@
 package com.h_salvacao.ms_guiche.service;
 
-import com.h_salvacao.ms_guiche.model.Ficha;
 import com.h_salvacao.ms_guiche.model.Paciente;
 import com.h_salvacao.ms_guiche.model.Token;
+import com.h_salvacao.ms_guiche.util.AtendimentoStatus;
 
-public interface GuicheService {
+public interface TokenService {
 
     void adicionarFila(Token token);
 
@@ -12,9 +12,9 @@ public interface GuicheService {
 
     Token chamarProximo();
 
-    Paciente salvarPaciente(Paciente paciente);
-
-    Paciente atualizarPaciente(Paciente paciente);
-
     Token encaminharToken(Token token);
+
+    Token updateToken(Token token);
+
+    Token setStatus(Token token, AtendimentoStatus atendimentoStatus);
 }

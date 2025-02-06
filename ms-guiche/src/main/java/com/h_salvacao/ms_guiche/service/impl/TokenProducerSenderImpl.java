@@ -1,7 +1,7 @@
 package com.h_salvacao.ms_guiche.service.impl;
 
 import com.h_salvacao.ms_guiche.model.Token;
-import com.h_salvacao.ms_guiche.service.GuicheProducerSender;
+import com.h_salvacao.ms_guiche.service.TokenProducerSender;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Log4j2
 @Service
 @RequiredArgsConstructor
-public class GuicheProducerSenderImpl implements GuicheProducerSender {
+public class TokenProducerSenderImpl implements TokenProducerSender {
 
     private final KafkaTemplate<String, Token> kafkaTemplate;
     @Override

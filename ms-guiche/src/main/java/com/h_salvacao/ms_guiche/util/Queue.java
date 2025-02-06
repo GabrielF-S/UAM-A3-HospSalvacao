@@ -2,10 +2,11 @@ package com.h_salvacao.ms_guiche.util;
 
 import com.h_salvacao.ms_guiche.model.Token;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 @AllArgsConstructor
 public class  Queue<T> {
     private No  inicio, fim;

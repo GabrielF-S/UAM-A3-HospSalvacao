@@ -1,20 +1,20 @@
 package com.h_salvacao.ms_guiche.controller.impl;
 
-import com.h_salvacao.ms_guiche.controller.GuicheController;
+import com.h_salvacao.ms_guiche.controller.TokenController;
 import com.h_salvacao.ms_guiche.model.Paciente;
 import com.h_salvacao.ms_guiche.model.Token;
-import com.h_salvacao.ms_guiche.service.GuicheService;
+import com.h_salvacao.ms_guiche.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "guiche")
+@RequestMapping(value = "guiche/token")
 @CrossOrigin(value = "http://localhost:4200/", methods = {RequestMethod.GET, RequestMethod.PUT, RequestMethod.POST })
-public class GuicheControllerImpl implements GuicheController {
+public class TokenControllerImpl implements TokenController {
 
     @Autowired
-    GuicheService guicheService;
+    TokenService guicheService;
     @Override
     public ResponseEntity<Integer> getQuantidadeTotalFila() {
         return ResponseEntity.ok().body(guicheService.pegarTotal());
@@ -25,15 +25,6 @@ public class GuicheControllerImpl implements GuicheController {
         return ResponseEntity.ok().body(guicheService.chamarProximo());
     }
 
-    @Override
-    public ResponseEntity<Paciente> salvarPaciente(@RequestBody Paciente paciente) {
-        return ResponseEntity.ok().body(guicheService.salvarPaciente(paciente));
-    }
-
-    @Override
-    public ResponseEntity<Paciente> atualizarPaciente(@RequestBody Paciente paciente) {
-        return ResponseEntity.ok().body(guicheService.atualizarPaciente(paciente));
-    }
 
     @Override
     public ResponseEntity<Token> encaminahrToken(@RequestBody Token token) {
