@@ -17,16 +17,16 @@ export class TriagemService {
   }
 
   buscarProximoPaciente(): Observable<Token> {
-    return this.http.get<Token>('http://localhost:8020/triagem/getProximo');
+    return this.http.get<Token>('http://localhost:8020/triagem/token/getProximo');
     
   }
 
   getTamanhoFila(): Observable<number> {
-    return this.http.get<number>('http://localhost:8020/triagem/getQtd');
+    return this.http.get<number>('http://localhost:8020/triagem/token/getQtd');
   }
 
   enviarFicha(ficha: Ficha): Observable<Ficha> {
-    return this.http.put<Ficha>('http://localhost:8020/triagem/save', ficha)
+    return this.http.put<Ficha>('http://localhost:8020/triagem/ficha/save', ficha)
     
   }
 
