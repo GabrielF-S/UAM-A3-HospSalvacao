@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/token")
+@RequestMapping(value = "/token/token")
 @CrossOrigin(value = "http://localhost:4200/")
 public class TokenControllerImpl implements TokenController {
     @Autowired
@@ -29,12 +29,11 @@ public class TokenControllerImpl implements TokenController {
              token =   tokenService.abrirFicha(atendimento.getCpf(), atendimento.getTipoAtendimento());
         }
 
-
         return  ResponseEntity.ok().body(tokenService.salvarToken(token));
     }
 
     @Override
-    public ResponseEntity<Token> salvarToken(Token token) {
-        return null;
+    public ResponseEntity<Token> salvarToken(@RequestBody Token token) {
+        return ResponseEntity.ok().body(tokenService.atualizarToken(token));
     }
 }

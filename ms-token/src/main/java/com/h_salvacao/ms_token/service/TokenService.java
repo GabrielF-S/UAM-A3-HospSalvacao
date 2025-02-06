@@ -11,4 +11,6 @@ public interface TokenService {
 
 
     Token salvarToken(Token token);
+
+    Token atualizarToken(Token token);
 }

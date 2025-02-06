@@ -6,11 +6,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 
 public interface TokenController {
-    @PostMapping(value = "/gerarFicha")
+    @PostMapping(value = "/gerarToken")
     ResponseEntity<Token> gerarToken(TokenAtendimento atendimento) throws InterruptedException;
 
-    @PostMapping(value = "/atualizarFicha")
-    ResponseEntity<Token> salvarToken(Token ficha);
+    @PostMapping(value = "/atualizarToken")
+    ResponseEntity<Token> salvarToken(Token token);
 
 
 

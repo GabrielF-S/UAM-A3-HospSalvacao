@@ -59,6 +59,11 @@ public class TokenServiceImpl implements TokenService {
         return token;
     }
 
+    @Override
+    public Token atualizarToken(Token token) {
+        return feignClient.atualizarToken(token).getBody();
+    }
+
     private String gerarToken(TipoAtendimento atendimento) {
         return   gerarSequencia(3) + gerarSufixo(atendimento) ;
 
