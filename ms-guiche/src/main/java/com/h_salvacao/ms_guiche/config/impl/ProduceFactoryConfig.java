@@ -15,7 +15,7 @@ import java.util.HashMap;
 
 @Configuration
 @RequiredArgsConstructor
-public class GuicheProduceFactoryConfig {
+public class ProduceFactoryConfig {
 
     public final KafkaProperties kafkaProperties;
 

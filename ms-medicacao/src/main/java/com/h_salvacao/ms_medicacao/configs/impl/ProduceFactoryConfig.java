@@ -1,4 +1,4 @@
-package com.h_salvacao.ms_triagem.configs.impl;
+package com.h_salvacao.ms_medicacao.configs.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -15,7 +15,7 @@ import java.util.HashMap;
 
 @Configuration
 @RequiredArgsConstructor
-public class TriagemProduceFactoryConfig {
+public class ProduceFactoryConfig {
 
     public final KafkaProperties kafkaProperties;
 

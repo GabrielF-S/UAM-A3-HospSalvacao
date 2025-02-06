@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 
-public interface RaioXConsumerConfig {
+public interface EncaminhamentoConsumerConfig {
 
     @Bean
     ConsumerFactory<String, Encaminhamento> consumerFactory();

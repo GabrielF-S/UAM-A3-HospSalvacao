@@ -16,7 +16,7 @@ import java.util.HashMap;
 
 @Configuration
 @RequiredArgsConstructor
-public class RaioXProduceFactoryConfig {
+public class ProduceFactoryConfig {
 
     public final KafkaProperties kafkaProperties;
 

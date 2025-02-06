@@ -1,6 +1,6 @@
 package com.h_salvacao.ms_guiche.listener.impl;
 
-import com.h_salvacao.ms_guiche.listener.TriagemConsumerListener;
+import com.h_salvacao.ms_guiche.listener.TokenConsumerListener;
 import com.h_salvacao.ms_guiche.model.Token;
 import com.h_salvacao.ms_guiche.service.TokenService;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Log4j2
 @Service
 @RequiredArgsConstructor
-public class TriagemConsumerListenerImpl implements TriagemConsumerListener {
+public class TokenConsumerListenerImpl implements TokenConsumerListener {
     private final TokenService guicheService;
 
     @Override
