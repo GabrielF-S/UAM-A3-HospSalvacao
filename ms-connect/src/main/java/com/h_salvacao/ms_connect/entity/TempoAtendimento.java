@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Objects;
@@ -25,7 +26,10 @@ public class TempoAtendimento implements Serializable {
 
     private  String numToken;
 
-    @JsonFormat(pattern = "dd/MM/yy HH:mm")
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private LocalDate diaEntrada;
+
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime dataEntrada;
 
     @JsonFormat(pattern = "HH:mm")

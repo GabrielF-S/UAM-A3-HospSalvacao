@@ -8,7 +8,9 @@ import com.h_salvacao.ms_connect.service.TempoAtenidmentoService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @AllArgsConstructor
 @Service
@@ -19,7 +21,7 @@ public class TempoAtenidmentoServiceImpl implements TempoAtenidmentoService {
     @Override
     public TempoAtendimento CriarTempoAtendimento(Token token) {
         if (token != null) {
-            return TempoAtendimento.builder().numToken(token.getNumToken()).dataEntrada(token.getDataEntrada()).horarioEntrada(token.getDataEntrada().toLocalTime()).build();
+            return TempoAtendimento.builder().numToken(token.getNumToken()).dataEntrada(token.getDataEntrada()).horarioEntrada(token.getDataEntrada().toLocalTime()).diaEntrada(LocalDate.now()).build();
         }else {
             throw new TempoAtendimentoException();
         }
@@ -49,5 +51,15 @@ public class TempoAtenidmentoServiceImpl implements TempoAtenidmentoService {
         }else {
             throw new TempoAtendimentoException();
         }
+    }
+
+    @Override
+    public List<TempoAtendimento> getAllAtendimentosDoDia() {
+        return tempoAtendimentoRepository.getBydiaEntrada(LocalDate.now()).get();
+    }
+
+    @Override
+    public List<TempoAtendimento> getAtendimentoPorPeriodo(LocalDate dataInicio, LocalDate dataFinal) {
+        return tempoAtendimentoRepository.getAtendimentoPorPeriodo(dataInicio, dataFinal).get();
     }
 }
